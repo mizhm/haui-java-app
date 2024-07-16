@@ -1,0 +1,199 @@
+use master
+go
+
+create database coffee_shop
+go
+
+use coffee_shop
+go
+
+create table category
+(
+    id         int identity,
+    name       nvarchar(255) unique not null,
+    status     bit default (1),
+    created_at datetime             not null,
+    updated_at datetime,
+    primary key (id)
+)
+go
+
+create table product
+(
+    id          int identity,
+    name        nvarchar(255) unique not null,
+    price       float                not null,
+    status      bit default (1),
+    created_at  datetime             not null,
+    updated_at  datetime             not null,
+    category_id int                  not null,
+    primary key (id),
+    foreign key (category_id) references category (id)
+)
+go
+
+create table bill
+(
+    id         int identity,
+    status     bit default (1),
+    created_at datetime not null,
+    updated_at datetime,
+    primary key (id)
+)
+go
+
+create table bill_detail
+(
+    bill_id    int not null,
+    product_id int not null,
+    amount     int not null,
+    primary key (bill_id, product_id),
+    foreign key (bill_id) references bill (id),
+    foreign key (product_id) references product (id)
+)
+
+create proc usp_insert_category(
+    @_name nvarchar(255),
+    @_status bit = 1,
+    @_out_stt bit = 1 output,
+    @_out_msg nvarchar(255) = '' output
+)
+as
+begin try
+    if exists(select name from category where name = @_name)
+        begin
+            set @_out_stt = 0;
+            set @_out_msg = N'Category exists!';
+        end
+    else
+        begin
+            begin tran;
+            insert into category(name, status, created_at, updated_at)
+            values (@_name, @_status, getdate(), getdate());
+            set @_out_stt = 1;
+            set @_out_msg = N'Insert successfully';
+            if @@trancount > 0
+                commit tran;
+        end
+end try
+begin catch
+    set @_out_stt = 0;
+    set @_out_msg = error_message();
+    if @@trancount > 0
+        rollback tran;
+end catch
+go
+
+exec usp_insert_category @_name= N'Coffee'
+go
+exec usp_insert_category @_name= N'Tea'
+gO
+exec usp_insert_category @_name= N'Juice'
+go
+exec usp_insert_category @_name= N'Cake'
+go
+
+create proc usp_update_category(
+    @_id int,
+    @_name nvarchar(255),
+    @_status bit,
+    @_out_stt bit = 1 output,
+    @_out_msg nvarchar(255) = '' output
+)
+as
+begin try
+    if not exists(select * from category where id = @_id)
+        begin
+            set @_out_stt = 0;
+            set @_out_msg = N'Category to update not valid';
+        end
+    else
+        begin
+            if exists(select * from category where name = @_name and id <> @_id)
+                begin
+                    set @_out_stt = 0;
+                    set @_out_msg = N'Category name already in use';
+                end
+            else
+                begin
+                    begin tran;
+                    update category
+                    set name= @_name,
+                        status = @_status,
+                        updated_at = getdate()
+                    where id = @_id;
+                    set @_out_stt = 1;
+                    set @_out_msg = n'update successully';
+                    if @@trancount > 0
+                        commit tran;
+                end
+        end
+end try
+begin catch
+    set @_out_stt = 0;
+    set @_out_msg = error_message();
+    if @@trancount > 0
+        rollback tran;
+end catch
+go
+
+create proc usp_delete_category(
+    @_id int,
+    @_out_stt bit = 1 output,
+    @_out_msg nvarchar = '' output
+)
+as
+begin try
+    if exists (select *
+               from category
+                        join product on product.category_id = category.id
+               where category.id = @_id)
+        begin
+            set @_out_stt = 0;
+            set @_out_msg = n'category has product'
+        end
+    else
+        begin
+            begin tran;
+            delete category
+            where id = @_id;
+            set @_out_stt = 1;
+            set @_out_msg = n'delete successfully';
+            if @@trancount > 0
+                commit tran;
+        end
+end try
+begin catch
+    set @_out_stt = 0;
+    set @_out_msg = error_message();
+    if @@trancount > 0
+        rollback tran;
+end catch
+go
+
+create proc usp_get_all_category(
+    @_name nvarchar(255) = null,
+    @_status bit = null
+)
+as
+begin
+    declare @sql nvarchar(max) = 'select * from category where 1 = 1';
+    if (@_name is not null)
+        set @sql = concat(@sql, 'and name like %', @_name, '%');
+    if (@_status is not null)
+        set @sql = concat(@sql, 'and status = ', @_status);
+    exec (@sql)
+end
+go
+
+create proc usp_get_all_active_category(
+    @_name nvarchar(255) = null
+)
+as
+begin
+    declare @sql nvarchar(max) = 'select * from category where 1 = 1 and status = 1';
+    if (@_name is not null)
+        set @sql = concat(@sql, 'and name like %', @_name, '%');
+    exec (@sql)
+end
+go
