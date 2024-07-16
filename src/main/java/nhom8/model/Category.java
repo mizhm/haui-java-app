@@ -9,15 +9,15 @@ import java.io.Serializable;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-public class Product implements Serializable {
+public class Category implements Serializable {
     private Integer id;
-    private Integer categoryId;
     private String name;
-    private Float price;
     private Boolean status;
     private String createdAt;
     private String updatedAt;
 
-    //generated to Category model
-    private String categoryName;
+    @Override
+    public String toString(){
+        return this.name;
+    }
 }
