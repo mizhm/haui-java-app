@@ -179,9 +179,9 @@ as
 begin
     declare @sql nvarchar(max) = 'select * from category where 1 = 1';
     if (@_name is not null)
-        set @sql = concat(@sql, 'and name like %', @_name, '%');
+        set @sql = concat(@sql, ' and name like ''%', @_name, '%''');
     if (@_status is not null)
-        set @sql = concat(@sql, 'and status = ', @_status);
+        set @sql = concat(@sql, ' and status = ', @_status);
     exec (@sql)
 end
 go
@@ -193,7 +193,151 @@ as
 begin
     declare @sql nvarchar(max) = 'select * from category where 1 = 1 and status = 1';
     if (@_name is not null)
-        set @sql = concat(@sql, 'and name like %', @_name, '%');
+        set @sql = concat(@sql, ' and name like ''%', @_name, '%''');
     exec (@sql)
 end
 go
+
+create proc usp_insert_product(
+    @_name nvarchar(255),
+    @_status bit = 1,
+    @_price float,
+    @_category_id int,
+    @_out_stt bit = 1 output,
+    @_out_msg nvarchar(255) = '' output
+) as
+begin try
+    if not exists(select * from category where id = @_category_id)
+        begin
+            set @_out_stt = 0;
+            set @_out_msg = 'Category not exists!';
+        end
+    else
+        begin
+            if exists(select * from product where lower(name) = lower(@_name))
+                begin
+                    set @_out_stt = 0;
+                    set @_out_msg = 'Product exists'
+                end
+            else
+                begin
+                    begin tran;
+                    insert into product(name, status, price, category_id, created_at, updated_at)
+                    values (@_name, @_status, @_price, @_category_id, getdate(), getdate());
+                    set @_out_stt = 1;
+                    set @_out_msg = 'Create successfully'
+                    if @@trancount > 0
+                        commit tran
+                end
+        end
+end try
+begin catch
+    set @_out_stt = 0;
+    set @_out_msg = error_message()
+    if @@trancount > 0
+        rollback tran
+end catch
+go
+
+create proc usp_update_product(
+    @_id int,
+    @_name nvarchar(255),
+    @_status bit = 1,
+    @_price float,
+    @_category_id int,
+    @_out_stt bit = 1 output,
+    @_out_msg nvarchar(255) = '' output
+) as
+begin try
+    if not exists(select * from product where id = @_id)
+        begin
+            set @_out_stt = 0;
+            set @_out_msg = 'Product not exists';
+        end
+    else
+        begin
+            if exists(select * from product where name = @_name and id <> @_id)
+                begin
+                    set @_out_stt = 0;
+                    set @_out_msg = 'Product name exists';
+                end
+            else
+                begin
+                    begin tran;
+                    update product
+                    set name= @_name,
+                        status = @_status,
+                        price = @_price,
+                        category_id = @_category_id,
+                        updated_at= getdate()
+                    where id = @_id;
+                    set @_out_stt = 1;
+                    set @_out_msg = 'Update successfully!'
+                    if @@trancount > 0
+                        commit tran
+                end
+        end
+end try
+begin catch
+    set @_out_stt = 0;
+    set @_out_msg = error_message();
+    if @@trancount > 0
+        rollback tran
+end catch
+go
+
+create proc usp_delete_product(
+    @_id int,
+    @_out_stt bit = 1 output,
+    @_out_msg nvarchar(255) = '' output
+) as
+begin try
+    if exists(select *
+              from product
+                       join bill_detail on bill_detail.product_id = product.id
+              where id = @_id)
+        begin
+            set @_out_stt = 0;
+            set @_out_msg = 'Product exists in some bills';
+        end
+    else
+        begin
+            begin tran;
+            delete product
+            where id = @_id;
+            set @_out_stt = 1;
+            set @_out_msg = 'Delete successfully';
+            if @@trancount > 0
+                commit tran
+        end
+end try
+begin catch
+    set @_out_stt = 0;
+    set @_out_msg = error_message()
+    if @@trancount > 0
+        rollback tran
+end catch
+go
+
+create proc usp_get_all_product(
+    @_name nvarchar = null,
+    @_status bit = null
+) as
+begin
+    declare @sql nvarchar(max) = 'select * from product where 1=1';
+    if @_name is not null
+        set @sql = concat(@sql, ' and name like ''%', @_name, '%''');
+    if @_status is not null
+        set @sql = concat(@sql, ' and status = ', @_status);
+    exec (@sql);
+end
+go
+
+create proc usp_get_product_by_id(
+    @_id int
+) as
+begin
+    select top 1 * from product where id = @_id
+end
+go
+
