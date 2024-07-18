@@ -5,6 +5,7 @@ import nhom8.utils.DataSource;
 import java.sql.Connection;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.Map;
 
 public abstract class DAO<T> {
     Connection conn = DataSource.getInstance().getConnection();
@@ -13,10 +14,10 @@ public abstract class DAO<T> {
 
     public abstract T get(int id) throws SQLException;
 
-    public abstract boolean create(T t) throws SQLException;
+    public abstract Map<String, Object> create(T t) throws SQLException;
 
-    public abstract boolean update(T t) throws SQLException;
+    public abstract Map<String, Object> update(T t) throws SQLException;
 
-    public abstract boolean delete(int id) throws SQLException;
+    public abstract Map<String, Object> delete(int id) throws SQLException;
 
 }

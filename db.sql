@@ -186,15 +186,11 @@ begin
 end
 go
 
-create proc usp_get_all_active_category(
-    @_name nvarchar(255) = null
-)
-as
+create proc usp_get_category_by_id(
+    @_id int
+) as
 begin
-    declare @sql nvarchar(max) = 'select * from category where 1 = 1 and status = 1';
-    if (@_name is not null)
-        set @sql = concat(@sql, ' and name like ''%', @_name, '%''');
-    exec (@sql)
+    select top 1 * from category where id = @_id
 end
 go
 
