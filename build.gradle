@@ -14,8 +14,10 @@ dependencies {
     testImplementation 'org.junit.jupiter:junit-jupiter'
     // https://mvnrepository.com/artifact/com.microsoft.sqlserver/mssql-jdbc
     implementation group: 'com.microsoft.sqlserver', name: 'mssql-jdbc', version: '12.6.1.jre11'
-    // https://mvnrepository.com/artifact/org.projectlombok/lombok
-    compileOnly group: 'org.projectlombok', name: 'lombok', version: '1.18.24'
+
+    //lombok
+    compileOnly 'org.projectlombok:lombok:1.18.34'
+    annotationProcessor 'org.projectlombok:lombok:1.18.34'
 }
 
 test {
