@@ -52,12 +52,15 @@ create table bill_detail
     foreign key (product_id) references product (id)
 )
 
+go
+
 create proc usp_insert_category(
     @_name nvarchar(255),
     @_status bit = 1,
     @_out_stt bit = 1 output,
     @_out_msg nvarchar(255) = '' output
 )
+
 as
 begin try
     if exists(select name from category where name = @_name)
@@ -123,7 +126,7 @@ begin try
                         updated_at = getdate()
                     where id = @_id;
                     set @_out_stt = 1;
-                    set @_out_msg = n'update successully';
+                    set @_out_msg = N'update successully';
                     if @@trancount > 0
                         commit tran;
                 end
@@ -150,7 +153,7 @@ begin try
                where category.id = @_id)
         begin
             set @_out_stt = 0;
-            set @_out_msg = n'category has product'
+            set @_out_msg = N'category has product'
         end
     else
         begin
@@ -158,7 +161,7 @@ begin try
             delete category
             where id = @_id;
             set @_out_stt = 1;
-            set @_out_msg = n'delete successfully';
+            set @_out_msg = N'delete successfully';
             if @@trancount > 0
                 commit tran;
         end
