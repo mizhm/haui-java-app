@@ -60,6 +60,7 @@ create proc usp_insert_category(
     @_out_stt bit = 1 output,
     @_out_msg nvarchar(255) = '' output
 )
+
 as
 begin try
     if exists(select name from category where name = @_name)
@@ -125,7 +126,7 @@ begin try
                         updated_at = getdate()
                     where id = @_id;
                     set @_out_stt = 1;
-                    set @_out_msg = n'update successully';
+                    set @_out_msg = N'update successully';
                     if @@trancount > 0
                         commit tran;
                 end
