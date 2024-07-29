@@ -443,3 +443,29 @@ begin catch
         rollback tran;
 end catch
 go
+
+create proc usp_get_bill(
+    @_status bit
+)
+as
+begin
+    declare @sql nvarchar(max)= N'select * from bill where 1=1';
+    if @_status is not null
+        set @sql = concat(@sql, 'and status = ', @_status);
+    exec (@sql);
+end
+go
+
+create proc usp_get_bill_with_detail(
+    @_id int,
+    @_status bit
+)
+as
+begin
+    declare @sql nvarchar(max) = concat(
+            N'select * from bill join bill_detail on bill.id = bill_detail.bill_id where bill.id = ', @_id)
+    if @_status is not null
+        set @sql = concat(@sql, ' and bill.status = ', @_status)
+    exec (@sql);
+end
+go
