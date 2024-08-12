@@ -86,13 +86,33 @@ begin catch
 end catch
 go
 
-exec usp_insert_category @_name= N'Coffee'
+-- Thêm danh mục
+exec usp_insert_category @_name = N'Cà Phê Việt';
+
 go
-exec usp_insert_category @_name= N'Tea'
-gO
-exec usp_insert_category @_name= N'Juice'
+
+exec usp_insert_category @_name = N'Cà Phê Tây';
+
 go
-exec usp_insert_category @_name= N'Cake'
+
+exec usp_insert_category @_name = N'Sinh Tố';
+
+go
+
+exec usp_insert_category @_name = N'Trà';
+
+go
+
+exec usp_insert_category @_name = N'Trái Cây';
+
+go
+
+exec usp_insert_category @_name = N'Sữa Chua';
+
+go
+
+exec usp_insert_category @_name = N'Khác';
+
 go
 
 create proc usp_update_category(
@@ -125,7 +145,7 @@ begin try
                         updated_at = getdate()
                     where id = @_id;
                     set @_out_stt = 1;
-                    set @_out_msg = n'update successully';
+                    set @_out_msg = N'update successully';
                     if @@trancount > 0
                         commit tran;
                 end
@@ -142,7 +162,7 @@ go
 create proc usp_delete_category(
     @_id int,
     @_out_stt bit = 1 output,
-    @_out_msg nvarchar = '' output
+    @_out_msg nvarchar(max) = '' output
 )
 as
 begin try
@@ -173,6 +193,7 @@ begin catch
 end catch
 go
 
+
 create proc usp_get_all_category(
     @_name nvarchar(255) = null,
     @_status bit = null
@@ -187,6 +208,8 @@ begin
     exec (@sql)
 end
 go
+
+
 
 create proc usp_get_category_by_id(
     @_id int
@@ -384,7 +407,7 @@ begin try
                 where id = @_id;
 
                 set @_out_stt = 1;
-                set @_out_msg = n'update successully';
+                set @_out_msg = N'update successully';
                 if @@trancount > 0
                     commit tran;
             end
@@ -407,13 +430,13 @@ create proc usp_create_bill_detail(
 )
 as
 begin try
-    if not exist(select * from bill where id = @_bill_id)
+    if not exists(select * from bill where id = @_bill_id)
         begin
             set @_out_stt = 0;
             set @_out_msg = N'Bill not exist';
         end
     else
-        if not exist(select * from product where id = @_product_id)
+        if not exists(select * from product where id = @_product_id)
             begin
                 set @_out_stt = 0;
                 set @_out_msg = N'Product not exist';
@@ -442,30 +465,4 @@ begin catch
     if @@trancount > 0
         rollback tran;
 end catch
-go
-
-create proc usp_get_bill(
-    @_status bit
-)
-as
-begin
-    declare @sql nvarchar(max)= N'select * from bill where 1=1';
-    if @_status is not null
-        set @sql = concat(@sql, 'and status = ', @_status);
-    exec (@sql);
-end
-go
-
-create proc usp_get_bill_with_detail(
-    @_id int,
-    @_status bit
-)
-as
-begin
-    declare @sql nvarchar(max) = concat(
-            N'select * from bill join bill_detail on bill.id = bill_detail.bill_id where bill.id = ', @_id)
-    if @_status is not null
-        set @sql = concat(@sql, ' and bill.status = ', @_status)
-    exec (@sql);
-end
 go

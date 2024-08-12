@@ -1,6 +1,7 @@
 package nhom8.dao;
 
 import nhom8.model.Category;
+import nhom8.utils.Common;
 
 import java.sql.CallableStatement;
 import java.sql.ResultSet;
@@ -15,7 +16,7 @@ public class CategoryDAO extends DAO<Category> {
     @Override
     public ArrayList<Category> getAll() throws SQLException {
         ArrayList<Category> list = new ArrayList<>();
-        String sql = "{call usp_get_all_categories(?, ?)";
+        String sql = "{call usp_get_all_category(?, ?)}";
         CallableStatement cs = conn.prepareCall(sql);
         cs.setNull(1, Types.NVARCHAR);
         cs.setNull(2, Types.BOOLEAN);
@@ -85,5 +86,28 @@ public class CategoryDAO extends DAO<Category> {
         output.put("status", cs.getBoolean(2));
         output.put("message", cs.getNString(3));
         return output;
+    }
+
+    public ArrayList<Category> getWithCondition(Category category) throws SQLException {
+        ArrayList<Category> list = new ArrayList<>();
+        String sql = "{call usp_get_all_category(?, ?)}";
+        CallableStatement cs = conn.prepareCall(sql);
+        if (!Common.isNullOrEmpty(category.getName())) {
+            cs.setNString(1, category.getName());
+        } else {
+            cs.setNull(1, Types.NVARCHAR);
+        }
+
+        if (!Common.isNullOrEmpty(category.getStatus())) {
+            cs.setBoolean(2, category.getStatus());
+        } else {
+            cs.setNull(2, Types.BOOLEAN);
+        }
+        ResultSet rs = cs.executeQuery();
+        while (rs.next()) {
+            Category obj = new Category(rs.getInt("id"), rs.getNString("name"), rs.getBoolean("status"), rs.getString("created_at"), rs.getString("updated_at"));
+            list.add(obj);
+        }
+        return list;
     }
 }
