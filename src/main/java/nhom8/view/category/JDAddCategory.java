@@ -70,6 +70,7 @@ public class JDAddCategory extends javax.swing.JDialog {
     public JDAddCategory(java.awt.Frame parent, boolean modal, Category category) {
         super(parent, modal);
         initComponents();
+        setLocationRelativeTo(null);
 
         if (!Common.isNullOrEmpty(category)) {
             this.category = category;

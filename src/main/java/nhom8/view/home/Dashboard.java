@@ -20,6 +20,7 @@ public class Dashboard extends javax.swing.JFrame {
     public Dashboard() {
         initComponents();
         PnlHome pnl = new PnlHome();
+        setLocationRelativeTo(null);
         
         pnlBody.add(pnl);
         pnlBody.repaint();
