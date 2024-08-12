@@ -88,11 +88,13 @@ public class PnlCategory extends javax.swing.JPanel {
         tblCategory = new javax.swing.JTable();
 
         setBackground(new java.awt.Color(255, 255, 255));
+        setLayout(new java.awt.BorderLayout());
 
         jPanel1.setLayout(new java.awt.CardLayout());
 
         jPanel2.setBackground(new java.awt.Color(255, 255, 255));
-        jPanel2.setPreferredSize(new java.awt.Dimension(152, 405));
+        jPanel2.setMaximumSize(new java.awt.Dimension(536, 100));
+        jPanel2.setPreferredSize(new java.awt.Dimension(152, 100));
         jPanel2.setLayout(new java.awt.FlowLayout(java.awt.FlowLayout.CENTER, 50, 20));
 
         lblAddCategory.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
@@ -137,6 +139,8 @@ public class PnlCategory extends javax.swing.JPanel {
 
         jPanel1.add(jPanel2, "card2");
 
+        add(jPanel1, java.awt.BorderLayout.NORTH);
+
         tblCategory.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null},
@@ -150,20 +154,7 @@ public class PnlCategory extends javax.swing.JPanel {
         ));
         jScrollPane1.setViewportView(tblCategory);
 
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
-        this.setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 820, Short.MAX_VALUE)
-            .addComponent(jScrollPane1)
-        );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-        );
+        add(jScrollPane1, java.awt.BorderLayout.CENTER);
     }// </editor-fold>//GEN-END:initComponents
 
 

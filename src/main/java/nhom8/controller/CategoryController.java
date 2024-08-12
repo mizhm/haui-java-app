@@ -1,6 +1,5 @@
 package nhom8.controller;
 
-import lombok.Getter;
 import lombok.Setter;
 import nhom8.dao.CategoryDAO;
 import nhom8.model.Category;
@@ -22,21 +21,18 @@ import java.util.Map;
 
 public class CategoryController implements ManagerController {
     private final CategoryDAO categoryDAO = new CategoryDAO();
-    @Setter
-    private Dashboard view;
-    @Getter
+    private final Dashboard view;
+
     @Setter
     private PnlCategory panel;
+
     private JDAddCategory jdAdd;
     private JDAddCategory jdUpdate;
     private JDDeleteCategory jdDelete;
     private JDSearchCategory jdSearch;
+
     private ArrayList<Category> categories;
     private Category category;
-
-    public CategoryController() {
-        addEvent();
-    }
 
     public CategoryController(Dashboard view, PnlCategory panel) {
         this.view = view;
@@ -56,11 +52,11 @@ public class CategoryController implements ManagerController {
                 jdAdd.getLblName().setForeground(new Color(240, 71, 71));
                 jdAdd.getLblNameError().setText("Ten khong duoc de trong");
             } else if (categories.stream().anyMatch(el -> el.getName().equalsIgnoreCase(name))) {
-                jdUpdate.getTxtName().setBorder(BorderFactory.createCompoundBorder(
+                jdAdd.getTxtName().setBorder(BorderFactory.createCompoundBorder(
                         BorderFactory.createLineBorder(new Color(240, 71, 71)),
                         BorderFactory.createEmptyBorder(5, 8, 5, 8)));
-                jdUpdate.getLblName().setForeground(new Color(240, 71, 71));
-                jdUpdate.getLblNameError().setText("Ten da duoc su dung");
+                jdAdd.getLblName().setForeground(new Color(240, 71, 71));
+                jdAdd.getLblNameError().setText("Ten da duoc su dung");
             } else {
                 try {
                     Category category = new Category();

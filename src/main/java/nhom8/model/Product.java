@@ -18,6 +18,11 @@ public class Product implements Serializable {
     private String createdAt;
     private String updatedAt;
 
-    //generated to Category model
+    //related to Category model
     private String categoryName;
+
+    //for search purpose
+    private Float fromPrice;
+    private Float toPrice;
+
 }
