@@ -15,7 +15,7 @@ public class CategoryDAO extends DAO<Category> {
     @Override
     public ArrayList<Category> getAll() throws SQLException {
         ArrayList<Category> list = new ArrayList<>();
-        String sql = "{call usp_get_all_categories(?, ?)";
+        String sql = "{call usp_get_all_category(?, ?)}";
         CallableStatement cs = conn.prepareCall(sql);
         cs.setNull(1, Types.NVARCHAR);
         cs.setNull(2, Types.BOOLEAN);

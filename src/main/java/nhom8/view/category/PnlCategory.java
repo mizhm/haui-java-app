@@ -4,17 +4,27 @@
  */
 package nhom8.view.category;
 
+import javax.swing.JTable;
+
 /**
  *
  * @author dell
  */
-public class JPHomeCategory extends javax.swing.JPanel {
+public class PnlCategory extends javax.swing.JPanel {
 
     /**
      * Creates new form NewJPanel
      */
-    public JPHomeCategory() {
+    public PnlCategory() {
         initComponents();
+    }
+
+    public JTable getTblCategory() {
+        return tblCategory;
+    }
+
+    public void setTblCategory(JTable tblCategory) {
+        this.tblCategory = tblCategory;
     }
 
     /**
@@ -27,14 +37,14 @@ public class JPHomeCategory extends javax.swing.JPanel {
     private void initComponents() {
 
         jScrollPane2 = new javax.swing.JScrollPane();
-        jTable2 = new javax.swing.JTable();
+        tblCategory = new javax.swing.JTable();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
 
-        jTable2.setModel(new javax.swing.table.DefaultTableModel(
+        tblCategory.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null},
                 {null, null, null, null},
@@ -45,7 +55,7 @@ public class JPHomeCategory extends javax.swing.JPanel {
                 "Title 1", "Title 2", "Title 3", "Title 4"
             }
         ));
-        jScrollPane2.setViewportView(jTable2);
+        jScrollPane2.setViewportView(tblCategory);
 
         jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/assets/img/add.png"))); // NOI18N
@@ -96,7 +106,7 @@ public class JPHomeCategory extends javax.swing.JPanel {
             .addGroup(layout.createSequentialGroup()
                 .addGap(26, 26, 26)
                 .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 405, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(29, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -125,6 +135,6 @@ public class JPHomeCategory extends javax.swing.JPanel {
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JScrollPane jScrollPane2;
-    private javax.swing.JTable jTable2;
+    private javax.swing.JTable tblCategory;
     // End of variables declaration//GEN-END:variables
 }
