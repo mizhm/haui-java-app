@@ -4,7 +4,9 @@ import lombok.Getter;
 import lombok.Setter;
 import nhom8.view.category.PnlCategory;
 import nhom8.view.home.Dashboard;
+import nhom8.view.product.PnlProduct;
 
+import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
@@ -12,8 +14,10 @@ public class HomeController {
     @Getter
     @Setter
     private Dashboard view;
-    private final CategoryController categoryController = new CategoryController();
+    private final JPanel pnlCategory = new PnlCategory();
+    private final CategoryController categoryController = new CategoryController(view, (PnlCategory) pnlCategory);
     private final ProductController productController = new ProductController();
+    private final PnlProduct pnlProduct = new PnlProduct();
 
     public HomeController(Dashboard view) {
         this.view = view;
@@ -25,15 +29,11 @@ public class HomeController {
         view.getBtnCategory().addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                view.getPnlBody().removeAll();
-                PnlCategory pnlCategory = new PnlCategory();
-                view.getPnlBody().add(pnlCategory);
-                view.getPnlBody().repaint();
-                view.getPnlBody().revalidate();
-
-                categoryController.setPanel(pnlCategory);
+                view.setPnlBody(pnlCategory);
+                categoryController.setPanel((PnlCategory) pnlCategory);
                 categoryController.updateData();
             }
         });
+
     }
 }

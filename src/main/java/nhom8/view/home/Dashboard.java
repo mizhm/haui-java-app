@@ -5,9 +5,9 @@
 package nhom8.view.home;
 
 import java.awt.Color;
+import java.awt.Panel;
 import javax.swing.JButton;
 import javax.swing.JPanel;
-import nhom8.view.category.PnlCategory;
 import nhom8.view.product.PnlProduct;
 
 /**
@@ -26,6 +26,12 @@ public class Dashboard extends javax.swing.JFrame {
         pnlBody.revalidate();
     }
 
+    public void setPnlBody(JPanel panel){
+        pnlBody.removeAll();
+        pnlBody.add(panel);
+        pnlBody.repaint();
+        pnlBody.revalidate();
+    }
     
     /**
      * This method is called from within the constructor to initialize the form.

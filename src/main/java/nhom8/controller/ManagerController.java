@@ -10,4 +10,6 @@ public interface ManagerController {
     public void actionSearch();
 
     public void updateData();
+
+    public void addEvent();
 }

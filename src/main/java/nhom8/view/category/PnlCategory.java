@@ -4,6 +4,7 @@
  */
 package nhom8.view.category;
 
+import javax.swing.JLabel;
 import javax.swing.JTable;
 
 /**
@@ -17,6 +18,46 @@ public class PnlCategory extends javax.swing.JPanel {
      */
     public PnlCategory() {
         initComponents();
+    }
+
+    public JLabel getLblAddCategory() {
+        return lblAddCategory;
+    }
+
+    public void setLblAddCategory(JLabel lblAddCategory) {
+        this.lblAddCategory = lblAddCategory;
+    }
+
+    public JLabel getLblDeleteCategory() {
+        return lblDeleteCategory;
+    }
+
+    public void setLblDeleteCategory(JLabel lblDeleteCategory) {
+        this.lblDeleteCategory = lblDeleteCategory;
+    }
+
+    public JLabel getLblRefreshCategory() {
+        return lblRefreshCategory;
+    }
+
+    public void setLblRefreshCategory(JLabel lblRefreshCategory) {
+        this.lblRefreshCategory = lblRefreshCategory;
+    }
+
+    public JLabel getLblSearchCategory() {
+        return lblSearchCategory;
+    }
+
+    public void setLblSearchCategory(JLabel lblSearchCategory) {
+        this.lblSearchCategory = lblSearchCategory;
+    }
+
+    public JLabel getLblUpdateCategory() {
+        return lblUpdateCategory;
+    }
+
+    public void setLblUpdateCategory(JLabel lblUpdateCategory) {
+        this.lblUpdateCategory = lblUpdateCategory;
     }
 
     public JTable getTblCategory() {
@@ -36,13 +77,65 @@ public class PnlCategory extends javax.swing.JPanel {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jScrollPane2 = new javax.swing.JScrollPane();
+        jPanel1 = new javax.swing.JPanel();
+        jPanel2 = new javax.swing.JPanel();
+        lblAddCategory = new javax.swing.JLabel();
+        lblUpdateCategory = new javax.swing.JLabel();
+        lblDeleteCategory = new javax.swing.JLabel();
+        lblSearchCategory = new javax.swing.JLabel();
+        lblRefreshCategory = new javax.swing.JLabel();
+        jScrollPane1 = new javax.swing.JScrollPane();
         tblCategory = new javax.swing.JTable();
-        jLabel1 = new javax.swing.JLabel();
-        jLabel2 = new javax.swing.JLabel();
-        jLabel3 = new javax.swing.JLabel();
-        jLabel4 = new javax.swing.JLabel();
-        jLabel5 = new javax.swing.JLabel();
+
+        setBackground(new java.awt.Color(255, 255, 255));
+
+        jPanel1.setLayout(new java.awt.CardLayout());
+
+        jPanel2.setBackground(new java.awt.Color(255, 255, 255));
+        jPanel2.setPreferredSize(new java.awt.Dimension(152, 405));
+        jPanel2.setLayout(new java.awt.FlowLayout(java.awt.FlowLayout.CENTER, 50, 20));
+
+        lblAddCategory.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        lblAddCategory.setIcon(new javax.swing.ImageIcon(getClass().getResource("/assets/img/add.png"))); // NOI18N
+        lblAddCategory.setText("them");
+        lblAddCategory.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        lblAddCategory.setPreferredSize(new java.awt.Dimension(68, 60));
+        lblAddCategory.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        jPanel2.add(lblAddCategory);
+
+        lblUpdateCategory.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        lblUpdateCategory.setIcon(new javax.swing.ImageIcon(getClass().getResource("/assets/img/edit.png"))); // NOI18N
+        lblUpdateCategory.setText("sua");
+        lblUpdateCategory.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        lblUpdateCategory.setPreferredSize(new java.awt.Dimension(68, 60));
+        lblUpdateCategory.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        jPanel2.add(lblUpdateCategory);
+
+        lblDeleteCategory.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        lblDeleteCategory.setIcon(new javax.swing.ImageIcon(getClass().getResource("/assets/img/delete.png"))); // NOI18N
+        lblDeleteCategory.setText("xoa");
+        lblDeleteCategory.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        lblDeleteCategory.setPreferredSize(new java.awt.Dimension(68, 60));
+        lblDeleteCategory.setVerifyInputWhenFocusTarget(false);
+        lblDeleteCategory.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        jPanel2.add(lblDeleteCategory);
+
+        lblSearchCategory.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        lblSearchCategory.setIcon(new javax.swing.ImageIcon(getClass().getResource("/assets/img/loupe.png"))); // NOI18N
+        lblSearchCategory.setText("tim kiem");
+        lblSearchCategory.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        lblSearchCategory.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        jPanel2.add(lblSearchCategory);
+
+        lblRefreshCategory.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        lblRefreshCategory.setIcon(new javax.swing.ImageIcon(getClass().getResource("/assets/img/refresh.png"))); // NOI18N
+        lblRefreshCategory.setText("lam moi");
+        lblRefreshCategory.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        lblRefreshCategory.setPreferredSize(new java.awt.Dimension(68, 60));
+        lblRefreshCategory.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        jPanel2.add(lblRefreshCategory);
+
+        jPanel1.add(jPanel2, "card2");
 
         tblCategory.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -55,86 +148,34 @@ public class PnlCategory extends javax.swing.JPanel {
                 "Title 1", "Title 2", "Title 3", "Title 4"
             }
         ));
-        jScrollPane2.setViewportView(tblCategory);
-
-        jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/assets/img/add.png"))); // NOI18N
-        jLabel1.setText("Thêm mới");
-        jLabel1.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        jLabel1.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
-
-        jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/assets/img/edit.png"))); // NOI18N
-        jLabel2.setText("Sửa đổi");
-        jLabel2.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        jLabel2.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
-
-        jLabel3.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/assets/img/loupe.png"))); // NOI18N
-        jLabel3.setText("Tìm kiếm");
-        jLabel3.setFocusable(false);
-        jLabel3.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        jLabel3.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
-
-        jLabel4.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/assets/img/delete.png"))); // NOI18N
-        jLabel4.setText("Xoá");
-        jLabel4.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        jLabel4.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
-
-        jLabel5.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/assets/img/refresh.png"))); // NOI18N
-        jLabel5.setText("Làm mới");
-        jLabel5.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        jLabel5.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        jScrollPane1.setViewportView(tblCategory);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jLabel1)
-                .addGap(28, 28, 28)
-                .addComponent(jLabel2)
-                .addGap(24, 24, 24)
-                .addComponent(jLabel3)
-                .addGap(24, 24, 24)
-                .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 58, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(54, 54, 54))
-            .addGroup(layout.createSequentialGroup()
-                .addGap(26, 26, 26)
-                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 405, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 820, Short.MAX_VALUE)
+            .addComponent(jScrollPane1)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(15, 15, 15)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 71, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(8, 8, 8)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel3)
-                            .addComponent(jLabel2)
-                            .addComponent(jLabel4)
-                            .addComponent(jLabel5))))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 275, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(28, Short.MAX_VALUE))
+                .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel3;
-    private javax.swing.JLabel jLabel4;
-    private javax.swing.JLabel jLabel5;
-    private javax.swing.JScrollPane jScrollPane2;
+    private javax.swing.JPanel jPanel1;
+    private javax.swing.JPanel jPanel2;
+    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JLabel lblAddCategory;
+    private javax.swing.JLabel lblDeleteCategory;
+    private javax.swing.JLabel lblRefreshCategory;
+    private javax.swing.JLabel lblSearchCategory;
+    private javax.swing.JLabel lblUpdateCategory;
     private javax.swing.JTable tblCategory;
     // End of variables declaration//GEN-END:variables
 }

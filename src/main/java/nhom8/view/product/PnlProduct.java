@@ -29,13 +29,13 @@ public class PnlProduct extends javax.swing.JPanel {
         jPanel1 = new javax.swing.JPanel();
         jPanel2 = new javax.swing.JPanel();
         jPanel3 = new javax.swing.JPanel();
-        jLabel2 = new javax.swing.JLabel();
-        jLabel3 = new javax.swing.JLabel();
-        jLabel4 = new javax.swing.JLabel();
-        jLabel7 = new javax.swing.JLabel();
-        jLabel6 = new javax.swing.JLabel();
+        lblAddProduct = new javax.swing.JLabel();
+        lblEditProduct = new javax.swing.JLabel();
+        lblDeleteProduct = new javax.swing.JLabel();
+        lblSearchProduct = new javax.swing.JLabel();
+        lblRefreshProduct = new javax.swing.JLabel();
         jScrollPane3 = new javax.swing.JScrollPane();
-        jTable2 = new javax.swing.JTable();
+        tblProduct = new javax.swing.JTable();
 
         setBackground(new java.awt.Color(255, 255, 255));
 
@@ -47,39 +47,49 @@ public class PnlProduct extends javax.swing.JPanel {
         jPanel3.setBackground(new java.awt.Color(255, 255, 255));
         jPanel3.setLayout(new java.awt.FlowLayout(java.awt.FlowLayout.CENTER, 50, 20));
 
-        jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/assets/img/add.png"))); // NOI18N
-        jLabel2.setText("thêm");
-        jLabel2.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        jLabel2.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
-        jPanel3.add(jLabel2);
+        lblAddProduct.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        lblAddProduct.setIcon(new javax.swing.ImageIcon(getClass().getResource("/assets/img/add.png"))); // NOI18N
+        lblAddProduct.setText("thêm");
+        lblAddProduct.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        lblAddProduct.setPreferredSize(new java.awt.Dimension(68, 60));
+        lblAddProduct.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        jPanel3.add(lblAddProduct);
 
-        jLabel3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/assets/img/edit.png"))); // NOI18N
-        jLabel3.setText("sửa");
-        jLabel3.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        jLabel3.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
-        jPanel3.add(jLabel3);
+        lblEditProduct.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        lblEditProduct.setIcon(new javax.swing.ImageIcon(getClass().getResource("/assets/img/edit.png"))); // NOI18N
+        lblEditProduct.setText("sửa");
+        lblEditProduct.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        lblEditProduct.setPreferredSize(new java.awt.Dimension(68, 60));
+        lblEditProduct.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        jPanel3.add(lblEditProduct);
 
-        jLabel4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/assets/img/delete.png"))); // NOI18N
-        jLabel4.setText("xóa");
-        jLabel4.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        jLabel4.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
-        jPanel3.add(jLabel4);
+        lblDeleteProduct.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        lblDeleteProduct.setIcon(new javax.swing.ImageIcon(getClass().getResource("/assets/img/delete.png"))); // NOI18N
+        lblDeleteProduct.setText("xóa");
+        lblDeleteProduct.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        lblDeleteProduct.setMaximumSize(new java.awt.Dimension(68, 60));
+        lblDeleteProduct.setMinimumSize(new java.awt.Dimension(68, 60));
+        lblDeleteProduct.setPreferredSize(new java.awt.Dimension(68, 60));
+        lblDeleteProduct.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        jPanel3.add(lblDeleteProduct);
 
-        jLabel7.setIcon(new javax.swing.ImageIcon(getClass().getResource("/assets/img/loupe.png"))); // NOI18N
-        jLabel7.setText("tìm kiếm");
-        jLabel7.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        jLabel7.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
-        jPanel3.add(jLabel7);
+        lblSearchProduct.setIcon(new javax.swing.ImageIcon(getClass().getResource("/assets/img/loupe.png"))); // NOI18N
+        lblSearchProduct.setText("tìm kiếm");
+        lblSearchProduct.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        lblSearchProduct.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        jPanel3.add(lblSearchProduct);
 
-        jLabel6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/assets/img/refresh.png"))); // NOI18N
-        jLabel6.setText("làm mới");
-        jLabel6.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        jLabel6.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
-        jPanel3.add(jLabel6);
+        lblRefreshProduct.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        lblRefreshProduct.setIcon(new javax.swing.ImageIcon(getClass().getResource("/assets/img/refresh.png"))); // NOI18N
+        lblRefreshProduct.setText("làm mới");
+        lblRefreshProduct.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        lblRefreshProduct.setPreferredSize(new java.awt.Dimension(68, 60));
+        lblRefreshProduct.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        jPanel3.add(lblRefreshProduct);
 
         jPanel2.add(jPanel3, java.awt.BorderLayout.CENTER);
 
-        jTable2.setModel(new javax.swing.table.DefaultTableModel(
+        tblProduct.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null},
                 {null, null, null, null},
@@ -90,7 +100,7 @@ public class PnlProduct extends javax.swing.JPanel {
                 "Title 1", "Title 2", "Title 3", "Title 4"
             }
         ));
-        jScrollPane3.setViewportView(jTable2);
+        jScrollPane3.setViewportView(tblProduct);
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -124,15 +134,15 @@ public class PnlProduct extends javax.swing.JPanel {
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel3;
-    private javax.swing.JLabel jLabel4;
-    private javax.swing.JLabel jLabel6;
-    private javax.swing.JLabel jLabel7;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JScrollPane jScrollPane3;
-    private javax.swing.JTable jTable2;
+    private javax.swing.JLabel lblAddProduct;
+    private javax.swing.JLabel lblDeleteProduct;
+    private javax.swing.JLabel lblEditProduct;
+    private javax.swing.JLabel lblRefreshProduct;
+    private javax.swing.JLabel lblSearchProduct;
+    private javax.swing.JTable tblProduct;
     // End of variables declaration//GEN-END:variables
 }

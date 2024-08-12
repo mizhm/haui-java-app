@@ -12,6 +12,7 @@ public class Main {
             HomeController homeController = new HomeController(new Dashboard());
         } catch (Exception e) {
             System.out.println("Khoi tao look and feel that bai");
+            e.printStackTrace();
             System.exit(0);
         }
     }
