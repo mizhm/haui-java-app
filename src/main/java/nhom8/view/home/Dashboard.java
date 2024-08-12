@@ -95,9 +95,12 @@ public class Dashboard extends javax.swing.JFrame {
         pnlBody = new javax.swing.JPanel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setResizable(false);
+        setPreferredSize(new java.awt.Dimension(1138, 800));
+        setSize(new java.awt.Dimension(1138, 800));
+        getContentPane().setLayout(new java.awt.CardLayout());
 
         pnlHeader.setBackground(new java.awt.Color(255, 255, 255));
+        pnlHeader.setLayout(new java.awt.BorderLayout());
 
         jPanel5.setBackground(new java.awt.Color(255, 255, 255));
         jPanel5.setLayout(new java.awt.FlowLayout(java.awt.FlowLayout.LEFT));
@@ -290,42 +293,15 @@ public class Dashboard extends javax.swing.JFrame {
 
         jPanel5.add(pnlBillMenu);
 
+        pnlHeader.add(jPanel5, java.awt.BorderLayout.NORTH);
+
         pnlBody.setBackground(new java.awt.Color(255, 255, 255));
+        pnlBody.setMinimumSize(new java.awt.Dimension(1000, 800));
+        pnlBody.setPreferredSize(new java.awt.Dimension(1000, 800));
         pnlBody.setLayout(new java.awt.CardLayout());
+        pnlHeader.add(pnlBody, java.awt.BorderLayout.CENTER);
 
-        javax.swing.GroupLayout pnlHeaderLayout = new javax.swing.GroupLayout(pnlHeader);
-        pnlHeader.setLayout(pnlHeaderLayout);
-        pnlHeaderLayout.setHorizontalGroup(
-            pnlHeaderLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .addGroup(pnlHeaderLayout.createSequentialGroup()
-                .addComponent(pnlBody, javax.swing.GroupLayout.PREFERRED_SIZE, 912, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, Short.MAX_VALUE))
-        );
-        pnlHeaderLayout.setVerticalGroup(
-            pnlHeaderLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(pnlHeaderLayout.createSequentialGroup()
-                .addGap(0, 0, 0)
-                .addComponent(jPanel5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, Short.MAX_VALUE)
-                .addComponent(pnlBody, javax.swing.GroupLayout.PREFERRED_SIZE, 473, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, Short.MAX_VALUE))
-        );
-
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
-        getContentPane().setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addComponent(pnlHeader, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 1, Short.MAX_VALUE))
-        );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addComponent(pnlHeader, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, 0))
-        );
+        getContentPane().add(pnlHeader, "card2");
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -359,13 +335,6 @@ public class Dashboard extends javax.swing.JFrame {
         pnlBorderDashboard.setBackground(new Color(255,255, 255));
         pnlBorderCategory.setBackground(new Color(255,255, 255));
         pnlBorderBill.setBackground(new Color(255,255, 255));
-        
-        pnlBody.removeAll();
-        PnlProduct pnl = new PnlProduct();
-        
-        pnlBody.add(pnl);
-        pnlBody.repaint();
-        pnlBody.revalidate();
     }//GEN-LAST:event_btnProductActionPerformed
 
     private void btnBillActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBillActionPerformed
@@ -375,13 +344,6 @@ public class Dashboard extends javax.swing.JFrame {
         pnlBorderDashboard.setBackground(new Color(255,255, 255));
         pnlBorderCategory.setBackground(new Color(255,255, 255));
         pnlBorderProduct.setBackground(new Color(255,255, 255));
-        
-        pnlBody.removeAll();
-        PnlHome pnl = new PnlHome();
-        
-        pnlBody.add(pnl);
-        pnlBody.repaint();
-        pnlBody.revalidate();
     }//GEN-LAST:event_btnBillActionPerformed
 
     /**

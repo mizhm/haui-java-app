@@ -4,18 +4,71 @@
  */
 package nhom8.view.product;
 
+import javax.swing.JLabel;
+import javax.swing.JTable;
+
 /**
  *
- * @author Adminstrator
+ * @author dell
  */
 public class PnlProduct extends javax.swing.JPanel {
 
     /**
-     * Creates new form PnlProduct
+     * Creates new form NewJPanel
      */
     public PnlProduct() {
         initComponents();
     }
+
+    public JLabel getLblAddProduct() {
+        return lblAddProduct;
+    }
+
+    public void setLblAddProduct(JLabel lblAddProduct) {
+        this.lblAddProduct = lblAddProduct;
+    }
+
+    public JLabel getLblDeleteProduct() {
+        return lblDeleteProduct;
+    }
+
+    public void setLblDeleteProduct(JLabel lblDeleteProduct) {
+        this.lblDeleteProduct = lblDeleteProduct;
+    }
+
+    public JLabel getLblRefreshProduct() {
+        return lblRefreshProduct;
+    }
+
+    public void setLblRefreshProduct(JLabel lblRefreshProduct) {
+        this.lblRefreshProduct = lblRefreshProduct;
+    }
+
+    public JLabel getLblSearchProduct() {
+        return lblSearchProduct;
+    }
+
+    public void setLblSearchProduct(JLabel lblSearchProduct) {
+        this.lblSearchProduct = lblSearchProduct;
+    }
+
+    public JLabel getLblUpdateProduct() {
+        return lblUpdateProduct;
+    }
+
+    public void setLblUpdateProduct(JLabel lblUpdateProduct) {
+        this.lblUpdateProduct = lblUpdateProduct;
+    }
+
+    public JTable getTblProduct() {
+        return tblProduct;
+    }
+
+    public void setTblProduct(JTable tblProduct) {
+        this.tblProduct = tblProduct;
+    }
+
+    
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -28,66 +81,64 @@ public class PnlProduct extends javax.swing.JPanel {
 
         jPanel1 = new javax.swing.JPanel();
         jPanel2 = new javax.swing.JPanel();
-        jPanel3 = new javax.swing.JPanel();
         lblAddProduct = new javax.swing.JLabel();
-        lblEditProduct = new javax.swing.JLabel();
+        lblUpdateProduct = new javax.swing.JLabel();
         lblDeleteProduct = new javax.swing.JLabel();
         lblSearchProduct = new javax.swing.JLabel();
         lblRefreshProduct = new javax.swing.JLabel();
-        jScrollPane3 = new javax.swing.JScrollPane();
+        jScrollPane1 = new javax.swing.JScrollPane();
         tblProduct = new javax.swing.JTable();
 
         setBackground(new java.awt.Color(255, 255, 255));
+        setLayout(new java.awt.CardLayout());
 
-        jPanel1.setBackground(new java.awt.Color(255, 255, 255));
+        jPanel1.setLayout(new java.awt.BorderLayout());
 
         jPanel2.setBackground(new java.awt.Color(255, 255, 255));
-        jPanel2.setLayout(new java.awt.BorderLayout());
-
-        jPanel3.setBackground(new java.awt.Color(255, 255, 255));
-        jPanel3.setLayout(new java.awt.FlowLayout(java.awt.FlowLayout.CENTER, 50, 20));
+        jPanel2.setPreferredSize(new java.awt.Dimension(152, 100));
+        jPanel2.setLayout(new java.awt.FlowLayout(java.awt.FlowLayout.CENTER, 50, 20));
 
         lblAddProduct.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         lblAddProduct.setIcon(new javax.swing.ImageIcon(getClass().getResource("/assets/img/add.png"))); // NOI18N
-        lblAddProduct.setText("thêm");
+        lblAddProduct.setText("them");
         lblAddProduct.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         lblAddProduct.setPreferredSize(new java.awt.Dimension(68, 60));
         lblAddProduct.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
-        jPanel3.add(lblAddProduct);
+        jPanel2.add(lblAddProduct);
 
-        lblEditProduct.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        lblEditProduct.setIcon(new javax.swing.ImageIcon(getClass().getResource("/assets/img/edit.png"))); // NOI18N
-        lblEditProduct.setText("sửa");
-        lblEditProduct.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        lblEditProduct.setPreferredSize(new java.awt.Dimension(68, 60));
-        lblEditProduct.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
-        jPanel3.add(lblEditProduct);
+        lblUpdateProduct.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        lblUpdateProduct.setIcon(new javax.swing.ImageIcon(getClass().getResource("/assets/img/edit.png"))); // NOI18N
+        lblUpdateProduct.setText("sua");
+        lblUpdateProduct.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        lblUpdateProduct.setPreferredSize(new java.awt.Dimension(68, 60));
+        lblUpdateProduct.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        jPanel2.add(lblUpdateProduct);
 
         lblDeleteProduct.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         lblDeleteProduct.setIcon(new javax.swing.ImageIcon(getClass().getResource("/assets/img/delete.png"))); // NOI18N
-        lblDeleteProduct.setText("xóa");
+        lblDeleteProduct.setText("xoa");
         lblDeleteProduct.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        lblDeleteProduct.setMaximumSize(new java.awt.Dimension(68, 60));
-        lblDeleteProduct.setMinimumSize(new java.awt.Dimension(68, 60));
         lblDeleteProduct.setPreferredSize(new java.awt.Dimension(68, 60));
+        lblDeleteProduct.setVerifyInputWhenFocusTarget(false);
         lblDeleteProduct.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
-        jPanel3.add(lblDeleteProduct);
+        jPanel2.add(lblDeleteProduct);
 
+        lblSearchProduct.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         lblSearchProduct.setIcon(new javax.swing.ImageIcon(getClass().getResource("/assets/img/loupe.png"))); // NOI18N
-        lblSearchProduct.setText("tìm kiếm");
+        lblSearchProduct.setText("tim kiem");
         lblSearchProduct.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         lblSearchProduct.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
-        jPanel3.add(lblSearchProduct);
+        jPanel2.add(lblSearchProduct);
 
         lblRefreshProduct.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         lblRefreshProduct.setIcon(new javax.swing.ImageIcon(getClass().getResource("/assets/img/refresh.png"))); // NOI18N
-        lblRefreshProduct.setText("làm mới");
+        lblRefreshProduct.setText("lam moi");
         lblRefreshProduct.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         lblRefreshProduct.setPreferredSize(new java.awt.Dimension(68, 60));
         lblRefreshProduct.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
-        jPanel3.add(lblRefreshProduct);
+        jPanel2.add(lblRefreshProduct);
 
-        jPanel2.add(jPanel3, java.awt.BorderLayout.CENTER);
+        jPanel1.add(jPanel2, java.awt.BorderLayout.NORTH);
 
         tblProduct.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -100,49 +151,23 @@ public class PnlProduct extends javax.swing.JPanel {
                 "Title 1", "Title 2", "Title 3", "Title 4"
             }
         ));
-        jScrollPane3.setViewportView(tblProduct);
+        jScrollPane1.setViewportView(tblProduct);
 
-        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
-        jPanel1.setLayout(jPanel1Layout);
-        jPanel1Layout.setHorizontalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jScrollPane3)
-            .addComponent(jPanel2, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 597, Short.MAX_VALUE)
-        );
-        jPanel1Layout.setVerticalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 360, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, Short.MAX_VALUE))
-        );
+        jPanel1.add(jScrollPane1, java.awt.BorderLayout.CENTER);
 
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
-        this.setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-        );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, Short.MAX_VALUE))
-        );
+        add(jPanel1, "card2");
     }// </editor-fold>//GEN-END:initComponents
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
-    private javax.swing.JPanel jPanel3;
-    private javax.swing.JScrollPane jScrollPane3;
+    private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JLabel lblAddProduct;
     private javax.swing.JLabel lblDeleteProduct;
-    private javax.swing.JLabel lblEditProduct;
     private javax.swing.JLabel lblRefreshProduct;
     private javax.swing.JLabel lblSearchProduct;
+    private javax.swing.JLabel lblUpdateProduct;
     private javax.swing.JTable tblProduct;
     // End of variables declaration//GEN-END:variables
 }

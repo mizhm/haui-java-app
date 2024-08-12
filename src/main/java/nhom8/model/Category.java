@@ -17,7 +17,13 @@ public class Category implements Serializable {
     private String updatedAt;
 
     @Override
-    public String toString(){
+    public String toString() {
         return this.name;
+    }
+
+    public Category(Integer id, String name, Boolean status) {
+        this.id = id;
+        this.name = name;
+        this.status = status;
     }
 }

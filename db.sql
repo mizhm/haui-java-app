@@ -200,11 +200,11 @@ create proc usp_get_all_category(
 )
 as
 begin
-    declare @sql nvarchar(max) = 'select * from category where 1 = 1';
+    declare @sql nvarchar(max) = N'select * from category where 1 = 1';
     if (@_name is not null)
-        set @sql = concat(@sql, ' and name like ''%', @_name, '%''');
+        set @sql = concat(@sql, N' and name like ''%', @_name, N'%''');
     if (@_status is not null)
-        set @sql = concat(@sql, ' and status = ', @_status);
+        set @sql = concat(@sql, N' and status = ', @_status);
     exec (@sql)
 end
 go
@@ -220,12 +220,12 @@ end
 go
 
 create proc usp_insert_product(
-    @_name nvarchar(255),
-    @_status bit = 1,
-    @_price float,
-    @_category_id int,
-    @_out_stt bit = 1 output,
-    @_out_msg nvarchar(255) = '' output
+    @_category_id INT,
+    @_name NVARCHAR(100),
+    @_price FLOAT,
+    @_status BIT = 1,
+    @_out_stt BIT = 1 OUTPUT,
+    @_out_msg NVARCHAR(200) = '' OUTPUT
 ) as
 begin try
     if not exists(select * from category where id = @_category_id)
@@ -259,15 +259,142 @@ begin catch
         rollback tran
 end catch
 go
+EXEC usp_insert_product 1, N'Bạc xỉu', 35000;
+
+GO
+
+EXEC usp_insert_product 1, N'Cà phê sữa tươi', 35000;
+
+GO
+
+EXEC usp_insert_product 1, N'Cà phê đen', 29000;
+
+GO
+
+EXEC usp_insert_product 1, N'Cà phê nâu', 35000;
+
+GO
+
+EXEC usp_insert_product 1, N'Cà phê sữa tươi', 35000;
+
+GO
+
+EXEC usp_insert_product 2, N'Latte', 45000;
+
+GO
+
+EXEC usp_insert_product 2, N'Cappuchino', 45000;
+
+GO
+
+EXEC usp_insert_product 2, N'Espresso', 30000;
+
+GO
+
+EXEC usp_insert_product 3, N'Sinh tố bơ', 59000;
+
+GO
+
+EXEC usp_insert_product 3, N'Sinh tố xoài', 5000;
+
+GO
+
+EXEC usp_insert_product 4, N'Trà cam quế', 45000;
+
+GO
+
+EXEC usp_insert_product 4, N'Trà đào chanh leo', 45000;
+
+GO
+
+EXEC usp_insert_product 4, N'Trà quất mật ong', 45000;
+
+GO
+
+EXEC usp_insert_product 4, N'Trà lip ton', 25000;
+
+GO
+
+EXEC usp_insert_product 4, N'Trà mạn', 35000;
+
+GO
+
+EXEC usp_insert_product 5, N'Cóc xanh (theo mùa)', 55000;
+
+GO
+
+EXEC usp_insert_product 5, N'Chanh tươi', 39000;
+
+GO
+
+EXEC usp_insert_product 5, N'Dưa hấu', 49000;
+
+GO
+
+EXEC usp_insert_product 5, N'Chanh leo', 49000;
+
+GO
+
+EXEC usp_insert_product 5, N'Cam tươi', 65000;
+
+GO
+
+EXEC usp_insert_product 5, N'Ổi', 45000;
+
+GO
+
+EXEC usp_insert_product 5, N'Xoài xanh', 45000;
+
+GO
+
+EXEC usp_insert_product 6, N'Sữa chua dầm đá', 35000;
+
+GO
+
+EXEC usp_insert_product 6, N'Sữa chua ca cao', 40000;
+
+GO
+
+EXEC usp_insert_product 6, N'Sữa chua cà phê', 40000;
+
+GO
+
+EXEC usp_insert_product 6, N'Sữa chua trái cây', 55000;
+
+GO
+
+EXEC usp_insert_product 7, N'Hạt hướng dương', 25000;
+
+GO
+
+EXEC usp_insert_product 7, N'Lạc rang', 25000;
+
+GO
+
+EXEC usp_insert_product 7, N'Ngô cay', 25000;
+
+GO
+
+EXEC usp_insert_product 7, N'Bánh đậu xanh & Kẹo lạc', 25000;
+
+GO
+
+EXEC usp_insert_product 7, N'Bánh sừng bò chấm sữa', 25000;
+
+GO
+
+EXEC usp_insert_product 7, N'Thịt bò khô', 40000;
+
+GO
 
 create proc usp_update_product(
     @_id int,
-    @_name nvarchar(255),
-    @_status bit = 1,
-    @_price float,
-    @_category_id int,
-    @_out_stt bit = 1 output,
-    @_out_msg nvarchar(255) = '' output
+    @_category_id INT,
+    @_name NVARCHAR(100),
+    @_price FLOAT,
+    @_status BIT = 1,
+    @_out_stt BIT = 1 OUTPUT,
+    @_out_msg NVARCHAR(200) = '' OUTPUT
 ) as
 begin try
     if not exists(select * from product where id = @_id)
@@ -341,17 +468,41 @@ end catch
 go
 
 create proc usp_get_all_product(
-    @_name nvarchar = null,
+    @_name nvarchar(100) = null,
+    @_category_id int = null,
+    @_fromPrice float = null,
+    @_toPrice float = null,
     @_status bit = null
-) as
-begin
-    declare @sql nvarchar(max) = 'select * from product where 1=1';
-    if @_name is not null
-        set @sql = concat(@sql, ' and name like ''%', @_name, '%''');
-    if @_status is not null
-        set @sql = concat(@sql, ' and status = ', @_status);
+)
+as
+declare
+    @sql NVARCHAR(MAX)
+        = N'
+		select p.*, c.[name] category_name
+		from product p
+		join category c
+        on c.id = p.category_id where 1=1 and c.status = 1';
+
+    if (@_name is not null)
+        set @sql = concat(@sql, N' and p.name like ''%', @_name, N'%''');
+
+    if (@_category_id is not null)
+        set @sql = concat(@sql, N' and p.category_id = ', @_category_id);
+
+    if (@_fromPrice is not null)
+        set @sql = concat(@sql, N' and p.price >= ', @_fromPrice);
+
+    if (@_toPrice is not null)
+        set @sql = concat(@sql, N' and p.price <= ', @_toPrice);
+
+    if (@_status is not null)
+        set @sql = concat(@sql, N' and p.status = ', @_status);
+
     exec (@sql);
-end
+
+go
+
+exec usp_get_all_product
 go
 
 create proc usp_get_product_by_id(
