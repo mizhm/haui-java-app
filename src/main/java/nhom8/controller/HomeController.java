@@ -2,6 +2,7 @@ package nhom8.controller;
 
 import lombok.Getter;
 import lombok.Setter;
+import nhom8.view.bill.PnlBill;
 import nhom8.view.category.PnlCategory;
 import nhom8.view.home.Dashboard;
 import nhom8.view.product.PnlProduct;
@@ -13,6 +14,7 @@ public class HomeController {
 
     private final PnlCategory pnlCategory = new PnlCategory();
     private final PnlProduct pnlProduct = new PnlProduct();
+    private final PnlBill pnlBill = new PnlBill();
 
     private final CategoryController categoryController = new CategoryController(view, pnlCategory);
     private final ProductController productController = new ProductController(view, pnlProduct);
@@ -34,6 +36,10 @@ public class HomeController {
             view.setPnlBody(pnlProduct);
             productController.setPanel(pnlProduct);
             productController.updateData();
+        });
+
+        view.getBtnBill().addActionListener(e -> {
+            view.setPnlBody(pnlBill);
         });
     }
 }
