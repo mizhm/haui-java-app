@@ -7,6 +7,7 @@ go
 use coffee_shop
 go
 
+-- category section
 create table category
 (
     id         int identity,
@@ -16,42 +17,6 @@ create table category
     updated_at datetime,
     primary key (id)
 )
-go
-
-create table product
-(
-    id          int identity,
-    name        nvarchar(255) unique not null,
-    price       float                not null,
-    status      bit default (1),
-    created_at  datetime             not null,
-    updated_at  datetime             not null,
-    category_id int                  not null,
-    primary key (id),
-    foreign key (category_id) references category (id)
-)
-go
-
-create table bill
-(
-    id         int identity,
-    status     bit default (1),
-    created_at datetime not null,
-    updated_at datetime,
-    primary key (id)
-)
-go
-
-create table bill_detail
-(
-    bill_id    int not null,
-    product_id int not null,
-    amount     int not null,
-    primary key (bill_id, product_id),
-    foreign key (bill_id) references bill (id),
-    foreign key (product_id) references product (id)
-)
-
 go
 
 create proc usp_insert_category(
@@ -88,31 +53,24 @@ go
 
 -- Thêm danh mục
 exec usp_insert_category @_name = N'Cà Phê Việt';
-
 go
 
 exec usp_insert_category @_name = N'Cà Phê Tây';
-
 go
 
 exec usp_insert_category @_name = N'Sinh Tố';
-
 go
 
 exec usp_insert_category @_name = N'Trà';
-
 go
 
 exec usp_insert_category @_name = N'Trái Cây';
-
 go
 
 exec usp_insert_category @_name = N'Sữa Chua';
-
 go
 
 exec usp_insert_category @_name = N'Khác';
-
 go
 
 create proc usp_update_category(
@@ -217,6 +175,21 @@ create proc usp_get_category_by_id(
 begin
     select top 1 * from category where id = @_id
 end
+go
+
+-- product section
+create table product
+(
+    id          int identity,
+    name        nvarchar(255) unique not null,
+    price       float                not null,
+    status      bit default (1),
+    created_at  datetime             not null,
+    updated_at  datetime             not null,
+    category_id int                  not null,
+    primary key (id),
+    foreign key (category_id) references category (id)
+)
 go
 
 create proc usp_insert_product(
@@ -513,7 +486,30 @@ begin
 end
 go
 
-create proc usp_create_bill(
+-- bill section
+create table bill
+(
+    id         int identity,
+    status     bit default (1),
+    created_at datetime not null,
+    updated_at datetime,
+    primary key (id)
+)
+go
+
+create table bill_detail
+(
+    bill_id    int   not null,
+    product_id int   not null,
+    amount     int   not null,
+    price      float not null,
+    primary key (bill_id, product_id),
+    foreign key (bill_id) references bill (id),
+    foreign key (product_id) references product (id)
+)
+go
+
+create proc usp_insert_bill(
     @_status bit,
     @_out_stt bit = 1 output,
     @_out_msg nvarchar = '' output
@@ -572,7 +568,62 @@ begin catch
 end catch
 go
 
-create proc usp_create_bill_detail(
+create proc usp_delete_bill(
+    @_id int,
+    @_out_stt bit = 1 output,
+    @_out_msg nvarchar(max) = '' output
+)
+as
+begin try
+    if not exists(select id from bill where id = @_id)
+        begin
+            set @_out_stt = 0;
+            set @_out_msg = N'Bill not exist';
+        end
+    else
+        begin
+            begin tran;
+            if exists(select bill_id from bill_detail where bill_id = @_id)
+                delete
+                from bill_detail
+                where bill_id = @_id;
+            delete
+            from bill
+            where id = @_id;
+
+            set @_out_stt = 1;
+            set @_out_stt = N'Delete bill successfully!';
+            if @@trancount > 0
+                commit tran;
+        end
+end try
+begin catch
+    set @_out_stt = 0;
+    set @_out_msg = error_message();
+    if @@trancount > 0
+        rollback tran;
+end catch
+go
+
+create proc usp_get_all_bill(
+    @_id int,
+    @_status bit
+)
+as
+declare
+    @sql nvarchar(max) = N'select b.*, sum(bd.price * bd.amount) [total]' +
+                         N' from bill b' +
+                         N' join  bill_detail bd on b.id = bill_detail.bill_id' +
+                         N' where 1 = 1';
+    if (@_id is not null)
+        set @sql = concat(@sql, N' and id = ', @_id);
+    if (@_status is not null)
+        set @sql = concat(@sql, N' and status = ', @_status);
+    set @sql = concat(@sql, N' group by b.id, b.status, b.created_at, b.updated_at')
+    exec (@sql);
+go
+
+create proc usp_insert_bill_detail(
     @_bill_id int,
     @_product_id int,
     @_amount int,
@@ -593,21 +644,148 @@ begin try
                 set @_out_msg = N'Product not exist';
             end
         else
-            begin
-                if @_amount <= 0
+            if @_amount < 1
+                begin
+                    set @_out_stt = 0;
+                    set @_out_msg = N'Amount must be greater than 1';
+                end
+            else
+                if exists(select * from bill_detail where bill_id = @_bill_id and product_id = @_product_id)
                     begin
-                        set @_out_stt = 0;
-                        set @_out_msg = N'Amount not valid';
+                        begin tran;
+                        update bill_detail
+                        set amount += @_amount
+                        where bill_id = @_bill_id
+                          and product_id = @_product_id;
+
+                        update bill
+                        set updated_at = getdate()
+                        where id = @_bill_id;
+
+                        set @_out_stt = 1;
+                        set @_out_msg = N'Update bill detail successfully';
+                        if @@TRANCOUNT > 0
+                            commit tran;
                     end
                 else
                     begin
                         begin tran;
-                        insert into bill_detail(bill_id, product_id, amount) values (@_bill_id, @_product_id, @_amount)
+                        declare @_price float = (select price from product where id = @_product_id);
+                        insert into bill_detail(bill_id, product_id, amount, price)
+                        values (@_bill_id, @_product_id, @_amount, @_price);
+
+                        update bill
+                        set updated_at = getdate()
+                        where id = @_bill_id;
+
                         set @_out_stt = 1;
                         set @_out_msg = N'Create successfully';
                         if @@trancount > 0
                             commit tran;
                     end
+end try
+begin catch
+    set @_out_stt = 0;
+    set @_out_msg = error_message();
+    if @@trancount > 0
+        rollback tran;
+end catch
+go
+
+create proc usp_update_bill_detail(
+    @_bill_id int,
+    @_product_id int,
+    @_amount int,
+    @_out_stt bit = 1 output,
+    @_out_msg nvarchar(max) = N'' output
+)
+as
+begin try
+    if not exists(select id from bill where id = @_bill_id)
+        begin
+            set @_out_stt = 0;
+            set @_out_msg = N'Bill not exists';
+        end
+    else
+        if not exists(select id from product where id = @_product_id)
+            begin
+                set @_out_stt = 0;
+                set @_out_msg = N'Product not exists';
+            end
+        else
+            if @_amount < 1
+                begin
+                    set @_out_stt = 0;
+                    set @_out_msg = N'Amount must be greater than 0';
+                end
+            else
+                if not exists(select * from bill_detail where bill_id = @_bill_id and product_id = @_product_id)
+                    begin
+                        set @_out_stt = 0;
+                        set @_out_msg = N'Bill detail not exists';
+                    end
+                else
+                    begin
+                        begin tran;
+                        update bill_detail
+                        set amount = @_amount
+                        where bill_id = @_bill_id
+                          and product_id = @_product_id
+
+                        update bill
+                        set updated_at = getdate()
+                        where id = @_bill_id;
+
+                        set @_out_stt = 1;
+                        set @_out_msg = N'Update bill detail successfully';
+                        if @@trancount > 0
+                            commit tran
+                    end
+
+end try
+begin catch
+    set @_out_stt = 0;
+    set @_out_msg = error_message();
+    if @@trancount > 0
+        rollback tran;
+end catch
+go
+
+
+create proc sp_delete_bill_detail(
+    @_bill_id int,
+    @_product_id int,
+    @_out_stt bit =1 output,
+    @_out_msg nvarchar(max) = '' output
+)
+as
+begin try
+    if not exists(select id from bill where id = @_bill_id)
+        begin
+            set @_out_stt = 0;
+            set @_out_msg = N'Bill not exists';
+        end
+    else
+        if not exists(select id from product where id = @_product_id)
+            begin
+                set @_out_stt = 0;
+                set @_out_msg = N'Product not exists';
+            end
+        else
+            begin
+                begin tran;
+                delete bill_detail
+                where bill_id = @_bill_id
+                  and product_id = @_product_id;
+
+                update bill
+                set updated_at = getdate()
+                where id = @_bill_id;
+
+                set @_out_stt = 1;
+                set @_out_msg = N'Delete successfully';
+                if @@trancount > 0
+                    commit tran;
             end
 end try
 begin catch
@@ -617,3 +795,13 @@ begin catch
         rollback tran;
 end catch
 go
+
+create proc sp_get_bill_detail_by_bill(@_bill_id int)
+as
+select bd.*,
+       p.name 'product_name'
+from bill_detail bd
+         left join product p on bd.product_id = p.id
+where bill_id = @_bill_id
+go
+
