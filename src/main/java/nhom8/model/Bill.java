@@ -5,6 +5,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import java.io.Serializable;
+import java.sql.Date;
 
 @Data
 @NoArgsConstructor
@@ -17,4 +18,7 @@ public class Bill implements Serializable {
 
     //related to bill detail
     private Float total;
+
+    //search field
+    private Date searchDate;
 }

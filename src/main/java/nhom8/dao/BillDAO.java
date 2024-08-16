@@ -102,7 +102,7 @@ public class BillDAO extends DAO<Bill> {
 
     public ArrayList<Bill> getWithCondition(Bill bill) throws SQLException {
         ArrayList<Bill> list = new ArrayList<Bill>();
-        String sql = "{call usp_get_all_bill(?,?)}";
+        String sql = "{call usp_get_all_bill(?,?,?)}";
         CallableStatement cs = conn.prepareCall(sql);
         if (!Common.isNullOrEmpty(bill.getId())) {
             cs.setInt(1, bill.getId());
@@ -110,6 +110,13 @@ public class BillDAO extends DAO<Bill> {
             cs.setNull(1, Types.INTEGER);
         }
         cs.setNull(2, Types.BOOLEAN);
+
+        if (!Common.isNullOrEmpty(bill.getSearchDate())) {
+            cs.setDate(3, bill.getSearchDate());
+        } else {
+            cs.setNull(3, Types.DATE);
+        }
+
         ResultSet rs = cs.executeQuery();
         while (rs.next()) {
             Bill obj = new Bill();

@@ -21,7 +21,10 @@ import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
+import java.sql.Date;
 import java.sql.SQLException;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Map;
 
@@ -151,36 +154,50 @@ public class BillController implements ManagerController {
         jdSearch.getBtnSearch().addActionListener(e -> {
             Bill bill = new Bill();
             String id = jdSearch.getTxtBillId().getText().trim();
+            String date = jdSearch.getTxtCreatedDate().getText().trim();
+            Boolean validate = true;
 
             if (!Common.isNullOrEmpty(id)) {
                 bill.setId(Integer.parseInt(id));
             }
 
-            try {
-                bills = billDAO.getWithCondition(bill);
-                panel.getTblBill().removeAll();
-                String[] cols = {"Id", "Trang thai", "Tong tien", "Ngay tao", "Ngay cap nhat"};
-                DefaultTableModel dtm = new DefaultTableModel(cols, 0);
-                if (!Common.isNullOrEmpty(bill)) {
-                    bills.forEach(obj -> {
-                        dtm.addRow(new Object[]{obj.getId(), obj.getStatus() ? "Da thanh toan" : "Chua thanh toan", Common.isNullOrEmpty(obj.getTotal()) ? 0 : obj.getTotal(), obj.getCreatedAt(),
-                                obj.getUpdatedAt()});
-                    });
-
-                    panel.getTblBill().getSelectionModel().addListSelectionListener(ev -> {
-                        int position = panel.getTblBill().getSelectedRow();
-                        if (position >= 0) {
-                            this.bill = bills.get(position);
-                        }
-                    });
-
-                    panel.getTblBill().changeSelection(0, 0, false, false);
+            if (!Common.isNullOrEmpty(date)) {
+                SimpleDateFormat sdf = new SimpleDateFormat("dd-MM-yyyy");
+                try {
+                    bill.setSearchDate(new Date(sdf.parse(date).getTime()));
+                } catch (ParseException ex) {
+                    validate = false;
+                    jdSearch.getLblCreatedDateError().setVisible(true);
                 }
+            }
 
-                panel.getTblBill().setModel(dtm);
-                jdSearch.dispose();
-            } catch (SQLException ex) {
-                throw new RuntimeException(ex);
+            if (validate) {
+                try {
+                    bills = billDAO.getWithCondition(bill);
+                    panel.getTblBill().removeAll();
+                    String[] cols = {"Id", "Trang thai", "Tong tien", "Ngay tao", "Ngay cap nhat"};
+                    DefaultTableModel dtm = new DefaultTableModel(cols, 0);
+                    if (!Common.isNullOrEmpty(bills)) {
+                        bills.forEach(obj -> {
+                            dtm.addRow(new Object[]{obj.getId(), obj.getStatus() ? "Da thanh toan" : "Chua thanh toan", Common.isNullOrEmpty(obj.getTotal()) ? 0 : obj.getTotal(), obj.getCreatedAt(),
+                                    obj.getUpdatedAt()});
+                        });
+
+                        panel.getTblBill().getSelectionModel().addListSelectionListener(ev -> {
+                            int position = panel.getTblBill().getSelectedRow();
+                            if (position >= 0) {
+                                this.bill = bills.get(position);
+                            }
+                        });
+
+                        panel.getTblBill().changeSelection(0, 0, false, false);
+                    }
+
+                    panel.getTblBill().setModel(dtm);
+                    jdSearch.dispose();
+                } catch (SQLException ex) {
+                    throw new RuntimeException(ex);
+                }
             }
         });
     }
