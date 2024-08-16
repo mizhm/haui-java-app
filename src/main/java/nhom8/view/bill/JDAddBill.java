@@ -7,6 +7,7 @@ package nhom8.view.bill;
 
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.MouseEvent;
 
 /**
  *
@@ -31,10 +32,6 @@ public final class JDAddBill extends javax.swing.JDialog {
         
 
         // Custom Style
-        btnAddProduct.setVisible(false);
-        txtProductAmount.setEditable(false);
-        btnCheckout.setVisible(false);
-        btnDeleteBill.setVisible(false);
         txtProductName.setBorder(BorderFactory.createCompoundBorder(
                 txtProductName.getBorder(),
                 BorderFactory.createEmptyBorder(5, 8, 5, 8)));
@@ -53,6 +50,118 @@ public final class JDAddBill extends javax.swing.JDialog {
         txtTotalPrice.setBorder(BorderFactory.createCompoundBorder(
                 txtTotalPrice.getBorder(),
                 BorderFactory.createEmptyBorder(5, 8, 5, 8)));
+    }
+
+    public JButton getBtnAddProduct() {
+        return btnAddProduct;
+    }
+
+    public void setBtnAddProduct(JButton btnAddProduct) {
+        this.btnAddProduct = btnAddProduct;
+    }
+
+    public JButton getBtnCheckout() {
+        return btnCheckout;
+    }
+
+    public void setBtnCheckout(JButton btnCheckout) {
+        this.btnCheckout = btnCheckout;
+    }
+
+    public JLabel getLblProductAmount() {
+        return lblProductAmount;
+    }
+
+    public void setLblProductAmount(JLabel lblProductAmount) {
+        this.lblProductAmount = lblProductAmount;
+    }
+
+    public JLabel getLblProductAmountError() {
+        return lblProductAmountError;
+    }
+
+    public void setLblProductAmountError(JLabel lblProductAmountError) {
+        this.lblProductAmountError = lblProductAmountError;
+    }
+
+    public JMenuItem getMenuItemDelete() {
+        return menuItemDelete;
+    }
+
+    public void setMenuItemDelete(JMenuItem menuItemDelete) {
+        this.menuItemDelete = menuItemDelete;
+    }
+
+    public JMenuItem getMenuItemEdit() {
+        return menuItemEdit;
+    }
+
+    public void setMenuItemEdit(JMenuItem menuItemEdit) {
+        this.menuItemEdit = menuItemEdit;
+    }
+
+    public JTable getTblBillDetail() {
+        return tblBillDetail;
+    }
+
+    public void setTblBillDetail(JTable tblBillDetail) {
+        this.tblBillDetail = tblBillDetail;
+    }
+
+    public JTable getTblProduct() {
+        return tblProduct;
+    }
+
+    public void setTblProduct(JTable tblProduct) {
+        this.tblProduct = tblProduct;
+    }
+
+    public JTextField getTxtBillId() {
+        return txtBillId;
+    }
+
+    public void setTxtBillId(JTextField txtBillId) {
+        this.txtBillId = txtBillId;
+    }
+
+    public JTextField getTxtBillTime() {
+        return txtBillTime;
+    }
+
+    public void setTxtBillTime(JTextField txtBillTime) {
+        this.txtBillTime = txtBillTime;
+    }
+
+    public JTextField getTxtProductAmount() {
+        return txtProductAmount;
+    }
+
+    public void setTxtProductAmount(JTextField txtProductAmount) {
+        this.txtProductAmount = txtProductAmount;
+    }
+
+    public JTextField getTxtProductName() {
+        return txtProductName;
+    }
+
+    public void setTxtProductName(JTextField txtProductName) {
+        this.txtProductName = txtProductName;
+    }
+
+    public JTextField getTxtProductPrice() {
+        return txtProductPrice;
+    }
+
+    public void setTxtProductPrice(JTextField txtProductPrice) {
+        this.txtProductPrice = txtProductPrice;
+    }
+
+    public JTextField getTxtTotalPrice() {
+        return txtTotalPrice;
+    }
+
+    public void setTxtTotalPrice(JTextField txtTotalPrice) {
+        this.txtTotalPrice = txtTotalPrice;
     }
 
     /**
@@ -86,7 +195,6 @@ public final class JDAddBill extends javax.swing.JDialog {
         lblVND = new javax.swing.JLabel();
         lblTotalPrice = new javax.swing.JLabel();
         btnCheckout = new javax.swing.JButton();
-        btnDeleteBill = new javax.swing.JButton();
         scrollPaneBillDetail = new javax.swing.JScrollPane();
         tblBillDetail = new javax.swing.JTable();
         scrollPaneProduct = new javax.swing.JScrollPane();
@@ -109,7 +217,7 @@ public final class JDAddBill extends javax.swing.JDialog {
         popupMenu.add(menuItemDelete);
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
-        setTitle("THÔNG TIN CHI TIẾT BÀN");
+        setTitle("THONG TIN CHI TIET HOA DON");
         addWindowListener(new java.awt.event.WindowAdapter() {
             public void windowClosing(java.awt.event.WindowEvent evt) {
                 formWindowClosing(evt);
@@ -138,7 +246,6 @@ public final class JDAddBill extends javax.swing.JDialog {
         txtProductPrice.setFont(new java.awt.Font("Segoe UI Semibold", 0, 12)); // NOI18N
         txtProductPrice.setFocusable(false);
 
-        txtProductAmount.setEditable(false);
         txtProductAmount.setFont(new java.awt.Font("Segoe UI Semibold", 0, 12)); // NOI18N
 
         btnAddProduct.setBackground(new java.awt.Color(40, 167, 69));
@@ -167,7 +274,8 @@ public final class JDAddBill extends javax.swing.JDialog {
                 .addGroup(pnlAddProductLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(pnlAddProductLayout.createSequentialGroup()
                         .addComponent(btnAddProduct, javax.swing.GroupLayout.PREFERRED_SIZE, 115, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(0, 0, Short.MAX_VALUE))
+                        .addGap(218, 218, 218)
+                        .addComponent(lblProductAmountError, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                     .addGroup(pnlAddProductLayout.createSequentialGroup()
                         .addGroup(pnlAddProductLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(lblProductPrice, javax.swing.GroupLayout.PREFERRED_SIZE, 71, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -177,13 +285,10 @@ public final class JDAddBill extends javax.swing.JDialog {
                             .addComponent(txtProductName)
                             .addGroup(pnlAddProductLayout.createSequentialGroup()
                                 .addComponent(txtProductPrice, javax.swing.GroupLayout.PREFERRED_SIZE, 170, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(8, 8, 8)
-                                .addGroup(pnlAddProductLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addGroup(pnlAddProductLayout.createSequentialGroup()
-                                        .addComponent(lblProductAmount, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                        .addComponent(txtProductAmount, javax.swing.GroupLayout.DEFAULT_SIZE, 140, Short.MAX_VALUE))
-                                    .addComponent(lblProductAmountError, javax.swing.GroupLayout.DEFAULT_SIZE, 199, Short.MAX_VALUE))))))
+                                .addGap(2, 2, 2)
+                                .addComponent(lblProductAmount, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(txtProductAmount, javax.swing.GroupLayout.DEFAULT_SIZE, 140, Short.MAX_VALUE)))))
                 .addContainerGap())
         );
         pnlAddProductLayout.setVerticalGroup(
@@ -191,19 +296,19 @@ public final class JDAddBill extends javax.swing.JDialog {
             .addGroup(pnlAddProductLayout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(pnlAddProductLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(lblProductName)
-                    .addComponent(txtProductName, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                    .addComponent(txtProductName, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(lblProductName))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(pnlAddProductLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(lblProductAmount)
-                    .addComponent(txtProductAmount, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(txtProductPrice, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(txtProductAmount, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(lblProductPrice)
-                    .addComponent(txtProductPrice, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                    .addComponent(lblProductAmount))
+                .addGap(11, 11, 11)
                 .addGroup(pnlAddProductLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(btnAddProduct, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(lblProductAmountError))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap())
         );
 
         pnlBill.setBackground(new java.awt.Color(255, 255, 255));
@@ -245,44 +350,27 @@ public final class JDAddBill extends javax.swing.JDialog {
             }
         });
 
-        btnDeleteBill.setBackground(new java.awt.Color(220, 53, 69));
-        btnDeleteBill.setFont(new java.awt.Font("Segoe UI Semibold", 0, 14)); // NOI18N
-        btnDeleteBill.setForeground(new java.awt.Color(255, 255, 255));
-        btnDeleteBill.setText("Huỷ đơn");
-        btnDeleteBill.setBorderPainted(false);
-        btnDeleteBill.setFocusPainted(false);
-        btnDeleteBill.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnDeleteBillActionPerformed(evt);
-            }
-        });
-
         javax.swing.GroupLayout pnlBillLayout = new javax.swing.GroupLayout(pnlBill);
         pnlBill.setLayout(pnlBillLayout);
         pnlBillLayout.setHorizontalGroup(
             pnlBillLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(pnlBillLayout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(pnlBillLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(pnlBillLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pnlBillLayout.createSequentialGroup()
+                        .addComponent(lblBillTime, javax.swing.GroupLayout.PREFERRED_SIZE, 72, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(txtBillTime))
+                    .addComponent(btnCheckout)
                     .addGroup(pnlBillLayout.createSequentialGroup()
                         .addComponent(lblBillId, javax.swing.GroupLayout.PREFERRED_SIZE, 72, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(txtBillId))
-                    .addGroup(pnlBillLayout.createSequentialGroup()
-                        .addGap(0, 0, 0)
-                        .addComponent(btnCheckout)
-                        .addGap(0, 0, 0)
-                        .addComponent(btnDeleteBill)
-                        .addGap(0, 0, 0))
-                    .addGroup(pnlBillLayout.createSequentialGroup()
-                        .addComponent(lblBillTime, javax.swing.GroupLayout.PREFERRED_SIZE, 72, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(txtBillTime)))
+                        .addComponent(txtBillId, javax.swing.GroupLayout.PREFERRED_SIZE, 202, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(lblTotalPrice, javax.swing.GroupLayout.PREFERRED_SIZE, 84, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(txtTotalPrice, javax.swing.GroupLayout.PREFERRED_SIZE, 215, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(txtTotalPrice, javax.swing.GroupLayout.PREFERRED_SIZE, 158, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(lblVND, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
         );
@@ -291,20 +379,19 @@ public final class JDAddBill extends javax.swing.JDialog {
             .addGroup(pnlBillLayout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(pnlBillLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(lblBillId)
-                    .addComponent(txtBillId, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(pnlBillLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(lblBillTime)
-                    .addComponent(txtBillTime, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(txtBillId, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(lblBillId))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(pnlBillLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(pnlBillLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(txtTotalPrice, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(lblTotalPrice)
-                        .addComponent(lblVND)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGroup(pnlBillLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(btnCheckout, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnDeleteBill, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(txtTotalPrice, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(lblVND))
+                    .addGroup(pnlBillLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(txtBillTime, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(lblBillTime)
+                        .addComponent(lblTotalPrice)))
+                .addGap(18, 18, Short.MAX_VALUE)
+                .addComponent(btnCheckout, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
         );
 
@@ -375,8 +462,8 @@ public final class JDAddBill extends javax.swing.JDialog {
                     .addComponent(pnlBill, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(scrollPaneBillDetail)
-                    .addComponent(scrollPaneProduct))
+                    .addComponent(scrollPaneBillDetail, javax.swing.GroupLayout.DEFAULT_SIZE, 408, Short.MAX_VALUE)
+                    .addComponent(scrollPaneProduct, javax.swing.GroupLayout.DEFAULT_SIZE, 408, Short.MAX_VALUE))
                 .addContainerGap())
         );
 
@@ -411,7 +498,9 @@ public final class JDAddBill extends javax.swing.JDialog {
     }//GEN-LAST:event_menuItemEditActionPerformed
 
     private void tblBillDetailMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblBillDetailMouseClicked
-        
+        if (evt.getButton() == MouseEvent.BUTTON3) {
+            popupMenu.show(tblBillDetail, evt.getX(), evt.getY());
+        }
     }//GEN-LAST:event_tblBillDetailMouseClicked
 
     private void menuItemDeleteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuItemDeleteActionPerformed
@@ -422,15 +511,10 @@ public final class JDAddBill extends javax.swing.JDialog {
         
     }//GEN-LAST:event_formWindowClosing
 
-    private void btnDeleteBillActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDeleteBillActionPerformed
-        
-    }//GEN-LAST:event_btnDeleteBillActionPerformed
-
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnAddProduct;
     private javax.swing.JButton btnCheckout;
-    private javax.swing.JButton btnDeleteBill;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JLabel lblBillId;
     private javax.swing.JLabel lblBillTime;

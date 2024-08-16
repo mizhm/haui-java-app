@@ -592,7 +592,7 @@ begin try
             where id = @_id;
 
             set @_out_stt = 1;
-            set @_out_stt = N'Delete bill successfully!';
+            set @_out_msg = N'Delete bill successfully!';
             if @@trancount > 0
                 commit tran;
         end
@@ -606,14 +606,14 @@ end catch
 go
 
 create proc usp_get_all_bill(
-    @_id int,
-    @_status bit
+    @_id int = null,
+    @_status bit = null
 )
 as
 declare
     @sql nvarchar(max) = N'select b.*, sum(bd.price * bd.amount) [total]' +
                          N' from bill b' +
-                         N' join  bill_detail bd on b.id = bill_detail.bill_id' +
+                         N' left join  bill_detail bd on b.id = bd.bill_id' +
                          N' where 1 = 1';
     if (@_id is not null)
         set @sql = concat(@sql, N' and id = ', @_id);
@@ -622,6 +622,21 @@ declare
     set @sql = concat(@sql, N' group by b.id, b.status, b.created_at, b.updated_at')
     exec (@sql);
 go
+
+-- exec usp_get_all_bill
+-- go
+
+create proc usp_get_new_bill
+as
+select top 1 *
+from bill
+order by created_at desc
+go
+-- select b.*, sum(bd.price * bd.amount) [total]
+-- from bill b
+--          join bill_detail bd on b.id = bd.bill_id
+-- group by b.id, b.status, b.created_at, b.updated_at
+-- go
 
 create proc usp_insert_bill_detail(
     @_bill_id int,
@@ -752,7 +767,7 @@ end catch
 go
 
 
-create proc sp_delete_bill_detail(
+create proc usp_delete_bill_detail(
     @_bill_id int,
     @_product_id int,
     @_out_stt bit =1 output,
@@ -796,12 +811,15 @@ begin catch
 end catch
 go
 
-create proc sp_get_bill_detail_by_bill(@_bill_id int)
+create proc usp_get_bill_detail_by_bill(@_bill_id int)
 as
 select bd.*,
        p.name 'product_name'
 from bill_detail bd
          left join product p on bd.product_id = p.id
 where bill_id = @_bill_id
+go
+
+exec usp_get_bill_detail_by_bill 1
 go
 

@@ -4,11 +4,9 @@
  */
 package nhom8.view.bill;
 
-import javax.swing.JLabel;
-import javax.swing.JTable;
+import javax.swing.*;
 
 /**
- *
  * @author dell
  */
 public class PnlBill extends javax.swing.JPanel {
@@ -19,6 +17,15 @@ public class PnlBill extends javax.swing.JPanel {
     public PnlBill() {
         initComponents();
     }
+
+    public JLabel getLblAddBill() {
+        return lblAddBill;
+    }
+
+    public void setLblAddBill(JLabel lblAddBill) {
+        this.lblAddBill = lblAddBill;
+    }
+
 
     public JLabel getLblDeleteBill() {
         return lblDeleteBill;
@@ -59,8 +66,7 @@ public class PnlBill extends javax.swing.JPanel {
     public void setTblBill(JTable tblBill) {
         this.tblBill = tblBill;
     }
-    
-    
+
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -73,6 +79,7 @@ public class PnlBill extends javax.swing.JPanel {
 
         jPanel1 = new javax.swing.JPanel();
         jPanel2 = new javax.swing.JPanel();
+        lblAddBill = new javax.swing.JLabel();
         lblDetailBill = new javax.swing.JLabel();
         lblDeleteBill = new javax.swing.JLabel();
         lblSearchBill = new javax.swing.JLabel();
@@ -90,9 +97,19 @@ public class PnlBill extends javax.swing.JPanel {
         jPanel2.setPreferredSize(new java.awt.Dimension(152, 100));
         jPanel2.setLayout(new java.awt.FlowLayout(java.awt.FlowLayout.CENTER, 50, 20));
 
+        lblAddBill.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        lblAddBill.setIcon(new javax.swing.ImageIcon(getClass().getResource("/assets/img/add.png"))); // NOI18N
+        lblAddBill.setText("them");
+        lblAddBill.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        lblAddBill.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        lblAddBill.setPreferredSize(new java.awt.Dimension(68, 60));
+        lblAddBill.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        jPanel2.add(lblAddBill);
+
         lblDetailBill.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         lblDetailBill.setIcon(new javax.swing.ImageIcon(getClass().getResource("/assets/img/website.png"))); // NOI18N
         lblDetailBill.setText("Chi tiet");
+        lblDetailBill.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         lblDetailBill.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         lblDetailBill.setPreferredSize(new java.awt.Dimension(68, 60));
         lblDetailBill.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
@@ -101,6 +118,7 @@ public class PnlBill extends javax.swing.JPanel {
         lblDeleteBill.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         lblDeleteBill.setIcon(new javax.swing.ImageIcon(getClass().getResource("/assets/img/delete.png"))); // NOI18N
         lblDeleteBill.setText("xoa");
+        lblDeleteBill.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         lblDeleteBill.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         lblDeleteBill.setPreferredSize(new java.awt.Dimension(68, 60));
         lblDeleteBill.setVerifyInputWhenFocusTarget(false);
@@ -110,6 +128,7 @@ public class PnlBill extends javax.swing.JPanel {
         lblSearchBill.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         lblSearchBill.setIcon(new javax.swing.ImageIcon(getClass().getResource("/assets/img/loupe.png"))); // NOI18N
         lblSearchBill.setText("tim kiem");
+        lblSearchBill.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         lblSearchBill.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         lblSearchBill.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
         jPanel2.add(lblSearchBill);
@@ -117,6 +136,7 @@ public class PnlBill extends javax.swing.JPanel {
         lblRefreshBill.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         lblRefreshBill.setIcon(new javax.swing.ImageIcon(getClass().getResource("/assets/img/refresh.png"))); // NOI18N
         lblRefreshBill.setText("lam moi");
+        lblRefreshBill.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         lblRefreshBill.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         lblRefreshBill.setPreferredSize(new java.awt.Dimension(68, 60));
         lblRefreshBill.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
@@ -127,15 +147,15 @@ public class PnlBill extends javax.swing.JPanel {
         add(jPanel1, java.awt.BorderLayout.NORTH);
 
         tblBill.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][] {
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null}
-            },
-            new String [] {
-                "Title 1", "Title 2", "Title 3", "Title 4"
-            }
+                new Object[][]{
+                        {null, null, null, null},
+                        {null, null, null, null},
+                        {null, null, null, null},
+                        {null, null, null, null}
+                },
+                new String[]{
+                        "Title 1", "Title 2", "Title 3", "Title 4"
+                }
         ));
         jScrollPane1.setViewportView(tblBill);
 
@@ -147,6 +167,7 @@ public class PnlBill extends javax.swing.JPanel {
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JLabel lblAddBill;
     private javax.swing.JLabel lblDeleteBill;
     private javax.swing.JLabel lblDetailBill;
     private javax.swing.JLabel lblRefreshBill;

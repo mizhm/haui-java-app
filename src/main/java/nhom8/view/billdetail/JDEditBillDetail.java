@@ -8,6 +8,7 @@ package nhom8.view.billdetail;
 
 import javax.swing.*;
 import java.awt.*;
+import nhom8.model.BillDetail;
 
 public final class JDEditBillDetail extends javax.swing.JDialog {
 
@@ -17,7 +18,7 @@ public final class JDEditBillDetail extends javax.swing.JDialog {
      * @param parent
      * @param modal
      */
-    public JDEditBillDetail(JDialog parent, boolean modal) {
+    public JDEditBillDetail(JDialog parent, boolean modal, BillDetail detail) {
         super(parent, modal);
         initComponents();
         setLocationRelativeTo(null);
@@ -32,8 +33,45 @@ public final class JDEditBillDetail extends javax.swing.JDialog {
                 BorderFactory.createLineBorder(new Color(240, 240, 240)),
                 BorderFactory.createEmptyBorder(5, 8, 5, 8)));
         lblProductAmountError.setVisible(false);
+        txtProductName.setText(detail.getProductName());
+        txtProductPrice.setText(detail.getPrice().toString());
+        txtProductAmount.setText(detail.getAmount().toString());
     }
 
+    public JButton getBtnModify() {
+        return btnModify;
+    }
+
+    public void setBtnModify(JButton btnModify) {
+        this.btnModify = btnModify;
+    }
+
+    public JLabel getLblProductAmount() {
+        return lblProductAmount;
+    }
+
+    public void setLblProductAmount(JLabel lblProductAmount) {
+        this.lblProductAmount = lblProductAmount;
+    }
+
+    public JLabel getLblProductAmountError() {
+        return lblProductAmountError;
+    }
+
+    public void setLblProductAmountError(JLabel lblProductAmountError) {
+        this.lblProductAmountError = lblProductAmountError;
+    }
+
+    public JTextField getTxtProductAmount() {
+        return txtProductAmount;
+    }
+
+    public void setTxtProductAmount(JTextField txtProductAmount) {
+        this.txtProductAmount = txtProductAmount;
+    }
+    
+
+    
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -62,7 +100,7 @@ public final class JDEditBillDetail extends javax.swing.JDialog {
         jPanel1.setBackground(new java.awt.Color(255, 255, 255));
 
         lblTitle.setFont(new java.awt.Font("Segoe UI Semibold", 0, 24)); // NOI18N
-        lblTitle.setIcon(new javax.swing.ImageIcon(getClass().getResource("/assets/img/icons8_product_50px_2.png"))); // NOI18N
+        lblTitle.setIcon(new javax.swing.ImageIcon(getClass().getResource("/assets/img/edit.png"))); // NOI18N
         lblTitle.setText("SỬA THÔNG TIN HOÁ ĐƠN");
 
         lblProductName.setFont(new java.awt.Font("Segoe UI Semibold", 0, 12)); // NOI18N

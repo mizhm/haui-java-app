@@ -18,6 +18,7 @@ public class HomeController {
 
     private final CategoryController categoryController = new CategoryController(view, pnlCategory);
     private final ProductController productController = new ProductController(view, pnlProduct);
+    private final BillController billController = new BillController(view, pnlBill);
 
     public HomeController(Dashboard view) {
         this.view = view;
@@ -28,18 +29,17 @@ public class HomeController {
     private void addEvent() {
         view.getBtnCategory().addActionListener(e -> {
             view.setPnlBody(pnlCategory);
-            categoryController.setPanel(pnlCategory);
             categoryController.updateData();
         });
 
         view.getBtnProduct().addActionListener(e -> {
             view.setPnlBody(pnlProduct);
-            productController.setPanel(pnlProduct);
             productController.updateData();
         });
 
         view.getBtnBill().addActionListener(e -> {
             view.setPnlBody(pnlBill);
+            billController.updateData();
         });
     }
 }
