@@ -6,7 +6,9 @@ package nhom8.view.home;
 
 import java.awt.Color;
 import java.awt.Panel;
+import javax.swing.ImageIcon;
 import javax.swing.JButton;
+import javax.swing.JFrame;
 import javax.swing.JPanel;
 import nhom8.view.product.PnlProduct;
 
@@ -21,6 +23,9 @@ public class Dashboard extends javax.swing.JFrame {
         initComponents();
         PnlHome pnl = new PnlHome();
         setLocationRelativeTo(null);
+        this.setIconImage(new ImageIcon(
+                getClass().getResource("/assets/icon_cafe.png")
+        ).getImage());
         
         pnlBody.add(pnl);
         pnlBody.repaint();
@@ -96,6 +101,7 @@ public class Dashboard extends javax.swing.JFrame {
         pnlBody = new javax.swing.JPanel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setTitle("Coffee Shop Management");
         setPreferredSize(new java.awt.Dimension(1138, 800));
         setSize(new java.awt.Dimension(1138, 800));
         getContentPane().setLayout(new java.awt.CardLayout());

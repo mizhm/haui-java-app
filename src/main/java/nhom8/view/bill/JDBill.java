@@ -5,11 +5,14 @@
  */
 package nhom8.view.bill;
 
-import javax.swing.table.DefaultTableModel;
 import java.awt.*;
-import java.util.List;
+import java.util.ArrayList;
 import javax.swing.BorderFactory;
-import lombok.extern.log4j.Log4j;
+import javax.swing.JTable;
+import javax.swing.table.DefaultTableModel;
+import nhom8.model.Bill;
+import nhom8.model.BillDetail;
+import nhom8.utils.Common;
 
 public final class JDBill extends javax.swing.JDialog {
     /**
@@ -18,12 +21,14 @@ public final class JDBill extends javax.swing.JDialog {
      * @param parent
      * @param modal
      */
-    public JDBill(Frame parent, boolean modal) {
+    public JDBill(Frame parent, boolean modal, Bill bill, ArrayList<BillDetail> billDetails) {
         super(parent, modal);
         initComponents();
         setLocationRelativeTo(null);
         
         // Custom Style
+        txtBillId.setText(bill.getId().toString());
+        txtBillTime.setText(bill.getUpdatedAt().toString());
         txtBillId.setBorder(BorderFactory.createCompoundBorder(
                 txtBillId.getBorder(),
                 BorderFactory.createEmptyBorder(5, 8, 5, 8)));
@@ -33,8 +38,37 @@ public final class JDBill extends javax.swing.JDialog {
         txtBillTotalPrice.setBorder(BorderFactory.createCompoundBorder(
                 txtBillTotalPrice.getBorder(),
                 BorderFactory.createEmptyBorder(5, 8, 5, 8)));
+        
+        loading(billDetails);
     }
 
+    public JTable getTblBillDetail() {
+        return tblBillDetail;
+    }
+
+    public void setTblBillDetail(JTable tblBillDetail) {
+        this.tblBillDetail = tblBillDetail;
+    }
+
+    private void loading(ArrayList<BillDetail> billDetails) {
+        tblBillDetail.removeAll();
+
+        String columns[] = {"Id", "Tên sản phẩm", "Đơn giá", "Số lượng", "Thành tiền"};
+        DefaultTableModel dtm = new DefaultTableModel(columns, 0);
+
+        if (!Common.isNullOrEmpty(billDetails)) {
+            Float billTotal = 0f;
+            for(BillDetail billDetail: billDetails){
+                float total = (float) (billDetail.getPrice()* billDetail.getAmount());
+                billTotal += total;
+                dtm.addRow(new Object[]{billDetail.getProductId(), billDetail.getProductName(), billDetail.getPrice(), billDetail.getAmount(), total});
+            }
+            txtBillTotalPrice.setText(billTotal.toString());
+            tblBillDetail.changeSelection(0, 0, false, false);
+        }
+
+        tblBillDetail.setModel(dtm);
+    }
     
 
     /**
@@ -70,7 +104,7 @@ public final class JDBill extends javax.swing.JDialog {
         jPanel1.setBackground(new java.awt.Color(255, 255, 255));
 
         lblTitle.setFont(new java.awt.Font("Segoe UI Semibold", 0, 24)); // NOI18N
-        lblTitle.setIcon(new javax.swing.ImageIcon(getClass().getResource("/assets/img/icons8_product_50px_2.png"))); // NOI18N
+        lblTitle.setIcon(new javax.swing.ImageIcon(getClass().getResource("/assets/img/website.png"))); // NOI18N
         lblTitle.setText("THÔNG TIN CHI TIẾT HOÁ ĐƠN");
 
         lblBillId.setFont(new java.awt.Font("Segoe UI Semibold", 0, 12)); // NOI18N
@@ -179,7 +213,7 @@ public final class JDBill extends javax.swing.JDialog {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnExitActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnExitActionPerformed
-
+        dispose();
     }//GEN-LAST:event_btnExitActionPerformed
 
     private void formWindowClosing(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowClosing

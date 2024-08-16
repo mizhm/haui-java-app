@@ -18,9 +18,8 @@ public final class JDSearchBill extends javax.swing.JDialog {
      *
      * @param parent
      * @param modal
-     * @param dbUtil
-     * @param callback
      */
+    
     public JDSearchBill(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
@@ -30,18 +29,26 @@ public final class JDSearchBill extends javax.swing.JDialog {
         txtBillId.setBorder(BorderFactory.createCompoundBorder(
                 txtBillId.getBorder(),
                 BorderFactory.createEmptyBorder(5, 8, 5, 8)));
-        loadStatus();
     }
 
-    public void loadStatus() {
-        cboStatus.removeAllItems();
-        DefaultComboBoxModel<String> dcbm = new DefaultComboBoxModel<>();
-        dcbm.addElement("Không chọn");
-        dcbm.addElement("Đã thanh toán");
-        dcbm.addElement("Chưa thanh toán");
-        cboStatus.setModel(dcbm);
+    public JButton getBtnSearch() {
+        return btnSearch;
     }
 
+    public void setBtnSearch(JButton btnSearch) {
+        this.btnSearch = btnSearch;
+    }
+
+    public JTextField getTxtBillId() {
+        return txtBillId;
+    }
+
+    public void setTxtBillId(JTextField txtBillId) {
+        this.txtBillId = txtBillId;
+    }
+
+    
+        
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -55,9 +62,7 @@ public final class JDSearchBill extends javax.swing.JDialog {
         jLabel1 = new javax.swing.JLabel();
         lblBillId = new javax.swing.JLabel();
         txtBillId = new javax.swing.JTextField();
-        jLabel3 = new javax.swing.JLabel();
         btnSearch = new javax.swing.JButton();
-        cboStatus = new javax.swing.JComboBox<>();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("TÌM KIẾM HOÁ ĐƠN");
@@ -65,14 +70,11 @@ public final class JDSearchBill extends javax.swing.JDialog {
         jPanel1.setBackground(new java.awt.Color(255, 255, 255));
 
         jLabel1.setFont(new java.awt.Font("Segoe UI Semibold", 0, 36)); // NOI18N
-        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/assets/img/icons8_google_web_search_50px.png"))); // NOI18N
+        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/assets/img/loupe.png"))); // NOI18N
         jLabel1.setText("TÌM KIẾM HOÁ ĐƠN");
 
         lblBillId.setFont(new java.awt.Font("Segoe UI Semibold", 0, 12)); // NOI18N
         lblBillId.setText("Mã hoá đơn");
-
-        jLabel3.setFont(new java.awt.Font("Segoe UI Semibold", 0, 12)); // NOI18N
-        jLabel3.setText("Trạng thái");
 
         btnSearch.setBackground(new java.awt.Color(0, 204, 106));
         btnSearch.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
@@ -96,11 +98,9 @@ public final class JDSearchBill extends javax.swing.JDialog {
                     .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(lblBillId, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(txtBillId)
-                    .addComponent(jLabel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                         .addGap(0, 427, Short.MAX_VALUE)
-                        .addComponent(btnSearch, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(cboStatus, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addComponent(btnSearch, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap())
         );
         jPanel1Layout.setVerticalGroup(
@@ -112,11 +112,7 @@ public final class JDSearchBill extends javax.swing.JDialog {
                 .addComponent(lblBillId, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(txtBillId, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(cboStatus, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(53, 53, 53)
+                .addGap(18, 18, 18)
                 .addComponent(btnSearch, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
@@ -141,9 +137,7 @@ public final class JDSearchBill extends javax.swing.JDialog {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnSearch;
-    private javax.swing.JComboBox<String> cboStatus;
     private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel3;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JLabel lblBillId;
     private javax.swing.JTextField txtBillId;
