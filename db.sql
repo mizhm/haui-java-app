@@ -216,8 +216,10 @@ begin try
             else
                 begin
                     begin tran;
-                    insert into product(name, status, price, category_id, created_at, updated_at)
-                    values (@_name, @_status, @_price, @_category_id, getdate(), getdate());
+                    insert into product(name, status, price, category_id,
+                                        created_at, updated_at)
+                    values (@_name, @_status, @_price, @_category_id, getdate(),
+                            getdate());
                     set @_out_stt = 1;
                     set @_out_msg = 'Create successfully'
                     if @@trancount > 0
@@ -517,7 +519,8 @@ create proc usp_insert_bill(
 as
 begin try
     begin tran;
-    insert into bill(status, created_at, updated_at) values (@_status, getdate(), getdate());
+    insert into bill(status, created_at, updated_at)
+    values (@_status, getdate(), getdate());
     set @_out_stt = 1;
     set @_out_msg = N'Create Bill successfully';
     if @@trancount > 0
@@ -607,7 +610,8 @@ go
 
 create proc usp_get_all_bill(
     @_id int = null,
-    @_status bit = null
+    @_status bit = null,
+    @_date date = null
 )
 as
 declare
@@ -619,7 +623,11 @@ declare
         set @sql = concat(@sql, N' and id = ', @_id);
     if (@_status is not null)
         set @sql = concat(@sql, N' and status = ', @_status);
-    set @sql = concat(@sql, N' group by b.id, b.status, b.created_at, b.updated_at')
+    if (@_date is not null)
+        set @sql = concat(@sql, N' and created_at >= ''', @_date, N''' and created_at < dateadd(day, 1, ''', @_date,
+                          ''')');
+    set @sql = concat(@sql,
+                      N' group by b.id, b.status, b.created_at, b.updated_at')
     exec (@sql);
 go
 
@@ -665,7 +673,10 @@ begin try
                     set @_out_msg = N'Amount must be greater than 1';
                 end
             else
-                if exists(select * from bill_detail where bill_id = @_bill_id and product_id = @_product_id)
+                if exists(select *
+                          from bill_detail
+                          where bill_id = @_bill_id
+                            and product_id = @_product_id)
                     begin
                         begin tran;
                         update bill_detail
@@ -685,7 +696,9 @@ begin try
                 else
                     begin
                         begin tran;
-                        declare @_price float = (select price from product where id = @_product_id);
+                        declare @_price float = (select price
+                                                 from product
+                                                 where id = @_product_id);
                         insert into bill_detail(bill_id, product_id, amount, price)
                         values (@_bill_id, @_product_id, @_amount, @_price);
 
@@ -734,7 +747,10 @@ begin try
                     set @_out_msg = N'Amount must be greater than 0';
                 end
             else
-                if not exists(select * from bill_detail where bill_id = @_bill_id and product_id = @_product_id)
+                if not exists(select *
+                              from bill_detail
+                              where bill_id = @_bill_id
+                                and product_id = @_product_id)
                     begin
                         set @_out_stt = 0;
                         set @_out_msg = N'Bill detail not exists';
@@ -818,8 +834,5 @@ select bd.*,
 from bill_detail bd
          left join product p on bd.product_id = p.id
 where bill_id = @_bill_id
-go
-
-exec usp_get_bill_detail_by_bill 1
 go
 

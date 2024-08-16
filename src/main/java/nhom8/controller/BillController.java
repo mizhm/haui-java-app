@@ -21,7 +21,10 @@ import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
+import java.sql.Date;
 import java.sql.SQLException;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Map;
 
@@ -36,7 +39,7 @@ public class BillController implements ManagerController {
     private JDAddBill jdAdd;
     private JDBill jdDetail;
     private JDDeleteBill jdDelete;
-    private JDSearchBill jdSearchBill;
+    private JDSearchBill jdSearch;
 
     private ArrayList<Bill> bills;
     private ArrayList<BillDetail> billDetails;
@@ -98,6 +101,7 @@ public class BillController implements ManagerController {
                             }
                             if ((boolean) resultBillDetail.get("status")) {
                                 updateBillDetailTable(this.bill.getId());
+
                                 product = null;
                                 txtProductAmount.setBorder(BorderFactory.createCompoundBorder(
                                         BorderFactory.createLineBorder(new Color(34, 36, 40)),
@@ -147,7 +151,55 @@ public class BillController implements ManagerController {
 
     @Override
     public void actionSearch() {
+        jdSearch.getBtnSearch().addActionListener(e -> {
+            Bill bill = new Bill();
+            String id = jdSearch.getTxtBillId().getText().trim();
+            String date = jdSearch.getTxtCreatedDate().getText().trim();
+            Boolean validate = true;
 
+            if (!Common.isNullOrEmpty(id)) {
+                bill.setId(Integer.parseInt(id));
+            }
+
+            if (!Common.isNullOrEmpty(date)) {
+                SimpleDateFormat sdf = new SimpleDateFormat("dd-MM-yyyy");
+                try {
+                    bill.setSearchDate(new Date(sdf.parse(date).getTime()));
+                } catch (ParseException ex) {
+                    validate = false;
+                    jdSearch.getLblCreatedDateError().setVisible(true);
+                }
+            }
+
+            if (validate) {
+                try {
+                    bills = billDAO.getWithCondition(bill);
+                    panel.getTblBill().removeAll();
+                    String[] cols = {"Id", "Trang thai", "Tong tien", "Ngay tao", "Ngay cap nhat"};
+                    DefaultTableModel dtm = new DefaultTableModel(cols, 0);
+                    if (!Common.isNullOrEmpty(bills)) {
+                        bills.forEach(obj -> {
+                            dtm.addRow(new Object[]{obj.getId(), obj.getStatus() ? "Da thanh toan" : "Chua thanh toan", Common.isNullOrEmpty(obj.getTotal()) ? 0 : obj.getTotal(), obj.getCreatedAt(),
+                                    obj.getUpdatedAt()});
+                        });
+
+                        panel.getTblBill().getSelectionModel().addListSelectionListener(ev -> {
+                            int position = panel.getTblBill().getSelectedRow();
+                            if (position >= 0) {
+                                this.bill = bills.get(position);
+                            }
+                        });
+
+                        panel.getTblBill().changeSelection(0, 0, false, false);
+                    }
+
+                    panel.getTblBill().setModel(dtm);
+                    jdSearch.dispose();
+                } catch (SQLException ex) {
+                    throw new RuntimeException(ex);
+                }
+            }
+        });
     }
 
     @Override
@@ -191,12 +243,34 @@ public class BillController implements ManagerController {
             }
         });
 
+        panel.getLblDetailBill().addMouseListener(new MouseAdapter() {
+            @Override
+            public void mouseClicked(MouseEvent e) {
+                try {
+                    ArrayList<BillDetail> list = billDetailDAO.getAll(bill.getId());
+                    jdDetail = new JDBill(view, false, bill, list);
+                    jdDetail.setVisible(true);
+                } catch (SQLException ex) {
+                    throw new RuntimeException(ex);
+                }
+            }
+        });
+
         panel.getLblDeleteBill().addMouseListener(new MouseAdapter() {
             @Override
             public void mouseClicked(MouseEvent e) {
                 jdDelete = new JDDeleteBill(view, false, bill.getId());
                 jdDelete.setVisible(true);
                 actionDelete();
+            }
+        });
+
+        panel.getLblSearchBill().addMouseListener(new MouseAdapter() {
+            @Override
+            public void mouseClicked(MouseEvent e) {
+                jdSearch = new JDSearchBill(view, false);
+                jdSearch.setVisible(true);
+                actionSearch();
             }
         });
 
@@ -258,6 +332,7 @@ public class BillController implements ManagerController {
             DefaultTableModel dtm = new DefaultTableModel(columns, 0);
             Float total_bill = 0f;
             if (!Common.isNullOrEmpty(billDetails)) {
+                jdAdd.getBtnCheckout().setVisible(true);
                 for (BillDetail obj : billDetails) {
                     Float total = obj.getPrice() * obj.getAmount();
                     total_bill += total;
@@ -274,6 +349,8 @@ public class BillController implements ManagerController {
                 });
 
                 tblBillDetail.changeSelection(0, 0, false, false);
+            } else {
+                jdAdd.getBtnCheckout().setVisible(false);
             }
 
             tblBillDetail.setModel(dtm);
@@ -334,7 +411,7 @@ public class BillController implements ManagerController {
                 if ((Boolean) result.get("status")) {
                     JOptionPane.showMessageDialog(jdDeleteBillDetail, result.get("message"));
                     System.out.println(result.get("message"));
-                    updateData();
+                    updateBillDetailTable(bill.getId());
                     jdDeleteBillDetail.dispose();
                 } else {
                     JOptionPane.showMessageDialog(jdDelete, result.get("message"));
@@ -371,7 +448,7 @@ public class BillController implements ManagerController {
                     Map<String, Object> result = billDetailDAO.update(billDetail);
                     if ((Boolean) result.get("status")) {
                         JOptionPane.showMessageDialog(jdEditBillDetail, result.get("message"));
-                        updateData();
+                        updateBillDetailTable(bill.getId());
                         jdEditBillDetail.dispose();
                     } else {
                         JOptionPane.showMessageDialog(jdEditBillDetail, result.get("message"));

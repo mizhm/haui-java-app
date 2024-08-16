@@ -1,6 +1,7 @@
 package nhom8.dao;
 
 import nhom8.model.Bill;
+import nhom8.utils.Common;
 
 import java.sql.CallableStatement;
 import java.sql.ResultSet;
@@ -97,5 +98,35 @@ public class BillDAO extends DAO<Bill> {
             bill.setUpdatedAt(rs.getString(4));
         }
         return bill;
+    }
+
+    public ArrayList<Bill> getWithCondition(Bill bill) throws SQLException {
+        ArrayList<Bill> list = new ArrayList<Bill>();
+        String sql = "{call usp_get_all_bill(?,?,?)}";
+        CallableStatement cs = conn.prepareCall(sql);
+        if (!Common.isNullOrEmpty(bill.getId())) {
+            cs.setInt(1, bill.getId());
+        } else {
+            cs.setNull(1, Types.INTEGER);
+        }
+        cs.setNull(2, Types.BOOLEAN);
+
+        if (!Common.isNullOrEmpty(bill.getSearchDate())) {
+            cs.setDate(3, bill.getSearchDate());
+        } else {
+            cs.setNull(3, Types.DATE);
+        }
+
+        ResultSet rs = cs.executeQuery();
+        while (rs.next()) {
+            Bill obj = new Bill();
+            obj.setId(rs.getInt(1));
+            obj.setStatus(rs.getBoolean(2));
+            obj.setCreatedAt(rs.getString(3));
+            obj.setUpdatedAt(rs.getString(4));
+            obj.setTotal(rs.getFloat(5));
+            list.add(obj);
+        }
+        return list;
     }
 }

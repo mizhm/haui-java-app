@@ -6,7 +6,9 @@ package nhom8.view.home;
 
 import java.awt.Color;
 import java.awt.Panel;
+import javax.swing.ImageIcon;
 import javax.swing.JButton;
+import javax.swing.JFrame;
 import javax.swing.JPanel;
 import nhom8.view.product.PnlProduct;
 
@@ -19,12 +21,10 @@ public class Dashboard extends javax.swing.JFrame {
      */
     public Dashboard() {
         initComponents();
-        PnlHome pnl = new PnlHome();
         setLocationRelativeTo(null);
-        
-        pnlBody.add(pnl);
-        pnlBody.repaint();
-        pnlBody.revalidate();
+        this.setIconImage(new ImageIcon(
+                getClass().getResource("/assets/icon_cafe.png")
+        ).getImage());
     }
 
     public void setPnlBody(JPanel panel){
@@ -96,6 +96,7 @@ public class Dashboard extends javax.swing.JFrame {
         pnlBody = new javax.swing.JPanel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setTitle("Coffee Shop Management");
         setPreferredSize(new java.awt.Dimension(1138, 800));
         setSize(new java.awt.Dimension(1138, 800));
         getContentPane().setLayout(new java.awt.CardLayout());
@@ -313,13 +314,6 @@ public class Dashboard extends javax.swing.JFrame {
         pnlBorderCategory.setBackground(new Color(255,255, 255));
         pnlBorderProduct.setBackground(new Color(255,255, 255));
         pnlBorderBill.setBackground(new Color(255,255, 255));
-        
-        pnlBody.removeAll();
-        PnlHome pnl = new PnlHome();
-        
-        pnlBody.add(pnl);
-        pnlBody.repaint();
-        pnlBody.revalidate();
     }//GEN-LAST:event_btnDashboardActionPerformed
 
     private void btnCategoryActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCategoryActionPerformed

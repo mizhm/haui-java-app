@@ -18,9 +18,8 @@ public final class JDSearchBill extends javax.swing.JDialog {
      *
      * @param parent
      * @param modal
-     * @param dbUtil
-     * @param callback
      */
+    
     public JDSearchBill(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
@@ -30,18 +29,45 @@ public final class JDSearchBill extends javax.swing.JDialog {
         txtBillId.setBorder(BorderFactory.createCompoundBorder(
                 txtBillId.getBorder(),
                 BorderFactory.createEmptyBorder(5, 8, 5, 8)));
-        loadStatus();
+        lblCreatedDateError.setVisible(false);
     }
 
-    public void loadStatus() {
-        cboStatus.removeAllItems();
-        DefaultComboBoxModel<String> dcbm = new DefaultComboBoxModel<>();
-        dcbm.addElement("Không chọn");
-        dcbm.addElement("Đã thanh toán");
-        dcbm.addElement("Chưa thanh toán");
-        cboStatus.setModel(dcbm);
+    public JButton getBtnSearch() {
+        return btnSearch;
     }
 
+    public void setBtnSearch(JButton btnSearch) {
+        this.btnSearch = btnSearch;
+    }
+
+    public JTextField getTxtBillId() {
+        return txtBillId;
+    }
+
+    public void setTxtBillId(JTextField txtBillId) {
+        this.txtBillId = txtBillId;
+    }
+
+    public JTextField getTxtCreatedDate() {
+        return txtCreatedDate;
+    }
+
+    public void setTxtCreatedDate(JTextField txtCreatedDate) {
+        this.txtCreatedDate = txtCreatedDate;
+    }
+
+    public JLabel getLblCreatedDateError() {
+        return lblCreatedDateError;
+    }
+
+    public void setLblCreatedDateError(JLabel lblCreatedDateError) {
+        this.lblCreatedDateError = lblCreatedDateError;
+    }
+    
+    
+
+    
+        
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -55,9 +81,10 @@ public final class JDSearchBill extends javax.swing.JDialog {
         jLabel1 = new javax.swing.JLabel();
         lblBillId = new javax.swing.JLabel();
         txtBillId = new javax.swing.JTextField();
-        jLabel3 = new javax.swing.JLabel();
+        lblCreatedDate = new javax.swing.JLabel();
+        txtCreatedDate = new javax.swing.JTextField();
         btnSearch = new javax.swing.JButton();
-        cboStatus = new javax.swing.JComboBox<>();
+        lblCreatedDateError = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("TÌM KIẾM HOÁ ĐƠN");
@@ -65,14 +92,14 @@ public final class JDSearchBill extends javax.swing.JDialog {
         jPanel1.setBackground(new java.awt.Color(255, 255, 255));
 
         jLabel1.setFont(new java.awt.Font("Segoe UI Semibold", 0, 36)); // NOI18N
-        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/assets/img/icons8_google_web_search_50px.png"))); // NOI18N
+        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/assets/img/loupe.png"))); // NOI18N
         jLabel1.setText("TÌM KIẾM HOÁ ĐƠN");
 
         lblBillId.setFont(new java.awt.Font("Segoe UI Semibold", 0, 12)); // NOI18N
         lblBillId.setText("Mã hoá đơn");
 
-        jLabel3.setFont(new java.awt.Font("Segoe UI Semibold", 0, 12)); // NOI18N
-        jLabel3.setText("Trạng thái");
+        lblCreatedDate.setFont(new java.awt.Font("Segoe UI Semibold", 0, 12)); // NOI18N
+        lblCreatedDate.setText("Ngay tao (dd-MM-yyyy)");
 
         btnSearch.setBackground(new java.awt.Color(0, 204, 106));
         btnSearch.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
@@ -86,6 +113,9 @@ public final class JDSearchBill extends javax.swing.JDialog {
             }
         });
 
+        lblCreatedDateError.setForeground(new java.awt.Color(255, 0, 51));
+        lblCreatedDateError.setText("Vui long nhap dinh dang dd-MM-yyyy");
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -93,14 +123,17 @@ public final class JDSearchBill extends javax.swing.JDialog {
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, 547, Short.MAX_VALUE)
                     .addComponent(lblBillId, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(txtBillId)
-                    .addComponent(jLabel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(lblCreatedDate, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(txtCreatedDate)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                        .addGap(0, 427, Short.MAX_VALUE)
+                        .addGap(0, 0, Short.MAX_VALUE)
                         .addComponent(btnSearch, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(cboStatus, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addComponent(lblCreatedDateError, javax.swing.GroupLayout.PREFERRED_SIZE, 369, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(0, 0, Short.MAX_VALUE)))
                 .addContainerGap())
         );
         jPanel1Layout.setVerticalGroup(
@@ -112,11 +145,13 @@ public final class JDSearchBill extends javax.swing.JDialog {
                 .addComponent(lblBillId, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(txtBillId, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(lblCreatedDate, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(cboStatus, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(53, 53, 53)
+                .addComponent(txtCreatedDate, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(lblCreatedDateError)
+                .addGap(18, 18, 18)
                 .addComponent(btnSearch, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
@@ -141,11 +176,12 @@ public final class JDSearchBill extends javax.swing.JDialog {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnSearch;
-    private javax.swing.JComboBox<String> cboStatus;
     private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel3;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JLabel lblBillId;
+    private javax.swing.JLabel lblCreatedDate;
+    private javax.swing.JLabel lblCreatedDateError;
     private javax.swing.JTextField txtBillId;
+    private javax.swing.JTextField txtCreatedDate;
     // End of variables declaration//GEN-END:variables
 }
