@@ -836,6 +836,3 @@ from bill_detail bd
 where bill_id = @_bill_id
 go
 
-exec usp_get_bill_detail_by_bill 1
-go
-

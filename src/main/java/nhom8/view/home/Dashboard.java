@@ -21,15 +21,10 @@ public class Dashboard extends javax.swing.JFrame {
      */
     public Dashboard() {
         initComponents();
-        PnlHome pnl = new PnlHome();
         setLocationRelativeTo(null);
         this.setIconImage(new ImageIcon(
                 getClass().getResource("/assets/icon_cafe.png")
         ).getImage());
-        
-        pnlBody.add(pnl);
-        pnlBody.repaint();
-        pnlBody.revalidate();
     }
 
     public void setPnlBody(JPanel panel){
@@ -319,13 +314,6 @@ public class Dashboard extends javax.swing.JFrame {
         pnlBorderCategory.setBackground(new Color(255,255, 255));
         pnlBorderProduct.setBackground(new Color(255,255, 255));
         pnlBorderBill.setBackground(new Color(255,255, 255));
-        
-        pnlBody.removeAll();
-        PnlHome pnl = new PnlHome();
-        
-        pnlBody.add(pnl);
-        pnlBody.repaint();
-        pnlBody.revalidate();
     }//GEN-LAST:event_btnDashboardActionPerformed
 
     private void btnCategoryActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCategoryActionPerformed
