@@ -13,8 +13,8 @@ public class BillDetail implements Serializable {
     private Integer billId;
     private Integer productId;
     private Integer amount;
+    private Float price;
 
     //related to Product model
     private String productName;
-    private String productPrice;
 }

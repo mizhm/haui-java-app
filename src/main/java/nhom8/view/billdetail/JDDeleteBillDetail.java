@@ -18,13 +18,23 @@ public class JDDeleteBillDetail extends javax.swing.JDialog {
      * @param parent
      * @param modal
      */
-    public JDDeleteBillDetail(JDialog parent, boolean modal) {
+    public JDDeleteBillDetail(JDialog parent, boolean modal, String productName) {
         super(parent, modal);
         initComponents();
         setLocationRelativeTo(null);
 //        this.parent = parent;
-
+        lblConfirm.setText("Bạn có chắc chắn muốn xoá san pham " + productName + " khoi hoa don?");
     }
+
+    public JButton getBtnCancel() {
+        return btnCancel;
+    }
+
+    public JButton getBtnDelete() {
+        return btnDelete;
+    }
+    
+    
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -47,7 +57,7 @@ public class JDDeleteBillDetail extends javax.swing.JDialog {
         jPanel1.setBackground(new java.awt.Color(255, 255, 255));
 
         jLabel1.setFont(new java.awt.Font("Segoe UI Semibold", 0, 24)); // NOI18N
-        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/assets/img/icons8_trash_can_50px_1.png"))); // NOI18N
+        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/assets/img/delete.png"))); // NOI18N
         jLabel1.setText("XOÁ THÔNG TIN HOÁ ĐƠN");
 
         btnCancel.setBackground(new java.awt.Color(0, 204, 51));

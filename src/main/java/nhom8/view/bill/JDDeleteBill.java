@@ -6,32 +6,33 @@
 package nhom8.view.bill;
 
 
-
 import java.awt.*;
+import javax.swing.JButton;
 
 /**
- *
  * @author Minh
  */
 public class JDDeleteBill extends javax.swing.JDialog {
-
-    public interface CallbackBillDelete {
-
-        public void actionBillDelete();
-    }
-
     /**
      * Creates new form JDCategoryCreate
      *
      * @param parent
      * @param modal
      */
-    public JDDeleteBill(Frame parent, boolean modal) {
+    public JDDeleteBill(Frame parent, boolean modal, int billId) {
         super(parent, modal);
         initComponents();
         setLocationRelativeTo(null);
 //        this.parent = parent;
+        lblConfirm.setText("Bạn có chắc chắn muốn xoá hoá đơn: " + billId);
+    }
 
+    public JButton getBtnDelete() {
+        return btnDelete;
+    }
+
+    public void setBtnDelete(JButton btnDelete) {
+        this.btnDelete = btnDelete;
     }
 
     /**
@@ -55,7 +56,7 @@ public class JDDeleteBill extends javax.swing.JDialog {
         jPanel1.setBackground(new java.awt.Color(255, 255, 255));
 
         jLabel1.setFont(new java.awt.Font("Segoe UI Semibold", 0, 24)); // NOI18N
-        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/assets/img/icons8_trash_can_50px_1.png"))); // NOI18N
+        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/assets/img/delete.png"))); // NOI18N
         jLabel1.setText("XOÁ HOÁ ĐƠN");
 
         btnCancel.setBackground(new java.awt.Color(0, 204, 51));
@@ -131,7 +132,7 @@ public class JDDeleteBill extends javax.swing.JDialog {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnDeleteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDeleteActionPerformed
-        
+
     }//GEN-LAST:event_btnDeleteActionPerformed
 
     private void btnCancelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelActionPerformed

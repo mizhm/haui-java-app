@@ -213,18 +213,16 @@ public class CategoryController implements ManagerController {
         panel.getLblAddCategory().addMouseListener(new MouseAdapter() {
             @Override
             public void mouseClicked(MouseEvent e) {
-                JDAddCategory dialog = new JDAddCategory(view, false, null);
-                dialog.setVisible(true);
-                jdAdd = dialog;
+                jdAdd = new JDAddCategory(view, false, null);
+                jdAdd.setVisible(true);
                 actionAdd();
             }
         });
         panel.getLblUpdateCategory().addMouseListener(new MouseAdapter() {
             @Override
             public void mouseClicked(MouseEvent e) {
-                JDAddCategory dialog = new JDAddCategory(view, false, category);
-                dialog.setVisible(true);
-                jdUpdate = dialog;
+                jdUpdate = new JDAddCategory(view, false, category);
+                jdUpdate.setVisible(true);
                 actionEdit();
             }
         });
@@ -232,9 +230,8 @@ public class CategoryController implements ManagerController {
         panel.getLblDeleteCategory().addMouseListener(new MouseAdapter() {
             @Override
             public void mouseClicked(MouseEvent e) {
-                JDDeleteCategory dialog = new JDDeleteCategory(view, false, category.getName());
-                dialog.setVisible(true);
-                jdDelete = dialog;
+                jdDelete = new JDDeleteCategory(view, false, category.getName());
+                jdDelete.setVisible(true);
                 actionDelete();
             }
         });
@@ -242,9 +239,8 @@ public class CategoryController implements ManagerController {
         panel.getLblSearchCategory().addMouseListener(new MouseAdapter() {
             @Override
             public void mouseClicked(MouseEvent e) {
-                JDSearchCategory dialog = new JDSearchCategory(view, false);
-                dialog.setVisible(true);
-                jdSearch = dialog;
+                jdSearch = new JDSearchCategory(view, false);
+                jdSearch.setVisible(true);
                 actionSearch();
             }
         });
