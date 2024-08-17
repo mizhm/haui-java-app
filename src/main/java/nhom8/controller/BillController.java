@@ -8,6 +8,7 @@ import nhom8.model.Bill;
 import nhom8.model.BillDetail;
 import nhom8.model.Product;
 import nhom8.utils.Common;
+import nhom8.utils.Excel;
 import nhom8.view.bill.*;
 import nhom8.view.billdetail.JDDeleteBillDetail;
 import nhom8.view.billdetail.JDEditBillDetail;
@@ -15,12 +16,14 @@ import nhom8.view.home.Dashboard;
 
 import javax.swing.*;
 import javax.swing.event.ListSelectionEvent;
+import javax.swing.filechooser.FileNameExtensionFilter;
 import javax.swing.table.DefaultTableModel;
 import java.awt.*;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
+import java.io.File;
 import java.sql.Date;
 import java.sql.SQLException;
 import java.text.ParseException;
@@ -207,6 +210,35 @@ public class BillController implements ManagerController {
         });
     }
 
+    public void actionExport() {
+        if (!Common.isNullOrEmpty(bills)) {
+            try {
+                Excel excel = new Excel();
+                String table = "bill";
+                String excelFilePath = excel.getFileName(table.concat("_Export"));
+
+                JFileChooser excelFileChooser = new JFileChooser(".");
+                excelFileChooser.setDialogTitle("Lưu file ...");
+                excelFileChooser.setSelectedFile(new File(excelFilePath));
+                Action details = excelFileChooser.getActionMap().get("viewTypeDetails");
+                details.actionPerformed(null);
+                // Kiểu định dạng file xuất
+                FileNameExtensionFilter fnef = new FileNameExtensionFilter("Files", "xls", "xlsx", "xlsm");
+                //Setting extension for selected file names
+                excelFileChooser.setFileFilter(fnef);
+
+                int chooser = excelFileChooser.showSaveDialog(null);
+
+                if (chooser == JFileChooser.APPROVE_OPTION) {
+                    excel.export(table, excelFileChooser.getSelectedFile().getPath());
+                    JOptionPane.showMessageDialog(view, "Xuất hoá đơn thành công");
+                }
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        }
+    }
+
     @Override
     public void updateData() {
         try {
@@ -283,6 +315,13 @@ public class BillController implements ManagerController {
             @Override
             public void mouseClicked(MouseEvent e) {
                 updateData();
+            }
+        });
+
+        panel.getLblExport().addMouseListener(new MouseAdapter() {
+            @Override
+            public void mouseClicked(MouseEvent e) {
+                actionExport();
             }
         });
     }

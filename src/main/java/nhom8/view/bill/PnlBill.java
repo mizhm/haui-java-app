@@ -18,6 +18,10 @@ public class PnlBill extends javax.swing.JPanel {
         initComponents();
     }
 
+    public JLabel getLblExport() {
+        return lblExport;
+    }
+
     public JLabel getLblAddBill() {
         return lblAddBill;
     }
@@ -84,6 +88,7 @@ public class PnlBill extends javax.swing.JPanel {
         lblDeleteBill = new javax.swing.JLabel();
         lblSearchBill = new javax.swing.JLabel();
         lblRefreshBill = new javax.swing.JLabel();
+        lblExport = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
         tblBill = new javax.swing.JTable();
 
@@ -144,6 +149,13 @@ public class PnlBill extends javax.swing.JPanel {
         lblRefreshBill.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
         jPanel2.add(lblRefreshBill);
 
+        lblExport.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        lblExport.setIcon(new javax.swing.ImageIcon(getClass().getResource("/assets/img/excel.png"))); // NOI18N
+        lblExport.setText("Xuat Excel");
+        lblExport.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        lblExport.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        jPanel2.add(lblExport);
+
         jPanel1.add(jPanel2, "card2");
 
         add(jPanel1, java.awt.BorderLayout.NORTH);
@@ -172,6 +184,7 @@ public class PnlBill extends javax.swing.JPanel {
     private javax.swing.JLabel lblAddBill;
     private javax.swing.JLabel lblDeleteBill;
     private javax.swing.JLabel lblDetailBill;
+    private javax.swing.JLabel lblExport;
     private javax.swing.JLabel lblRefreshBill;
     private javax.swing.JLabel lblSearchBill;
     private javax.swing.JTable tblBill;
