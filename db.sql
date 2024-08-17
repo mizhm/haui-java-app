@@ -833,7 +833,7 @@ declare
                          N' left join bill_detail bd on b.id = bd.bill_id' +
                          N' where 1 = 1';
     if (@_id is not null)
-        set @sql = concat(@sql, N' and id = ', @_id);
+        set @sql = concat(@sql, N' and b.id = ', @_id);
     if (@_status is not null)
         set @sql = concat(@sql, N' and status = ', @_status);
     if (@_date is not null)
