@@ -24,6 +24,10 @@ dependencies {
 
     // https://mvnrepository.com/artifact/org.netbeans.external/AbsoluteLayout
     implementation group: 'org.netbeans.external', name: 'AbsoluteLayout', version: 'RELEASE220'
+
+    // https://mvnrepository.com/artifact/org.apache.poi/poi-ooxml
+    implementation group: 'org.apache.poi', name: 'poi-ooxml', version: '4.1.2'
+
 }
 
 test {
