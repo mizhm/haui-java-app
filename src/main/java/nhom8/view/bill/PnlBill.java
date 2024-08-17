@@ -88,6 +88,8 @@ public class PnlBill extends javax.swing.JPanel {
         tblBill = new javax.swing.JTable();
 
         setBackground(new java.awt.Color(255, 255, 255));
+        setMinimumSize(new java.awt.Dimension(900, 600));
+        setPreferredSize(new java.awt.Dimension(900, 600));
         setLayout(new java.awt.BorderLayout());
 
         jPanel1.setLayout(new java.awt.CardLayout());
@@ -147,15 +149,15 @@ public class PnlBill extends javax.swing.JPanel {
         add(jPanel1, java.awt.BorderLayout.NORTH);
 
         tblBill.setModel(new javax.swing.table.DefaultTableModel(
-                new Object[][]{
-                        {null, null, null, null},
-                        {null, null, null, null},
-                        {null, null, null, null},
-                        {null, null, null, null}
-                },
-                new String[]{
-                        "Title 1", "Title 2", "Title 3", "Title 4"
-                }
+            new Object [][] {
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null}
+            },
+            new String [] {
+                "Title 1", "Title 2", "Title 3", "Title 4"
+            }
         ));
         jScrollPane1.setViewportView(tblBill);
 

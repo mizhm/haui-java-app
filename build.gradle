@@ -21,6 +21,9 @@ dependencies {
 
     //flatlaf
     implementation 'com.formdev:flatlaf:3.5.1'
+
+    // https://mvnrepository.com/artifact/org.netbeans.external/AbsoluteLayout
+    implementation group: 'org.netbeans.external', name: 'AbsoluteLayout', version: 'RELEASE220'
 }
 
 test {

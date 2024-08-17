@@ -7,6 +7,215 @@ go
 use coffee_shop
 go
 
+--user section
+create table [user]
+(
+    id         int identity,
+    [name]     nvarchar(100)       not null,
+    email      varchar(100) unique not null,
+    [password] varchar(100)        not null,
+    [role]     tinyint default (0),
+    primary key (id)
+)
+go
+
+create proc usp_insert_user(
+    @_name nvarchar(100),
+    @_email varchar(100),
+    @_password varchar(100),
+    @_role tinyint = 0,
+    @_out_stt bit = 1 output,
+    @_out_msg nvarchar(200) = '' output
+)
+as
+begin try
+    if exists (select email from [user] where email = @_email)
+        begin
+            set @_out_stt = 0;
+            set @_out_msg = N'Email đã tồn tại, vui lòng nhập lại';
+        end;
+    else
+        begin
+            begin tran;
+            insert into [user]
+            ([name],
+             email,
+             [password],
+             [role])
+            values (@_name, @_email, @_password, @_role);
+
+            set @_out_stt = 1;
+            set @_out_msg = N'Thêm người dùng thành công';
+
+            If @@trancount > 0
+                commit tran;
+        end;
+end try
+begin catch
+    set @_out_stt = 0;
+    set @_out_msg = N'Thêm không thành công: ' + ERROR_MESSAGE();
+
+    if @@trancount > 0
+        rollback tran;
+end catch;
+
+go
+
+-- Them user admin
+exec usp_insert_user @_name = N'Quản trị viên',
+     @_email = 'admin@gmail.com',
+     @_password = '123456',
+     @_role = 1;
+
+go
+
+exec usp_insert_user @_name = N'Nhân viên',
+     @_email = 'user@gmail.com',
+     @_password = '123456';
+
+go
+
+create proc usp_update_user(
+    @_id int,
+    @_name nvarchar(100),
+    @_email varchar(100),
+    @_password varchar(100),
+    @_role tinyint = 0,
+    @_out_stt bit = 1 output,
+    @_out_msg nvarchar(200) = '' output
+)
+as
+begin try
+    if not exists (select id from [user] where id = @_id)
+        begin
+            set @_out_stt = 0;
+            set @_out_msg = N'Người dùng không tồn tại, vui lòng nhập lại';
+        end;
+    else
+        if exists (select email from [user] where email = @_email and id != @_id)
+            begin
+                set @_out_stt = 0;
+                set @_out_msg = N'Email đã tồn tại, vui lòng nhập lại';
+            end;
+        else
+            begin
+                begin tran;
+                update [user]
+                set [name]     = @_name,
+                    email      = @_email,
+                    [password] = @_password,
+                    [role]     = @_role
+                where id = @_id;
+
+                set @_out_stt = 1;
+                set @_out_msg = N'Cập nhật người dùng thành công';
+
+                if @@trancount > 0
+                    commit tran;
+            end;
+end try
+begin catch
+    set @_out_stt = 0;
+    set @_out_msg = N'Cập nhật không thành công: ' + ERROR_MESSAGE();
+
+    if @@trancount > 0
+        rollback tran;
+end catch;
+
+go
+
+create proc usp_check_user(
+    @_email varchar(100),
+    @_password varchar(100)
+)
+as
+begin
+    select top 1 *
+    from [user]
+    where email = @_email
+      and [password] = @_password;
+end;
+
+go
+
+exec usp_check_user 'admin@gmail.com', '123456';
+
+go
+
+create proc usp_get_all_user(
+    @_name nvarchar(100) = NULL,
+    @_email varchar(100) = NULL,
+    @_role tinyint = NULL
+)
+as
+declare @sql nvarchar(max) = N'select * from [user] where 1=1';
+
+    if (@_name is not null)
+        set @sql = concat(@sql, N' and name like ''%', @_name, N'%''');
+
+    if (@_email is not null)
+        set @sql = concat(@sql, ' and [email]=''', @_email, '''');
+
+    if (@_role is not null)
+        set @sql = concat(@sql, N' and role=', @_role);
+
+    exec (@sql);
+
+go
+
+exec usp_get_all_user @_email = N'admin@gmail.com'
+go
+
+create proc usp_get_user_by_id(@_id int)
+as
+select *
+from [user]
+where id = @_id;
+
+go
+
+--exec sp_getuserbyid 1;
+
+go
+
+create proc usp_delete_user(
+    @_id int,
+    @_out_stt bit = 1 output,
+    @_out_msg nvarchar(200) = '' output
+)
+as
+begin try
+    if exists
+        (select u.id
+         from [user] u
+                  join bill b
+                       on b.[user_id] = u.id
+         where u.id = @_id)
+        begin
+            set @_out_stt = 0;
+            set @_out_msg = N'người dùng đang có liên kết hoá đơn, không thể xoá';
+        end;
+    else
+        begin
+            begin tran;
+            delete [user]
+            where id = @_id;
+
+            set @_out_stt = 1;
+            set @_out_msg = N'xoá thành công';
+            if @@trancount > 0
+                commit tran;
+        end;
+end try
+begin catch
+    set @_out_stt = 0;
+    set @_out_msg = N'xoá không thành công: ' + error_message();
+    if @@trancount > 0
+        rollback tran;
+end catch;
+
+go
+
 -- category section
 create table category
 (
@@ -495,7 +704,9 @@ create table bill
     status     bit default (1),
     created_at datetime not null,
     updated_at datetime,
-    primary key (id)
+    user_id    int,
+    primary key (id),
+    foreign key (user_id) references [user] (id)
 )
 go
 
@@ -513,14 +724,15 @@ go
 
 create proc usp_insert_bill(
     @_status bit,
+    @_user_id int,
     @_out_stt bit = 1 output,
     @_out_msg nvarchar = '' output
 )
 as
 begin try
     begin tran;
-    insert into bill(status, created_at, updated_at)
-    values (@_status, getdate(), getdate());
+    insert into bill(status, user_id, created_at, updated_at)
+    values (@_status, @_user_id, getdate(), getdate());
     set @_out_stt = 1;
     set @_out_msg = N'Create Bill successfully';
     if @@trancount > 0
@@ -615,9 +827,10 @@ create proc usp_get_all_bill(
 )
 as
 declare
-    @sql nvarchar(max) = N'select b.*, sum(bd.price * bd.amount) [total]' +
+    @sql nvarchar(max) = N'select b.*, sum(bd.price * bd.amount) [total], u.name' +
                          N' from bill b' +
-                         N' left join  bill_detail bd on b.id = bd.bill_id' +
+                         N' join [user] u on b.user_id = u.id' +
+                         N' left join bill_detail bd on b.id = bd.bill_id' +
                          N' where 1 = 1';
     if (@_id is not null)
         set @sql = concat(@sql, N' and id = ', @_id);
@@ -627,12 +840,12 @@ declare
         set @sql = concat(@sql, N' and created_at >= ''', @_date, N''' and created_at < dateadd(day, 1, ''', @_date,
                           ''')');
     set @sql = concat(@sql,
-                      N' group by b.id, b.status, b.created_at, b.updated_at')
+                      N' group by b.id, b.status, b.created_at, b.updated_at, b.user_id, u.name')
     exec (@sql);
 go
 
--- exec usp_get_all_bill
--- go
+exec usp_get_all_bill
+go
 
 create proc usp_get_new_bill
 as

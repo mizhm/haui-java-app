@@ -15,9 +15,13 @@ public class Bill implements Serializable {
     private Boolean status;
     private String createdAt;
     private String updatedAt;
+    private Integer userId;
 
     //related to bill detail
     private Float total;
+
+    //related to user
+    private String userName;
 
     //search field
     private Date searchDate;
