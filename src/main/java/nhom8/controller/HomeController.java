@@ -25,8 +25,11 @@ public class HomeController {
     private Dashboard view;
 
     private final PnlHome pnlHome = new PnlHome(new HomeDAO().getStatistic());
+    @Getter
     private final PnlCategory pnlCategory = new PnlCategory();
+    @Getter
     private final PnlProduct pnlProduct = new PnlProduct();
+    @Getter
     private final PnlBill pnlBill = new PnlBill();
     private final PnlUser pnlUser = new PnlUser();
 
@@ -45,12 +48,13 @@ public class HomeController {
         this.view = view;
         view.setPnlBody(pnlHome);
         this.jdLogin = new JDLogin(view, true);
-        this.loginController = new LoginController(view, jdLogin);
+        this.loginController = new LoginController(view, jdLogin, this);
+        jdLogin.setVisible(true);
+
         this.categoryController = new CategoryController(view, pnlCategory);
         this.productController = new ProductController(view, pnlProduct);
         this.billController = new BillController(view, pnlBill);
         this.userController = new UserController(view, pnlUser);
-        jdLogin.setVisible(true);
         addEvent();
     }
 

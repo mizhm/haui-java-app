@@ -19,10 +19,12 @@ public class LoginController {
     private final JDLogin jdLogin;
     private final Dashboard view;
 
+    private final HomeController homeController;
 
-    public LoginController(Dashboard view, JDLogin jdLogin) {
+    public LoginController(Dashboard view, JDLogin jdLogin, HomeController homeController) {
         this.jdLogin = jdLogin;
         this.view = view;
+        this.homeController = homeController;
         addEvent();
     }
 
@@ -101,11 +103,7 @@ public class LoginController {
                     view.setVisible(true);
                     view.getLblEmail().setText(obj.getEmail());
                     view.getLblName().setText(obj.getName());
-                    if (obj.getRole() != 1) {
-                        view.getPnlUserMenu().setVisible(false);
-                    } else {
-                        view.getPnlUserMenu().setVisible(true);
-                    }
+                    authorization(obj);
                     view.getBtnDashboard().doClick();
                     txtPassword.setText("");
                     txtEmail.setText("");
@@ -120,5 +118,19 @@ public class LoginController {
                 }
             }
         });
+    }
+
+    private void authorization(User user) {
+        boolean isAdmin = user.getRole() == 1;
+        homeController.getPnlCategory().getLblAddCategory().setVisible(isAdmin);
+        homeController.getPnlProduct().getLblAddProduct().setVisible(isAdmin);
+
+        homeController.getPnlCategory().getLblUpdateCategory().setVisible(isAdmin);
+        homeController.getPnlProduct().getLblUpdateProduct().setVisible(isAdmin);
+
+        homeController.getPnlCategory().getLblDeleteCategory().setVisible(isAdmin);
+        homeController.getPnlProduct().getLblDeleteProduct().setVisible(isAdmin);
+
+        view.getPnlUserMenu().setVisible(isAdmin);
     }
 }

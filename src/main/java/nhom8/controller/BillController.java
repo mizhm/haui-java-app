@@ -134,19 +134,23 @@ public class BillController implements ManagerController {
     @Override
     public void actionDelete() {
         jdDelete.getBtnDelete().addActionListener(e -> {
-            try {
-                Map<String, Object> result = billDAO.delete(bill.getId());
-                if ((Boolean) result.get("status")) {
-                    JOptionPane.showMessageDialog(jdDelete, result.get("message"));
-                    System.out.println(result.get("message"));
-                    updateData();
-                    jdDelete.dispose();
-                } else {
-                    JOptionPane.showMessageDialog(jdDelete, result.get("message"));
+            if (bill.getUserId().equals(view.getUser().getId()) || view.getUser().getRole() == 1) {
+                try {
+                    Map<String, Object> result = billDAO.delete(bill.getId());
+                    if ((Boolean) result.get("status")) {
+                        JOptionPane.showMessageDialog(jdDelete, result.get("message"));
+                        System.out.println(result.get("message"));
+                        updateData();
+                    } else {
+                        JOptionPane.showMessageDialog(jdDelete, result.get("message"));
+                    }
+                } catch (SQLException ex) {
+                    throw new RuntimeException(ex);
                 }
-            } catch (SQLException ex) {
-                throw new RuntimeException(ex);
+            } else {
+                JOptionPane.showMessageDialog(jdDelete, "Ban chi duoc phep xoa don ban tao");
             }
+            jdDelete.dispose();
         });
     }
 
