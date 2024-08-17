@@ -127,7 +127,9 @@ public class BillDAO extends DAO<Bill> {
             obj.setStatus(rs.getBoolean(2));
             obj.setCreatedAt(rs.getString(3));
             obj.setUpdatedAt(rs.getString(4));
-            obj.setTotal(rs.getFloat(5));
+            obj.setUserId(rs.getInt(5));
+            obj.setTotal(rs.getFloat(6));
+            obj.setUserName(rs.getNString(7));
             list.add(obj);
         }
         return list;

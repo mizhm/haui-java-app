@@ -183,11 +183,11 @@ public class BillController implements ManagerController {
                 try {
                     bills = billDAO.getWithCondition(bill);
                     panel.getTblBill().removeAll();
-                    String[] cols = {"Id", "Trang thai", "Tong tien", "Ngay tao", "Ngay cap nhat"};
+                    String[] cols = {"Id", "Nguoi tao", "Trang thai", "Tong tien", "Ngay tao", "Ngay cap nhat"};
                     DefaultTableModel dtm = new DefaultTableModel(cols, 0);
                     if (!Common.isNullOrEmpty(bills)) {
                         bills.forEach(obj -> {
-                            dtm.addRow(new Object[]{obj.getId(), obj.getStatus() ? "Da thanh toan" : "Chua thanh toan", Common.isNullOrEmpty(obj.getTotal()) ? 0 : obj.getTotal(), obj.getCreatedAt(),
+                            dtm.addRow(new Object[]{obj.getId(), obj.getUserName(), obj.getStatus() ? "Da thanh toan" : "Chua thanh toan", Common.isNullOrEmpty(obj.getTotal()) ? 0 : obj.getTotal(), obj.getCreatedAt(),
                                     obj.getUpdatedAt()});
                         });
 
