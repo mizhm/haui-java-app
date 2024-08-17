@@ -62,6 +62,7 @@ public class HomeController {
     private void addEvent() {
         view.getBtnDashboard().addActionListener(e -> {
             view.setPnlBody(pnlHome);
+            pnlHome.loadStatistic(new HomeDAO().getStatistic());
         });
 
         view.getBtnCategory().addActionListener(e -> {
