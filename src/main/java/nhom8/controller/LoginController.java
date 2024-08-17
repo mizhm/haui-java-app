@@ -101,6 +101,12 @@ public class LoginController {
                     view.setVisible(true);
                     view.getLblEmail().setText(obj.getEmail());
                     view.getLblName().setText(obj.getName());
+                    if (obj.getRole() != 1) {
+                        view.getPnlUserMenu().setVisible(false);
+                    } else {
+                        view.getPnlUserMenu().setVisible(true);
+                    }
+                    view.getBtnDashboard().doClick();
                     txtPassword.setText("");
                     txtEmail.setText("");
                 } else {

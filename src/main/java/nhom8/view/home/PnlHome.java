@@ -52,6 +52,8 @@ public class PnlHome extends javax.swing.JPanel {
         lblBill = new javax.swing.JLabel();
 
         setBackground(new java.awt.Color(255, 255, 255));
+        setMinimumSize(new java.awt.Dimension(900, 600));
+        setPreferredSize(new java.awt.Dimension(900, 600));
         setLayout(new java.awt.BorderLayout());
 
         jPanel6.setBackground(new java.awt.Color(255, 255, 255));

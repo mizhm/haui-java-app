@@ -148,19 +148,22 @@ create proc usp_get_all_user(
     @_role tinyint = NULL
 )
 as
-declare @sql nvarchar(max) = N'select * from user where 1=1';
+declare @sql nvarchar(max) = N'select * from [user] where 1=1';
 
     if (@_name is not null)
         set @sql = concat(@sql, N' and name like ''%', @_name, N'%''');
 
     if (@_email is not null)
-        set @sql = concat(@sql, N' and email=', @_email);
+        set @sql = concat(@sql, ' and [email]=''', @_email, '''');
 
     if (@_role is not null)
         set @sql = concat(@sql, N' and role=', @_role);
 
     exec (@sql);
 
+go
+
+exec usp_get_all_user @_email = N'admin@gmail.com'
 go
 
 create proc usp_get_user_by_id(@_id int)
@@ -824,9 +827,10 @@ create proc usp_get_all_bill(
 )
 as
 declare
-    @sql nvarchar(max) = N'select b.*, sum(bd.price * bd.amount) [total]' +
+    @sql nvarchar(max) = N'select b.*, sum(bd.price * bd.amount) [total], u.name' +
                          N' from bill b' +
-                         N' left join  bill_detail bd on b.id = bd.bill_id' +
+                         N' join [user] u on b.user_id = u.id' +
+                         N' left join bill_detail bd on b.id = bd.bill_id' +
                          N' where 1 = 1';
     if (@_id is not null)
         set @sql = concat(@sql, N' and id = ', @_id);
@@ -836,12 +840,12 @@ declare
         set @sql = concat(@sql, N' and created_at >= ''', @_date, N''' and created_at < dateadd(day, 1, ''', @_date,
                           ''')');
     set @sql = concat(@sql,
-                      N' group by b.id, b.status, b.created_at, b.updated_at, b.user_id')
+                      N' group by b.id, b.status, b.created_at, b.updated_at, b.user_id, u.name')
     exec (@sql);
 go
 
--- exec usp_get_all_bill
--- go
+exec usp_get_all_bill
+go
 
 create proc usp_get_new_bill
 as

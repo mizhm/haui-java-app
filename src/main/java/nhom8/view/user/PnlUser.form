@@ -22,7 +22,7 @@
     <AuxValue name="FormSettings_listenerGenerationStyle" type="java.lang.Integer" value="0"/>
     <AuxValue name="FormSettings_variablesLocal" type="java.lang.Boolean" value="false"/>
     <AuxValue name="FormSettings_variablesModifier" type="java.lang.Integer" value="2"/>
-    <AuxValue name="designerSize" type="java.awt.Dimension" value="-84,-19,0,5,115,114,0,18,106,97,118,97,46,97,119,116,46,68,105,109,101,110,115,105,111,110,65,-114,-39,-41,-84,95,68,20,2,0,2,73,0,6,104,101,105,103,104,116,73,0,5,119,105,100,116,104,120,112,0,0,2,-92,0,0,3,111"/>
+    <AuxValue name="designerSize" type="java.awt.Dimension" value="-84,-19,0,5,115,114,0,18,106,97,118,97,46,97,119,116,46,68,105,109,101,110,115,105,111,110,65,-114,-39,-41,-84,95,68,20,2,0,2,73,0,6,104,101,105,103,104,116,73,0,5,119,105,100,116,104,120,112,0,0,2,50,0,0,3,107"/>
   </AuxValues>
 
   <Layout class="org.netbeans.modules.form.compat2.layouts.DesignBorderLayout"/>
@@ -59,16 +59,13 @@
             <Property name="verticalGap" type="int" value="20"/>
           </Layout>
           <SubComponents>
-            <Component class="javax.swing.JLabel" name="lblAddBill">
+            <Component class="javax.swing.JLabel" name="lblAddUser">
               <Properties>
                 <Property name="horizontalAlignment" type="int" value="0"/>
                 <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
                   <Image iconType="3" name="/assets/img/add.png"/>
                 </Property>
                 <Property name="text" type="java.lang.String" value="them"/>
-                <Property name="cursor" type="java.awt.Cursor" editor="org.netbeans.modules.form.editors2.CursorEditor">
-                  <Color id="Hand Cursor"/>
-                </Property>
                 <Property name="horizontalTextPosition" type="int" value="0"/>
                 <Property name="preferredSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
                   <Dimension value="[68, 60]"/>
@@ -76,16 +73,13 @@
                 <Property name="verticalTextPosition" type="int" value="3"/>
               </Properties>
             </Component>
-            <Component class="javax.swing.JLabel" name="lblDetailBill">
+            <Component class="javax.swing.JLabel" name="lblUpdateUser">
               <Properties>
                 <Property name="horizontalAlignment" type="int" value="0"/>
                 <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-                  <Image iconType="3" name="/assets/img/website.png"/>
+                  <Image iconType="3" name="/assets/img/edit.png"/>
                 </Property>
-                <Property name="text" type="java.lang.String" value="Chi tiet"/>
-                <Property name="cursor" type="java.awt.Cursor" editor="org.netbeans.modules.form.editors2.CursorEditor">
-                  <Color id="Hand Cursor"/>
-                </Property>
+                <Property name="text" type="java.lang.String" value="sua"/>
                 <Property name="horizontalTextPosition" type="int" value="0"/>
                 <Property name="preferredSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
                   <Dimension value="[68, 60]"/>
@@ -93,16 +87,13 @@
                 <Property name="verticalTextPosition" type="int" value="3"/>
               </Properties>
             </Component>
-            <Component class="javax.swing.JLabel" name="lblDeleteBill">
+            <Component class="javax.swing.JLabel" name="lblDeleteUser">
               <Properties>
                 <Property name="horizontalAlignment" type="int" value="0"/>
                 <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
                   <Image iconType="3" name="/assets/img/delete.png"/>
                 </Property>
                 <Property name="text" type="java.lang.String" value="xoa"/>
-                <Property name="cursor" type="java.awt.Cursor" editor="org.netbeans.modules.form.editors2.CursorEditor">
-                  <Color id="Hand Cursor"/>
-                </Property>
                 <Property name="horizontalTextPosition" type="int" value="0"/>
                 <Property name="preferredSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
                   <Dimension value="[68, 60]"/>
@@ -111,30 +102,24 @@
                 <Property name="verticalTextPosition" type="int" value="3"/>
               </Properties>
             </Component>
-            <Component class="javax.swing.JLabel" name="lblSearchBill">
+            <Component class="javax.swing.JLabel" name="lblSearchUser">
               <Properties>
                 <Property name="horizontalAlignment" type="int" value="0"/>
                 <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
                   <Image iconType="3" name="/assets/img/loupe.png"/>
                 </Property>
                 <Property name="text" type="java.lang.String" value="tim kiem"/>
-                <Property name="cursor" type="java.awt.Cursor" editor="org.netbeans.modules.form.editors2.CursorEditor">
-                  <Color id="Hand Cursor"/>
-                </Property>
                 <Property name="horizontalTextPosition" type="int" value="0"/>
                 <Property name="verticalTextPosition" type="int" value="3"/>
               </Properties>
             </Component>
-            <Component class="javax.swing.JLabel" name="lblRefreshBill">
+            <Component class="javax.swing.JLabel" name="lblRefreshUser">
               <Properties>
                 <Property name="horizontalAlignment" type="int" value="0"/>
                 <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
                   <Image iconType="3" name="/assets/img/refresh.png"/>
                 </Property>
                 <Property name="text" type="java.lang.String" value="lam moi"/>
-                <Property name="cursor" type="java.awt.Cursor" editor="org.netbeans.modules.form.editors2.CursorEditor">
-                  <Color id="Hand Cursor"/>
-                </Property>
                 <Property name="horizontalTextPosition" type="int" value="0"/>
                 <Property name="preferredSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
                   <Dimension value="[68, 60]"/>
@@ -155,7 +140,7 @@
 
       <Layout class="org.netbeans.modules.form.compat2.layouts.support.JScrollPaneSupportLayout"/>
       <SubComponents>
-        <Component class="javax.swing.JTable" name="tblBill">
+        <Component class="javax.swing.JTable" name="tblUser">
           <Properties>
             <Property name="model" type="javax.swing.table.TableModel" editor="org.netbeans.modules.form.editors2.TableModelEditor">
               <Table columnCount="4" rowCount="4">

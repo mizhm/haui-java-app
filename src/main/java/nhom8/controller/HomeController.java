@@ -11,6 +11,7 @@ import nhom8.view.home.Dashboard;
 import nhom8.view.home.JDLogin;
 import nhom8.view.home.PnlHome;
 import nhom8.view.product.PnlProduct;
+import nhom8.view.user.PnlUser;
 
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
@@ -27,13 +28,15 @@ public class HomeController {
     private final PnlCategory pnlCategory = new PnlCategory();
     private final PnlProduct pnlProduct = new PnlProduct();
     private final PnlBill pnlBill = new PnlBill();
+    private final PnlUser pnlUser = new PnlUser();
 
     private final JDLogin jdLogin;
 
     private final LoginController loginController;
-    private final CategoryController categoryController = new CategoryController(view, pnlCategory);
-    private final ProductController productController = new ProductController(view, pnlProduct);
-    private final BillController billController = new BillController(view, pnlBill);
+    private final CategoryController categoryController;
+    private final ProductController productController;
+    private final BillController billController;
+    private final UserController userController;
 
     @Setter
     private User user;
@@ -41,8 +44,12 @@ public class HomeController {
     public HomeController(Dashboard view) {
         this.view = view;
         view.setPnlBody(pnlHome);
-        this.jdLogin = new JDLogin(view, false);
+        this.jdLogin = new JDLogin(view, true);
         this.loginController = new LoginController(view, jdLogin);
+        this.categoryController = new CategoryController(view, pnlCategory);
+        this.productController = new ProductController(view, pnlProduct);
+        this.billController = new BillController(view, pnlBill);
+        this.userController = new UserController(view, pnlUser);
         jdLogin.setVisible(true);
         addEvent();
     }
@@ -66,6 +73,11 @@ public class HomeController {
         view.getBtnBill().addActionListener(e -> {
             view.setPnlBody(pnlBill);
             billController.updateData();
+        });
+
+        view.getBtnUser().addActionListener(e -> {
+            view.setPnlBody(pnlUser);
+            userController.updateData();
         });
 
         view.getLblLogout().addMouseListener(new MouseAdapter() {

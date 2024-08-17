@@ -90,6 +90,8 @@ public class PnlProduct extends javax.swing.JPanel {
         tblProduct = new javax.swing.JTable();
 
         setBackground(new java.awt.Color(255, 255, 255));
+        setMinimumSize(new java.awt.Dimension(900, 600));
+        setPreferredSize(new java.awt.Dimension(900, 600));
         setLayout(new java.awt.CardLayout());
 
         jPanel1.setLayout(new java.awt.BorderLayout());

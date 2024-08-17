@@ -26,7 +26,9 @@ public class BillDAO extends DAO<Bill> {
             bill.setStatus(rs.getBoolean(2));
             bill.setCreatedAt(rs.getString(3));
             bill.setUpdatedAt(rs.getString(4));
-            bill.setTotal(rs.getFloat(5));
+            bill.setUserId(rs.getInt(5));
+            bill.setTotal(rs.getFloat(6));
+            bill.setUserName(rs.getNString(7));
             list.add(bill);
         }
         return list;
@@ -44,12 +46,13 @@ public class BillDAO extends DAO<Bill> {
 
         CallableStatement cs = conn.prepareCall(sql);
         cs.setBoolean(1, bill.getStatus());
-        cs.registerOutParameter(2, Types.BIT);
-        cs.registerOutParameter(3, Types.NVARCHAR);
+        cs.setInt(2, bill.getUserId());
+        cs.registerOutParameter(3, Types.BIT);
+        cs.registerOutParameter(4, Types.NVARCHAR);
         cs.execute();
 
-        output.put("status", cs.getBoolean(2));
-        output.put("message", cs.getNString(3));
+        output.put("status", cs.getBoolean(3));
+        output.put("message", cs.getNString(4));
         return output;
     }
 

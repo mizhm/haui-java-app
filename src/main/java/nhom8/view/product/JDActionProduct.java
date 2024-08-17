@@ -41,6 +41,8 @@ public final class JDActionProduct extends javax.swing.JDialog {
         initComponents();
         setLocationRelativeTo(null);
         this.categories = categories;
+        loadCategory();
+        
         if (!Common.isNullOrEmpty(product)) {
             lblTitle.setText("SỬA ĐỔI SẢN PHẨM");
             btnSubmit.setText("Sửa đổi");
@@ -57,7 +59,6 @@ public final class JDActionProduct extends javax.swing.JDialog {
                 BorderFactory.createEmptyBorder(5, 8, 5, 8)));
         lblNameError.setVisible(false);
         lblPriceError.setVisible(false);
-        loadCategory();
     }
 
     public JButton getBtnSubmit() {

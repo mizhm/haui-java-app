@@ -20,6 +20,9 @@ public class Bill implements Serializable {
     //related to bill detail
     private Float total;
 
+    //related to user
+    private String userName;
+
     //search field
     private Date searchDate;
 }

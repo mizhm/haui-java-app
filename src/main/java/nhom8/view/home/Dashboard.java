@@ -102,6 +102,17 @@ public class Dashboard extends javax.swing.JFrame {
         return pnlBorderProduct;
     }
 
+    public JButton getBtnUser() {
+        return btnUser;
+    }
+
+    public JPanel getPnlUserMenu() {
+        return pnlUserMenu;
+    }
+    
+    
+    
+
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
@@ -124,6 +135,9 @@ public class Dashboard extends javax.swing.JFrame {
         pnlBillMenu = new javax.swing.JPanel();
         pnlBorderBill = new javax.swing.JPanel();
         btnBill = new javax.swing.JButton();
+        pnlUserMenu = new javax.swing.JPanel();
+        pnlBorderUser = new javax.swing.JPanel();
+        btnUser = new javax.swing.JButton();
         pnlBody = new javax.swing.JPanel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -178,7 +192,7 @@ public class Dashboard extends javax.swing.JFrame {
         );
 
         jPanel5.setBackground(new java.awt.Color(255, 255, 255));
-        jPanel5.setLayout(new java.awt.FlowLayout(java.awt.FlowLayout.LEFT));
+        jPanel5.setLayout(new java.awt.FlowLayout(java.awt.FlowLayout.LEFT, 20, 20));
 
         pnlDashboardMenu.setBackground(new java.awt.Color(255, 255, 255));
         pnlDashboardMenu.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
@@ -368,6 +382,53 @@ public class Dashboard extends javax.swing.JFrame {
 
         jPanel5.add(pnlBillMenu);
 
+        pnlUserMenu.setBackground(new java.awt.Color(255, 255, 255));
+        pnlUserMenu.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+
+        pnlBorderUser.setBackground(new java.awt.Color(255, 255, 255));
+
+        javax.swing.GroupLayout pnlBorderUserLayout = new javax.swing.GroupLayout(pnlBorderUser);
+        pnlBorderUser.setLayout(pnlBorderUserLayout);
+        pnlBorderUserLayout.setHorizontalGroup(
+            pnlBorderUserLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 134, Short.MAX_VALUE)
+        );
+        pnlBorderUserLayout.setVerticalGroup(
+            pnlBorderUserLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 4, Short.MAX_VALUE)
+        );
+
+        btnUser.setText("User");
+        btnUser.setBorder(null);
+        btnUser.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnUserActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout pnlUserMenuLayout = new javax.swing.GroupLayout(pnlUserMenu);
+        pnlUserMenu.setLayout(pnlUserMenuLayout);
+        pnlUserMenuLayout.setHorizontalGroup(
+            pnlUserMenuLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(pnlBorderUser, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addGroup(pnlUserMenuLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(pnlUserMenuLayout.createSequentialGroup()
+                    .addComponent(btnUser, javax.swing.GroupLayout.PREFERRED_SIZE, 134, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGap(0, 0, Short.MAX_VALUE)))
+        );
+        pnlUserMenuLayout.setVerticalGroup(
+            pnlUserMenuLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(pnlUserMenuLayout.createSequentialGroup()
+                .addContainerGap(41, Short.MAX_VALUE)
+                .addComponent(pnlBorderUser, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+            .addGroup(pnlUserMenuLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(pnlUserMenuLayout.createSequentialGroup()
+                    .addComponent(btnUser, javax.swing.GroupLayout.DEFAULT_SIZE, 39, Short.MAX_VALUE)
+                    .addContainerGap()))
+        );
+
+        jPanel5.add(pnlUserMenu);
+
         pnlBody.setBackground(new java.awt.Color(255, 255, 255));
         pnlBody.setMinimumSize(new java.awt.Dimension(900, 600));
         pnlBody.setPreferredSize(new java.awt.Dimension(900, 600));
@@ -386,7 +447,7 @@ public class Dashboard extends javax.swing.JFrame {
             .addGroup(pnlHeaderLayout.createSequentialGroup()
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jPanel5, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(jPanel5, javax.swing.GroupLayout.PREFERRED_SIZE, 86, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(pnlBody, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
@@ -402,6 +463,7 @@ public class Dashboard extends javax.swing.JFrame {
         pnlBorderCategory.setBackground(new Color(255,255, 255));
         pnlBorderProduct.setBackground(new Color(255,255, 255));
         pnlBorderBill.setBackground(new Color(255,255, 255));
+        pnlBorderUser.setBackground(new Color(255, 255, 255));
     }//GEN-LAST:event_btnDashboardActionPerformed
 
     private void btnCategoryActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCategoryActionPerformed
@@ -410,6 +472,7 @@ public class Dashboard extends javax.swing.JFrame {
         pnlBorderDashboard.setBackground(new Color(255,255, 255));
         pnlBorderProduct.setBackground(new Color(255,255, 255));
         pnlBorderBill.setBackground(new Color(255,255, 255));
+        pnlBorderUser.setBackground(new Color(255, 255, 255));
     }//GEN-LAST:event_btnCategoryActionPerformed
 
     private void btnProductActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnProductActionPerformed
@@ -418,6 +481,7 @@ public class Dashboard extends javax.swing.JFrame {
         pnlBorderDashboard.setBackground(new Color(255,255, 255));
         pnlBorderCategory.setBackground(new Color(255,255, 255));
         pnlBorderBill.setBackground(new Color(255,255, 255));
+        pnlBorderUser.setBackground(new Color(255, 255, 255));
     }//GEN-LAST:event_btnProductActionPerformed
 
     private void btnBillActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBillActionPerformed
@@ -427,7 +491,18 @@ public class Dashboard extends javax.swing.JFrame {
         pnlBorderDashboard.setBackground(new Color(255,255, 255));
         pnlBorderCategory.setBackground(new Color(255,255, 255));
         pnlBorderProduct.setBackground(new Color(255,255, 255));
+        pnlBorderUser.setBackground(new Color(255, 255, 255));
     }//GEN-LAST:event_btnBillActionPerformed
+
+    private void btnUserActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnUserActionPerformed
+        // TODO add your handling code here:
+        pnlBorderUser.setBackground(new Color(51,204,0));
+        
+        pnlBorderDashboard.setBackground(new Color(255,255, 255));
+        pnlBorderCategory.setBackground(new Color(255,255, 255));
+        pnlBorderProduct.setBackground(new Color(255,255, 255));
+        pnlBorderBill.setBackground(new Color(255,255, 255));
+    }//GEN-LAST:event_btnUserActionPerformed
 
     /**
      * @param args the command line arguments
@@ -464,6 +539,7 @@ public class Dashboard extends javax.swing.JFrame {
     private javax.swing.JButton btnCategory;
     private javax.swing.JButton btnDashboard;
     private javax.swing.JButton btnProduct;
+    private javax.swing.JButton btnUser;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel5;
     private javax.swing.JLabel lbl3;
@@ -476,9 +552,11 @@ public class Dashboard extends javax.swing.JFrame {
     private javax.swing.JPanel pnlBorderCategory;
     private javax.swing.JPanel pnlBorderDashboard;
     private javax.swing.JPanel pnlBorderProduct;
+    private javax.swing.JPanel pnlBorderUser;
     private javax.swing.JPanel pnlCategoryMenu;
     private javax.swing.JPanel pnlDashboardMenu;
     private javax.swing.JPanel pnlHeader;
     private javax.swing.JPanel pnlProductMenu;
+    private javax.swing.JPanel pnlUserMenu;
     // End of variables declaration//GEN-END:variables
 }
