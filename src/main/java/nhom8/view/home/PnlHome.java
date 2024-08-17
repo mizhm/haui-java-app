@@ -19,8 +19,8 @@ public class PnlHome extends javax.swing.JPanel {
     public PnlHome(Map<String, Object> list) {
         initComponents();
         lblCategory.setText(list.get("category").toString());
-        jLabel2.setText(list.get("product").toString());
-        lblProduct.setText(list.get("bill").toString());
+        lblProduct.setText(list.get("product").toString());
+        lblBill.setText(list.get("bill").toString());
     }
     
     

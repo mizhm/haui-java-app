@@ -5,12 +5,11 @@
 package nhom8.view.home;
 
 import java.awt.Color;
-import java.awt.Panel;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
-import javax.swing.JFrame;
+import javax.swing.JLabel;
 import javax.swing.JPanel;
-import nhom8.view.product.PnlProduct;
+import nhom8.model.User;
 
 /**
  * @author minh
@@ -19,13 +18,40 @@ public class Dashboard extends javax.swing.JFrame {
     /**
      * Creates new form Dashboard
      */
+    private User user;
+    
     public Dashboard() {
         initComponents();
         setLocationRelativeTo(null);
         this.setIconImage(new ImageIcon(
                 getClass().getResource("/assets/icon_cafe.png")
         ).getImage());
+        
+        jPanel5.setSize(jPanel5.getPreferredSize());
     }
+
+    public User getUser() {
+        return user;
+    }
+
+    public void setUser(User user) {
+        this.user = user;
+    }
+    
+    
+
+    public JLabel getLblEmail() {
+        return lblEmail;
+    }
+
+    public JLabel getLblLogout() {
+        return lblLogout;
+    }
+
+    public JLabel getLblName() {
+        return lblName;
+    }
+    
 
     public void setPnlBody(JPanel panel){
         pnlBody.removeAll();
@@ -80,6 +106,11 @@ public class Dashboard extends javax.swing.JFrame {
     private void initComponents() {
 
         pnlHeader = new javax.swing.JPanel();
+        jPanel1 = new javax.swing.JPanel();
+        lblName = new javax.swing.JLabel();
+        lblEmail = new javax.swing.JLabel();
+        lblLogout = new javax.swing.JLabel();
+        lbl3 = new javax.swing.JLabel();
         jPanel5 = new javax.swing.JPanel();
         pnlDashboardMenu = new javax.swing.JPanel();
         pnlBorderDashboard = new javax.swing.JPanel();
@@ -97,12 +128,54 @@ public class Dashboard extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Coffee Shop Management");
+        setMinimumSize(new java.awt.Dimension(1138, 800));
         setPreferredSize(new java.awt.Dimension(1138, 800));
         setSize(new java.awt.Dimension(1138, 800));
         getContentPane().setLayout(new java.awt.CardLayout());
 
         pnlHeader.setBackground(new java.awt.Color(255, 255, 255));
-        pnlHeader.setLayout(new java.awt.BorderLayout());
+
+        jPanel1.setBackground(new java.awt.Color(255, 255, 255));
+
+        lblName.setFont(new java.awt.Font("sansserif", 1, 24)); // NOI18N
+        lblName.setText("Khong xac dinh");
+
+        lblEmail.setForeground(new java.awt.Color(102, 102, 102));
+        lblEmail.setText("Nhan vien");
+
+        lblLogout.setForeground(new java.awt.Color(0, 102, 255));
+        lblLogout.setText("Dang xuat?");
+
+        lbl3.setForeground(new java.awt.Color(102, 102, 102));
+        lbl3.setText("Ban da dang nhap,");
+
+        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
+        jPanel1.setLayout(jPanel1Layout);
+        jPanel1Layout.setHorizontalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(lblName, javax.swing.GroupLayout.DEFAULT_SIZE, 191, Short.MAX_VALUE)
+                    .addComponent(lblEmail, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(lbl3)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(lblLogout)
+                .addContainerGap())
+        );
+        jPanel1Layout.setVerticalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(lblName, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(lblLogout)
+                    .addComponent(lbl3))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(lblEmail)
+                .addContainerGap())
+        );
 
         jPanel5.setBackground(new java.awt.Color(255, 255, 255));
         jPanel5.setLayout(new java.awt.FlowLayout(java.awt.FlowLayout.LEFT));
@@ -295,13 +368,28 @@ public class Dashboard extends javax.swing.JFrame {
 
         jPanel5.add(pnlBillMenu);
 
-        pnlHeader.add(jPanel5, java.awt.BorderLayout.NORTH);
-
         pnlBody.setBackground(new java.awt.Color(255, 255, 255));
-        pnlBody.setMinimumSize(new java.awt.Dimension(1000, 800));
-        pnlBody.setPreferredSize(new java.awt.Dimension(1000, 800));
+        pnlBody.setMinimumSize(new java.awt.Dimension(900, 600));
+        pnlBody.setPreferredSize(new java.awt.Dimension(900, 600));
         pnlBody.setLayout(new java.awt.CardLayout());
-        pnlHeader.add(pnlBody, java.awt.BorderLayout.CENTER);
+
+        javax.swing.GroupLayout pnlHeaderLayout = new javax.swing.GroupLayout(pnlHeader);
+        pnlHeader.setLayout(pnlHeaderLayout);
+        pnlHeaderLayout.setHorizontalGroup(
+            pnlHeaderLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(jPanel5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(pnlBody, javax.swing.GroupLayout.DEFAULT_SIZE, 1000, Short.MAX_VALUE)
+        );
+        pnlHeaderLayout.setVerticalGroup(
+            pnlHeaderLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(pnlHeaderLayout.createSequentialGroup()
+                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jPanel5, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(pnlBody, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
 
         getContentPane().add(pnlHeader, "card2");
 
@@ -376,7 +464,12 @@ public class Dashboard extends javax.swing.JFrame {
     private javax.swing.JButton btnCategory;
     private javax.swing.JButton btnDashboard;
     private javax.swing.JButton btnProduct;
+    private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel5;
+    private javax.swing.JLabel lbl3;
+    private javax.swing.JLabel lblEmail;
+    private javax.swing.JLabel lblLogout;
+    private javax.swing.JLabel lblName;
     private javax.swing.JPanel pnlBillMenu;
     private javax.swing.JPanel pnlBody;
     private javax.swing.JPanel pnlBorderBill;

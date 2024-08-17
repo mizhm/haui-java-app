@@ -39,7 +39,7 @@ public class BillDAO extends DAO<Bill> {
 
     @Override
     public Map<String, Object> create(Bill bill) throws SQLException {
-        String sql = "{call usp_insert_bill(?, ?, ?)}";
+        String sql = "{call usp_insert_bill(?, ?, ?, ?)}";
         Map<String, Object> output = new HashMap<>();
 
         CallableStatement cs = conn.prepareCall(sql);

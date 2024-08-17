@@ -88,6 +88,8 @@ public class PnlCategory extends javax.swing.JPanel {
         tblCategory = new javax.swing.JTable();
 
         setBackground(new java.awt.Color(255, 255, 255));
+        setMinimumSize(new java.awt.Dimension(900, 600));
+        setPreferredSize(new java.awt.Dimension(900, 600));
         setLayout(new java.awt.BorderLayout());
 
         jPanel1.setLayout(new java.awt.CardLayout());
