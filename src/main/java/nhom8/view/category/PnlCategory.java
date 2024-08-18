@@ -101,7 +101,7 @@ public class PnlCategory extends javax.swing.JPanel {
 
         lblAddCategory.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         lblAddCategory.setIcon(new javax.swing.ImageIcon(getClass().getResource("/assets/img/add.png"))); // NOI18N
-        lblAddCategory.setText("them");
+        lblAddCategory.setText("Thêm");
         lblAddCategory.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         lblAddCategory.setPreferredSize(new java.awt.Dimension(68, 60));
         lblAddCategory.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
@@ -109,7 +109,7 @@ public class PnlCategory extends javax.swing.JPanel {
 
         lblUpdateCategory.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         lblUpdateCategory.setIcon(new javax.swing.ImageIcon(getClass().getResource("/assets/img/edit.png"))); // NOI18N
-        lblUpdateCategory.setText("sua");
+        lblUpdateCategory.setText("Sửa");
         lblUpdateCategory.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         lblUpdateCategory.setPreferredSize(new java.awt.Dimension(68, 60));
         lblUpdateCategory.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
@@ -117,7 +117,7 @@ public class PnlCategory extends javax.swing.JPanel {
 
         lblDeleteCategory.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         lblDeleteCategory.setIcon(new javax.swing.ImageIcon(getClass().getResource("/assets/img/delete.png"))); // NOI18N
-        lblDeleteCategory.setText("xoa");
+        lblDeleteCategory.setText("Xóa");
         lblDeleteCategory.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         lblDeleteCategory.setPreferredSize(new java.awt.Dimension(68, 60));
         lblDeleteCategory.setVerifyInputWhenFocusTarget(false);
@@ -126,14 +126,14 @@ public class PnlCategory extends javax.swing.JPanel {
 
         lblSearchCategory.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         lblSearchCategory.setIcon(new javax.swing.ImageIcon(getClass().getResource("/assets/img/loupe.png"))); // NOI18N
-        lblSearchCategory.setText("tim kiem");
+        lblSearchCategory.setText("Tìm kiếm");
         lblSearchCategory.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         lblSearchCategory.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
         jPanel2.add(lblSearchCategory);
 
         lblRefreshCategory.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         lblRefreshCategory.setIcon(new javax.swing.ImageIcon(getClass().getResource("/assets/img/refresh.png"))); // NOI18N
-        lblRefreshCategory.setText("lam moi");
+        lblRefreshCategory.setText("Làm mới");
         lblRefreshCategory.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         lblRefreshCategory.setPreferredSize(new java.awt.Dimension(68, 60));
         lblRefreshCategory.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);

@@ -106,7 +106,7 @@ public class PnlBill extends javax.swing.JPanel {
 
         lblAddBill.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         lblAddBill.setIcon(new javax.swing.ImageIcon(getClass().getResource("/assets/img/add.png"))); // NOI18N
-        lblAddBill.setText("them");
+        lblAddBill.setText("Thêm");
         lblAddBill.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         lblAddBill.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         lblAddBill.setPreferredSize(new java.awt.Dimension(68, 60));
@@ -115,7 +115,7 @@ public class PnlBill extends javax.swing.JPanel {
 
         lblDetailBill.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         lblDetailBill.setIcon(new javax.swing.ImageIcon(getClass().getResource("/assets/img/website.png"))); // NOI18N
-        lblDetailBill.setText("Chi tiet");
+        lblDetailBill.setText("Chi tiết");
         lblDetailBill.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         lblDetailBill.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         lblDetailBill.setPreferredSize(new java.awt.Dimension(68, 60));
@@ -124,7 +124,7 @@ public class PnlBill extends javax.swing.JPanel {
 
         lblDeleteBill.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         lblDeleteBill.setIcon(new javax.swing.ImageIcon(getClass().getResource("/assets/img/delete.png"))); // NOI18N
-        lblDeleteBill.setText("xoa");
+        lblDeleteBill.setText("Xóa");
         lblDeleteBill.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         lblDeleteBill.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         lblDeleteBill.setPreferredSize(new java.awt.Dimension(68, 60));
@@ -134,7 +134,7 @@ public class PnlBill extends javax.swing.JPanel {
 
         lblSearchBill.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         lblSearchBill.setIcon(new javax.swing.ImageIcon(getClass().getResource("/assets/img/loupe.png"))); // NOI18N
-        lblSearchBill.setText("tim kiem");
+        lblSearchBill.setText("Tìm kiếm");
         lblSearchBill.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         lblSearchBill.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         lblSearchBill.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
@@ -142,7 +142,7 @@ public class PnlBill extends javax.swing.JPanel {
 
         lblRefreshBill.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         lblRefreshBill.setIcon(new javax.swing.ImageIcon(getClass().getResource("/assets/img/refresh.png"))); // NOI18N
-        lblRefreshBill.setText("lam moi");
+        lblRefreshBill.setText("Làm mới");
         lblRefreshBill.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         lblRefreshBill.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         lblRefreshBill.setPreferredSize(new java.awt.Dimension(68, 60));
@@ -151,7 +151,7 @@ public class PnlBill extends javax.swing.JPanel {
 
         lblExport.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         lblExport.setIcon(new javax.swing.ImageIcon(getClass().getResource("/assets/img/excel.png"))); // NOI18N
-        lblExport.setText("Xuat Excel");
+        lblExport.setText("Xuất Excel");
         lblExport.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         lblExport.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
         jPanel2.add(lblExport);

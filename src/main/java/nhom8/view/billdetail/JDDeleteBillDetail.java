@@ -23,7 +23,7 @@ public class JDDeleteBillDetail extends javax.swing.JDialog {
         initComponents();
         setLocationRelativeTo(null);
 //        this.parent = parent;
-        lblConfirm.setText("Bạn có chắc chắn muốn xoá san pham " + productName + " khoi hoa don?");
+        lblConfirm.setText("Bạn có chắc chắn muốn xoá sản phẩm " + productName + " khỏi hóa đơn?");
     }
 
     public JButton getBtnCancel() {

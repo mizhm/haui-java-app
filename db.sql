@@ -193,7 +193,7 @@ begin try
          where u.id = @_id)
         begin
             set @_out_stt = 0;
-            set @_out_msg = N'người dùng đang có liên kết hoá đơn, không thể xoá';
+            set @_out_msg = N'Người dùng đang có liên kết hoá đơn, không thể xoá';
         end;
     else
         begin
@@ -202,14 +202,14 @@ begin try
             where id = @_id;
 
             set @_out_stt = 1;
-            set @_out_msg = N'xoá thành công';
+            set @_out_msg = N'Xoá thành công';
             if @@trancount > 0
                 commit tran;
         end;
 end try
 begin catch
     set @_out_stt = 0;
-    set @_out_msg = N'xoá không thành công: ' + error_message();
+    set @_out_msg = N'Xoá không thành công: ' + error_message();
     if @@trancount > 0
         rollback tran;
 end catch;
@@ -239,7 +239,7 @@ begin try
     if exists(select name from category where name = @_name)
         begin
             set @_out_stt = 0;
-            set @_out_msg = N'Category exists!';
+            set @_out_msg = N'Danh mục đã tồn tại';
         end
     else
         begin
@@ -247,14 +247,14 @@ begin try
             insert into category(name, status, created_at, updated_at)
             values (@_name, @_status, getdate(), getdate());
             set @_out_stt = 1;
-            set @_out_msg = N'Insert successfully';
+            set @_out_msg = N'Thêm danh mục thành công';
             if @@trancount > 0
                 commit tran;
         end
 end try
 begin catch
     set @_out_stt = 0;
-    set @_out_msg = error_message();
+    set @_out_msg = N'Thêm danh mục thất bại: ' + error_message();
     if @@trancount > 0
         rollback tran;
 end catch
@@ -294,14 +294,14 @@ begin try
     if not exists(select * from category where id = @_id)
         begin
             set @_out_stt = 0;
-            set @_out_msg = N'Category to update not valid';
+            set @_out_msg = N'Danh mục không tồn tại';
         end
     else
         begin
             if exists(select * from category where name = @_name and id <> @_id)
                 begin
                     set @_out_stt = 0;
-                    set @_out_msg = N'Category name already in use';
+                    set @_out_msg = N'Tên danh mục đã được sử dụng';
                 end
             else
                 begin
@@ -312,7 +312,7 @@ begin try
                         updated_at = getdate()
                     where id = @_id;
                     set @_out_stt = 1;
-                    set @_out_msg = N'update successully';
+                    set @_out_msg = N'Sửa danh mục thành công';
                     if @@trancount > 0
                         commit tran;
                 end
@@ -320,7 +320,7 @@ begin try
 end try
 begin catch
     set @_out_stt = 0;
-    set @_out_msg = error_message();
+    set @_out_msg = N'Sửa danh mục thất bại: ' + error_message();
     if @@trancount > 0
         rollback tran;
 end catch
@@ -339,7 +339,7 @@ begin try
                where category.id = @_id)
         begin
             set @_out_stt = 0;
-            set @_out_msg = N'category has product'
+            set @_out_msg = N'Danh mục này đang có sản phẩm, không thể xóa'
         end
     else
         begin
@@ -347,14 +347,14 @@ begin try
             delete category
             where id = @_id;
             set @_out_stt = 1;
-            set @_out_msg = N'delete successfully';
+            set @_out_msg = N'Xóa danh mục thành công';
             if @@trancount > 0
                 commit tran;
         end
 end try
 begin catch
     set @_out_stt = 0;
-    set @_out_msg = error_message();
+    set @_out_msg = N'Xóa danh mục thất bại: ' + error_message();
     if @@trancount > 0
         rollback tran;
 end catch
@@ -413,14 +413,14 @@ begin try
     if not exists(select * from category where id = @_category_id)
         begin
             set @_out_stt = 0;
-            set @_out_msg = 'Category not exists!';
+            set @_out_msg = N'Danh mục không tồn tại';
         end
     else
         begin
             if exists(select * from product where lower(name) = lower(@_name))
                 begin
                     set @_out_stt = 0;
-                    set @_out_msg = 'Product exists'
+                    set @_out_msg = N'Tên sản phẩm đã được sử dụng';
                 end
             else
                 begin
@@ -430,7 +430,7 @@ begin try
                     values (@_name, @_status, @_price, @_category_id, getdate(),
                             getdate());
                     set @_out_stt = 1;
-                    set @_out_msg = 'Create successfully'
+                    set @_out_msg = N'Thêm sản phẩm thành công'
                     if @@trancount > 0
                         commit tran
                 end
@@ -438,7 +438,7 @@ begin try
 end try
 begin catch
     set @_out_stt = 0;
-    set @_out_msg = error_message()
+    set @_out_msg = N'Thêm sản phẩm thất bại: ' + error_message()
     if @@trancount > 0
         rollback tran
 end catch
@@ -584,14 +584,14 @@ begin try
     if not exists(select * from product where id = @_id)
         begin
             set @_out_stt = 0;
-            set @_out_msg = 'Product not exists';
+            set @_out_msg = N'Sản phẩm không tồn tại';
         end
     else
         begin
             if exists(select * from product where name = @_name and id <> @_id)
                 begin
                     set @_out_stt = 0;
-                    set @_out_msg = 'Product name exists';
+                    set @_out_msg = N'Tên sản phẩm đã được sử dụng';
                 end
             else
                 begin
@@ -604,7 +604,7 @@ begin try
                         updated_at= getdate()
                     where id = @_id;
                     set @_out_stt = 1;
-                    set @_out_msg = 'Update successfully!'
+                    set @_out_msg = N'Cập nhật sản phẩm thành công'
                     if @@trancount > 0
                         commit tran
                 end
@@ -612,7 +612,7 @@ begin try
 end try
 begin catch
     set @_out_stt = 0;
-    set @_out_msg = error_message();
+    set @_out_msg = N'Cập nhật sản phẩm thất bại: ' + error_message();
     if @@trancount > 0
         rollback tran
 end catch
@@ -630,7 +630,7 @@ begin try
               where id = @_id)
         begin
             set @_out_stt = 0;
-            set @_out_msg = 'Product exists in some bills';
+            set @_out_msg = N'Sản phẩm có trong hóa đơn, không thể xóa';
         end
     else
         begin
@@ -638,16 +638,16 @@ begin try
             delete product
             where id = @_id;
             set @_out_stt = 1;
-            set @_out_msg = 'Delete successfully';
+            set @_out_msg = N'Xóa sản phẩm thành công';
             if @@trancount > 0
-                commit tran
+                commit tran;
         end
 end try
 begin catch
     set @_out_stt = 0;
-    set @_out_msg = error_message()
+    set @_out_msg = N'Xóa sản phẩm thất bại: ' + error_message();
     if @@trancount > 0
-        rollback tran
+        rollback tran;
 end catch
 go
 
@@ -734,7 +734,7 @@ begin try
     insert into bill(status, user_id, created_at, updated_at)
     values (@_status, @_user_id, getdate(), getdate());
     set @_out_stt = 1;
-    set @_out_msg = N'Create Bill successfully';
+    set @_out_msg = N'Tạo hóa đơn thành công';
     if @@trancount > 0
         commit tran
 end try
@@ -757,7 +757,7 @@ begin try
     if not exists(select * from bill where id = @_id)
         begin
             set @_out_stt = 0;
-            set @_out_msg = N'Bill not exist';
+            set @_out_msg = N'Hóa đơn không tồn tại';
         end
     else
         begin
@@ -769,7 +769,7 @@ begin try
                 where id = @_id;
 
                 set @_out_stt = 1;
-                set @_out_msg = N'update successully';
+                set @_out_msg = N'Cập nhật hóa đơn thành công';
                 if @@trancount > 0
                     commit tran;
             end
@@ -777,7 +777,7 @@ begin try
 end try
 begin catch
     set @_out_stt = 0;
-    set @_out_msg = error_message();
+    set @_out_msg = N'Cập nhật hóa đơn thất bại: ' + error_message();
     if @@trancount > 0
         rollback tran;
 end catch
@@ -793,7 +793,7 @@ begin try
     if not exists(select id from bill where id = @_id)
         begin
             set @_out_stt = 0;
-            set @_out_msg = N'Bill not exist';
+            set @_out_msg = N'Hóa đơn không tồn tại';
         end
     else
         begin
@@ -807,14 +807,14 @@ begin try
             where id = @_id;
 
             set @_out_stt = 1;
-            set @_out_msg = N'Delete bill successfully!';
+            set @_out_msg = N'Xóa hóa đơn thành công';
             if @@trancount > 0
                 commit tran;
         end
 end try
 begin catch
     set @_out_stt = 0;
-    set @_out_msg = error_message();
+    set @_out_msg = N'Xóa hóa đơn thất bại: ' + error_message();
     if @@trancount > 0
         rollback tran;
 end catch
@@ -871,19 +871,19 @@ begin try
     if not exists(select * from bill where id = @_bill_id)
         begin
             set @_out_stt = 0;
-            set @_out_msg = N'Bill not exist';
+            set @_out_msg = N'Hóa đơn không tồn tại';
         end
     else
         if not exists(select * from product where id = @_product_id)
             begin
                 set @_out_stt = 0;
-                set @_out_msg = N'Product not exist';
+                set @_out_msg = N'Sản phẩm không tồn tại';
             end
         else
             if @_amount < 1
                 begin
                     set @_out_stt = 0;
-                    set @_out_msg = N'Amount must be greater than 1';
+                    set @_out_msg = N'Số lượng sản phẩm phải lớn hơn 0';
                 end
             else
                 if exists(select *
@@ -902,7 +902,7 @@ begin try
                         where id = @_bill_id;
 
                         set @_out_stt = 1;
-                        set @_out_msg = N'Update bill detail successfully';
+                        set @_out_msg = N'Cập nhật chi tiết hóa đơn thành công';
                         if @@TRANCOUNT > 0
                             commit tran;
                     end
@@ -920,14 +920,14 @@ begin try
                         where id = @_bill_id;
 
                         set @_out_stt = 1;
-                        set @_out_msg = N'Create successfully';
+                        set @_out_msg = N'Thêm chi tiết hóa đơn thành công';
                         if @@trancount > 0
                             commit tran;
                     end
 end try
 begin catch
     set @_out_stt = 0;
-    set @_out_msg = error_message();
+    set @_out_msg = N'Thêm chi tiết hóa đơn thất bại: ' + error_message();
     if @@trancount > 0
         rollback tran;
 end catch
@@ -945,19 +945,19 @@ begin try
     if not exists(select id from bill where id = @_bill_id)
         begin
             set @_out_stt = 0;
-            set @_out_msg = N'Bill not exists';
+            set @_out_msg = N'Hóa đơn không tồn tại';
         end
     else
         if not exists(select id from product where id = @_product_id)
             begin
                 set @_out_stt = 0;
-                set @_out_msg = N'Product not exists';
+                set @_out_msg = N'Sản phẩm không tồn tại';
             end
         else
             if @_amount < 1
                 begin
                     set @_out_stt = 0;
-                    set @_out_msg = N'Amount must be greater than 0';
+                    set @_out_msg = N'Số lượng sản phẩm phải lớn hơn 0';
                 end
             else
                 if not exists(select *
@@ -966,7 +966,7 @@ begin try
                                 and product_id = @_product_id)
                     begin
                         set @_out_stt = 0;
-                        set @_out_msg = N'Bill detail not exists';
+                        set @_out_msg = N'Chi tiết hóa đơn không tồn tại';
                     end
                 else
                     begin
@@ -981,7 +981,7 @@ begin try
                         where id = @_bill_id;
 
                         set @_out_stt = 1;
-                        set @_out_msg = N'Update bill detail successfully';
+                        set @_out_msg = N'Cập nhật chi tiết hóa đơn thành công';
                         if @@trancount > 0
                             commit tran
                     end
@@ -989,7 +989,7 @@ begin try
 end try
 begin catch
     set @_out_stt = 0;
-    set @_out_msg = error_message();
+    set @_out_msg = N'Cập nhật chi tiết hóa đơn thất bại' + error_message();
     if @@trancount > 0
         rollback tran;
 end catch
@@ -1007,13 +1007,13 @@ begin try
     if not exists(select id from bill where id = @_bill_id)
         begin
             set @_out_stt = 0;
-            set @_out_msg = N'Bill not exists';
+            set @_out_msg = N'Hóa đơn không tồn tại';
         end
     else
         if not exists(select id from product where id = @_product_id)
             begin
                 set @_out_stt = 0;
-                set @_out_msg = N'Product not exists';
+                set @_out_msg = N'Sản phẩm không tồn tại';
             end
         else
             begin
@@ -1027,14 +1027,14 @@ begin try
                 where id = @_bill_id;
 
                 set @_out_stt = 1;
-                set @_out_msg = N'Delete successfully';
+                set @_out_msg = N'Xóa sản phẩm khỏi hóa đơn thành công';
                 if @@trancount > 0
                     commit tran;
             end
 end try
 begin catch
     set @_out_stt = 0;
-    set @_out_msg = error_message();
+    set @_out_msg = N'Xóa sản phẩm khỏi hóa đơn thất bại' + error_message();
     if @@trancount > 0
         rollback tran;
 end catch

@@ -32,7 +32,7 @@ public class JDDeleteProduct extends javax.swing.JDialog {
         super(parent, modal);
         initComponents();
         setLocationRelativeTo(null);
-        lblConfirm.setText("Ban co chac chan muon xoa san pham ten: " + productName);
+        lblConfirm.setText("Bạn có chắc chắn muốn xóa sản phẩm tên: " + productName);
 
     }
 
@@ -52,13 +52,13 @@ public class JDDeleteProduct extends javax.swing.JDialog {
         btnDelete = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
-        setTitle("XOÁ DANH MỤC");
+        setTitle("XOÁ SẢN PHẨM");
 
         jPanel1.setBackground(new java.awt.Color(255, 255, 255));
 
         jLabel1.setFont(new java.awt.Font("Segoe UI Semibold", 0, 36)); // NOI18N
         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/assets/img/delete.png"))); // NOI18N
-        jLabel1.setText("XOÁ DANH MỤC");
+        jLabel1.setText("XOÁ SẢN PHẨM");
 
         btnCancel.setBackground(new java.awt.Color(0, 204, 51));
         btnCancel.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N

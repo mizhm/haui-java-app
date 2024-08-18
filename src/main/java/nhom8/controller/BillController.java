@@ -84,14 +84,14 @@ public class BillController implements ManagerController {
                                 BorderFactory.createEmptyBorder(5, 8, 5, 8)));
                         lblProductAmount.setForeground(new Color(240, 71, 71));
                         lblProductAmountError.setVisible(true);
-                        lblProductAmountError.setText("So luong khong duoc de trong");
+                        lblProductAmountError.setText("Số lượng không được để trống");
                     } else if (Integer.parseInt(txtProductAmount.getText()) <= 0) {
                         txtProductAmount.setBorder(BorderFactory.createCompoundBorder(
                                 BorderFactory.createLineBorder(new Color(240, 71, 71)),
                                 BorderFactory.createEmptyBorder(5, 8, 5, 8)));
                         lblProductAmount.setForeground(new Color(240, 71, 71));
                         lblProductAmountError.setVisible(true);
-                        lblProductAmountError.setText("So luong phai la so duong");
+                        lblProductAmountError.setText("Số lượng phải là số dương");
                     } else {
                         billDetail.setAmount(Integer.parseInt(amountString));
                         if (!Common.isNullOrEmpty(product)) {
@@ -118,7 +118,7 @@ public class BillController implements ManagerController {
                                 jdAdd.getTxtProductAmount().setEditable(false);
                             }
                         } else {
-                            JOptionPane.showMessageDialog(jdAdd, "Chua chon san pham");
+                            JOptionPane.showMessageDialog(jdAdd, "Chưa chọn sản phẩm");
                         }
                     }
                 });
@@ -151,7 +151,7 @@ public class BillController implements ManagerController {
                     throw new RuntimeException(ex);
                 }
             } else {
-                JOptionPane.showMessageDialog(jdDelete, "Ban chi duoc phep xoa don ban tao");
+                JOptionPane.showMessageDialog(jdDelete, "Bạn chỉ được phép xóa đơn bạn tạo");
             }
             jdDelete.dispose();
         });
@@ -183,11 +183,11 @@ public class BillController implements ManagerController {
                 try {
                     bills = billDAO.getWithCondition(bill);
                     panel.getTblBill().removeAll();
-                    String[] cols = {"Id", "Nguoi tao", "Trang thai", "Tong tien", "Ngay tao", "Ngay cap nhat"};
+                    String[] cols = {"Id", "Người tạo", "Trạng thái", "Tổng tiền", "Ngày tạo", "Ngày cập nhật"};
                     DefaultTableModel dtm = new DefaultTableModel(cols, 0);
                     if (!Common.isNullOrEmpty(bills)) {
                         bills.forEach(obj -> {
-                            dtm.addRow(new Object[]{obj.getId(), obj.getUserName(), obj.getStatus() ? "Da thanh toan" : "Chua thanh toan", Common.isNullOrEmpty(obj.getTotal()) ? 0 : obj.getTotal(), obj.getCreatedAt(),
+                            dtm.addRow(new Object[]{obj.getId(), obj.getUserName(), obj.getStatus() ? "Đã thanh toán" : "Chưa thanh toán", Common.isNullOrEmpty(obj.getTotal()) ? 0 : obj.getTotal(), obj.getCreatedAt(),
                                     obj.getUpdatedAt()});
                         });
 
@@ -245,11 +245,11 @@ public class BillController implements ManagerController {
             bills = billDAO.getAll();
             panel.getTblBill().removeAll();
 
-            String[] cols = {"Id", "Nguoi tao", "Trang thai", "Tong tien", "Ngay tao", "Ngay cap nhat"};
+            String[] cols = {"Id", "Người tạo", "Trạng thái", "Tổng tiền", "Ngày tạo", "Ngày cập nhật"};
             DefaultTableModel dtm = new DefaultTableModel(cols, 0);
             if (!Common.isNullOrEmpty(bills)) {
                 bills.forEach(obj -> {
-                    dtm.addRow(new Object[]{obj.getId(), obj.getUserName(), obj.getStatus() ? "Da thanh toan" : "Chua thanh toan", Common.isNullOrEmpty(obj.getTotal()) ? 0 : obj.getTotal(), obj.getCreatedAt(),
+                    dtm.addRow(new Object[]{obj.getId(), obj.getUserName(), obj.getStatus() ? "Đã thanh toán" : "Chưa thanh toán", Common.isNullOrEmpty(obj.getTotal()) ? 0 : obj.getTotal(), obj.getCreatedAt(),
                             obj.getUpdatedAt()});
                 });
 
@@ -265,7 +265,7 @@ public class BillController implements ManagerController {
 
             panel.getTblBill().setModel(dtm);
         } catch (Exception e) {
-            System.out.println("Error: " + e.getMessage());
+            System.out.println("Lỗi: " + e.getMessage());
         }
     }
 
@@ -422,7 +422,7 @@ public class BillController implements ManagerController {
                 bill.setStatus(true);
                 Map<String, Object> resultCheckOut = billDAO.update(bill);
                 if ((boolean) resultCheckOut.get("status")) {
-                    JOptionPane.showMessageDialog(jdAdd, "Thanh toan thanh cong");
+                    JOptionPane.showMessageDialog(jdAdd, "Thanh toán thành công");
                     updateData();
                     jdAdd.dispose();
                 } else {
@@ -478,14 +478,14 @@ public class BillController implements ManagerController {
                         BorderFactory.createEmptyBorder(5, 8, 5, 8)));
                 lblProductAmount.setForeground(new Color(240, 71, 71));
                 lblProductAmountError.setVisible(true);
-                lblProductAmountError.setText("So luong khong duoc de trong");
+                lblProductAmountError.setText("Số lượng không được để trống");
             } else if (Integer.parseInt(txtProductAmount.getText()) <= 0) {
                 txtProductAmount.setBorder(BorderFactory.createCompoundBorder(
                         BorderFactory.createLineBorder(new Color(240, 71, 71)),
                         BorderFactory.createEmptyBorder(5, 8, 5, 8)));
                 lblProductAmount.setForeground(new Color(240, 71, 71));
                 lblProductAmountError.setVisible(true);
-                lblProductAmountError.setText("So luong phai la so duong");
+                lblProductAmountError.setText("Số lượng phải là số dương");
             } else {
                 billDetail.setAmount(Integer.parseInt(amountString));
                 try {

@@ -102,7 +102,7 @@ public class PnlProduct extends javax.swing.JPanel {
 
         lblAddProduct.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         lblAddProduct.setIcon(new javax.swing.ImageIcon(getClass().getResource("/assets/img/add.png"))); // NOI18N
-        lblAddProduct.setText("them");
+        lblAddProduct.setText("Thêm");
         lblAddProduct.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         lblAddProduct.setPreferredSize(new java.awt.Dimension(68, 60));
         lblAddProduct.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
@@ -110,7 +110,7 @@ public class PnlProduct extends javax.swing.JPanel {
 
         lblUpdateProduct.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         lblUpdateProduct.setIcon(new javax.swing.ImageIcon(getClass().getResource("/assets/img/edit.png"))); // NOI18N
-        lblUpdateProduct.setText("sua");
+        lblUpdateProduct.setText("Sửa");
         lblUpdateProduct.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         lblUpdateProduct.setPreferredSize(new java.awt.Dimension(68, 60));
         lblUpdateProduct.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
@@ -118,7 +118,7 @@ public class PnlProduct extends javax.swing.JPanel {
 
         lblDeleteProduct.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         lblDeleteProduct.setIcon(new javax.swing.ImageIcon(getClass().getResource("/assets/img/delete.png"))); // NOI18N
-        lblDeleteProduct.setText("xoa");
+        lblDeleteProduct.setText("Xóa");
         lblDeleteProduct.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         lblDeleteProduct.setPreferredSize(new java.awt.Dimension(68, 60));
         lblDeleteProduct.setVerifyInputWhenFocusTarget(false);
@@ -127,14 +127,14 @@ public class PnlProduct extends javax.swing.JPanel {
 
         lblSearchProduct.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         lblSearchProduct.setIcon(new javax.swing.ImageIcon(getClass().getResource("/assets/img/loupe.png"))); // NOI18N
-        lblSearchProduct.setText("tim kiem");
+        lblSearchProduct.setText("Tìm kiếm");
         lblSearchProduct.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         lblSearchProduct.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
         jPanel2.add(lblSearchProduct);
 
         lblRefreshProduct.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         lblRefreshProduct.setIcon(new javax.swing.ImageIcon(getClass().getResource("/assets/img/refresh.png"))); // NOI18N
-        lblRefreshProduct.setText("lam moi");
+        lblRefreshProduct.setText("Làm mới");
         lblRefreshProduct.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         lblRefreshProduct.setPreferredSize(new java.awt.Dimension(68, 60));
         lblRefreshProduct.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);

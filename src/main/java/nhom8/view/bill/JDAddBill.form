@@ -29,7 +29,7 @@
   </NonVisualComponents>
   <Properties>
     <Property name="defaultCloseOperation" type="int" value="2"/>
-    <Property name="title" type="java.lang.String" value="THONG TIN CHI TIET HOA DON"/>
+    <Property name="title" type="java.lang.String" value="T&#x1ea0;O H&#xd3;A &#x110;&#x1a0;N"/>
   </Properties>
   <SyntheticProperties>
     <SyntheticProperty name="formSizePolicy" type="int" value="1"/>
@@ -319,16 +319,12 @@
                           <Component id="lblBillId" alignment="3" min="-2" max="-2" attributes="0"/>
                       </Group>
                       <EmptySpace max="-2" attributes="0"/>
-                      <Group type="103" groupAlignment="0" attributes="0">
-                          <Group type="103" alignment="0" groupAlignment="3" attributes="0">
-                              <Component id="txtTotalPrice" alignment="3" min="-2" pref="40" max="-2" attributes="0"/>
-                              <Component id="lblVND" alignment="3" min="-2" max="-2" attributes="0"/>
-                          </Group>
-                          <Group type="103" alignment="0" groupAlignment="3" attributes="0">
-                              <Component id="txtBillTime" alignment="3" min="-2" pref="40" max="-2" attributes="0"/>
-                              <Component id="lblBillTime" alignment="3" min="-2" max="-2" attributes="0"/>
-                              <Component id="lblTotalPrice" alignment="3" min="-2" max="-2" attributes="0"/>
-                          </Group>
+                      <Group type="103" groupAlignment="3" attributes="0">
+                          <Component id="txtBillTime" alignment="3" min="-2" pref="40" max="-2" attributes="0"/>
+                          <Component id="lblBillTime" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="lblTotalPrice" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="txtTotalPrice" alignment="3" min="-2" pref="40" max="-2" attributes="0"/>
+                          <Component id="lblVND" alignment="3" min="-2" max="-2" attributes="0"/>
                       </Group>
                       <EmptySpace type="separate" max="32767" attributes="0"/>
                       <Component id="btnCheckout" min="-2" pref="31" max="-2" attributes="0"/>

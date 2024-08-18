@@ -98,7 +98,7 @@
                       <Color blue="ff" green="ff" red="ff" type="rgb"/>
                     </Property>
                     <Property name="horizontalAlignment" type="int" value="0"/>
-                    <Property name="text" type="java.lang.String" value="Danh muc"/>
+                    <Property name="text" type="java.lang.String" value="Danh m&#x1ee5;c"/>
                   </Properties>
                 </Component>
               </SubComponents>
@@ -201,7 +201,7 @@
                       <Color blue="ff" green="ff" red="ff" type="rgb"/>
                     </Property>
                     <Property name="horizontalAlignment" type="int" value="0"/>
-                    <Property name="text" type="java.lang.String" value="San pham"/>
+                    <Property name="text" type="java.lang.String" value="S&#x1ea3;n ph&#x1ea9;m"/>
                   </Properties>
                 </Component>
               </SubComponents>
@@ -304,7 +304,7 @@
                       <Color blue="ff" green="ff" red="ff" type="rgb"/>
                     </Property>
                     <Property name="horizontalAlignment" type="int" value="0"/>
-                    <Property name="text" type="java.lang.String" value="Hoa don"/>
+                    <Property name="text" type="java.lang.String" value="H&#xf3;a &#x111;&#x1a1;n"/>
                   </Properties>
                 </Component>
               </SubComponents>

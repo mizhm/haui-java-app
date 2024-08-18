@@ -50,13 +50,13 @@ public class CategoryController implements ManagerController {
                         BorderFactory.createLineBorder(new Color(240, 71, 71)),
                         BorderFactory.createEmptyBorder(5, 8, 5, 8)));
                 jdAdd.getLblName().setForeground(new Color(240, 71, 71));
-                jdAdd.getLblNameError().setText("Ten khong duoc de trong");
+                jdAdd.getLblNameError().setText("Không được để trống");
             } else if (categories.stream().anyMatch(el -> el.getName().equalsIgnoreCase(name))) {
                 jdAdd.getTxtName().setBorder(BorderFactory.createCompoundBorder(
                         BorderFactory.createLineBorder(new Color(240, 71, 71)),
                         BorderFactory.createEmptyBorder(5, 8, 5, 8)));
                 jdAdd.getLblName().setForeground(new Color(240, 71, 71));
-                jdAdd.getLblNameError().setText("Ten da duoc su dung");
+                jdAdd.getLblNameError().setText("Tên đã được sử dụng");
             } else {
                 try {
                     Category category = new Category();
@@ -88,13 +88,13 @@ public class CategoryController implements ManagerController {
                         BorderFactory.createLineBorder(new Color(240, 71, 71)),
                         BorderFactory.createEmptyBorder(5, 8, 5, 8)));
                 jdUpdate.getLblName().setForeground(new Color(240, 71, 71));
-                jdUpdate.getLblNameError().setText("Ten khong duoc de trong");
+                jdUpdate.getLblNameError().setText("Tên không được để trống");
             } else if (categories.stream().anyMatch(el -> el.getName().equalsIgnoreCase(name) && el.getId() != this.category.getId())) {
                 jdUpdate.getTxtName().setBorder(BorderFactory.createCompoundBorder(
                         BorderFactory.createLineBorder(new Color(240, 71, 71)),
                         BorderFactory.createEmptyBorder(5, 8, 5, 8)));
                 jdUpdate.getLblName().setForeground(new Color(240, 71, 71));
-                jdUpdate.getLblNameError().setText("Ten da duoc su dung");
+                jdUpdate.getLblNameError().setText("Tên đã được sử dụng");
             } else {
                 try {
                     Category category = new Category();
@@ -154,11 +154,11 @@ public class CategoryController implements ManagerController {
             try {
                 categories = categoryDAO.getWithCondition(category);
                 panel.getTblCategory().removeAll();
-                String[] cols = {"Id", "Ten", "Trang thai"};
+                String[] cols = {"Id", "Tên", "Trạng thái"};
                 DefaultTableModel dtm = new DefaultTableModel(cols, 0);
                 if (!Common.isNullOrEmpty(categories)) {
                     categories.forEach(obj -> {
-                        dtm.addRow(new Object[]{obj.getId(), obj.getName(), obj.getStatus() ? "Hoat dong" : "Khong hoat dong"});
+                        dtm.addRow(new Object[]{obj.getId(), obj.getName(), obj.getStatus() ? "Hoạt động" : "Không hoạt động"});
                     });
 
                     panel.getTblCategory().getSelectionModel().addListSelectionListener(el -> {
@@ -185,11 +185,11 @@ public class CategoryController implements ManagerController {
             categories = categoryDAO.getAll();
             panel.getTblCategory().removeAll();
 
-            String[] cols = {"Id", "Ten", "Trang thai"};
+            String[] cols = {"Id", "Tên", "Trạng thái"};
             DefaultTableModel dtm = new DefaultTableModel(cols, 0);
             if (!Common.isNullOrEmpty(categories)) {
                 categories.forEach(obj -> {
-                    dtm.addRow(new Object[]{obj.getId(), obj.getName(), obj.getStatus() ? "Hoat dong" : "Khong hoat dong"});
+                    dtm.addRow(new Object[]{obj.getId(), obj.getName(), obj.getStatus() ? "Hoạt động" : "Không hoạt động"});
                 });
 
                 panel.getTblCategory().getSelectionModel().addListSelectionListener(e -> {
@@ -204,7 +204,7 @@ public class CategoryController implements ManagerController {
 
             panel.getTblCategory().setModel(dtm);
         } catch (Exception e) {
-            System.out.println("Error: " + e.getMessage());
+            System.out.println("Lỗi: " + e.getMessage());
         }
     }
 
