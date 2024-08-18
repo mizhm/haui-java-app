@@ -228,7 +228,7 @@ public class UserController implements ManagerController {
                     throw new RuntimeException(ex);
                 }
             } else {
-                JOptionPane.showMessageDialog(jdDelete, "Currently logging in, cannot delete");
+                JOptionPane.showMessageDialog(jdDelete, "Tài khoản hiện đang đăng nhập, không thể xóa");
                 jdDelete.dispose();
             }
         });
@@ -280,11 +280,11 @@ public class UserController implements ManagerController {
                     users = userDAO.getWithCondition(user);
                     panel.getTblUser().removeAll();
 
-                    String[] cols = {"Id", "Ten", "Email", "Quyen"};
+                    String[] cols = {"Id", "Tên", "Email", "Quyền"};
                     DefaultTableModel dtm = new DefaultTableModel(cols, 0);
                     if (!Common.isNullOrEmpty(users)) {
                         users.forEach(obj -> {
-                            dtm.addRow(new Object[]{obj.getId(), obj.getName(), obj.getEmail(), obj.getRole() == 0 ? "Nhan vien" : "Quan tri vien"});
+                            dtm.addRow(new Object[]{obj.getId(), obj.getName(), obj.getEmail(), obj.getRole() == 0 ? "Nhân viên" : "Quản trị viên"});
                         });
 
                         panel.getTblUser().getSelectionModel().addListSelectionListener(e -> {
@@ -312,11 +312,11 @@ public class UserController implements ManagerController {
             users = userDAO.getAll();
             panel.getTblUser().removeAll();
 
-            String[] cols = {"Id", "Ten", "Email", "Quyen"};
+            String[] cols = {"Id", "Tên", "Email", "Quyền"};
             DefaultTableModel dtm = new DefaultTableModel(cols, 0);
             if (!Common.isNullOrEmpty(users)) {
                 users.forEach(obj -> {
-                    dtm.addRow(new Object[]{obj.getId(), obj.getName(), obj.getEmail(), obj.getRole() == 0 ? "Nhan vien" : "Quan tri vien"});
+                    dtm.addRow(new Object[]{obj.getId(), obj.getName(), obj.getEmail(), obj.getRole() == 0 ? "Nhân viên" : "Quản trị viên"});
                 });
 
                 panel.getTblUser().getSelectionModel().addListSelectionListener(e -> {

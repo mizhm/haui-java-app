@@ -194,7 +194,7 @@ public final class JDActionProduct extends javax.swing.JDialog {
         lblPriceError = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
-        setTitle("CẬP NHẬT SẢN PHẨM");
+        setTitle("SẢN PHẨM");
         setResizable(false);
 
         jPanel1.setBackground(new java.awt.Color(255, 255, 255));

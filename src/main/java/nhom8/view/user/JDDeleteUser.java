@@ -32,7 +32,7 @@ public class JDDeleteUser extends javax.swing.JDialog {
         super(parent, modal);
         initComponents();
         setLocationRelativeTo(null);
-        lblConfirm.setText("Bạn có chắc chắn muốn xoá nguoi dung tên: " + userName);
+        lblConfirm.setText("Bạn có chắc chắn muốn xoá người dùng tên: " + userName);
 
     }
 
@@ -52,13 +52,13 @@ public class JDDeleteUser extends javax.swing.JDialog {
         btnDelete = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
-        setTitle("XOÁ DANH MỤC");
+        setTitle("XOÁ NGƯỜI DÙNG");
 
         jPanel1.setBackground(new java.awt.Color(255, 255, 255));
 
         jLabel1.setFont(new java.awt.Font("Segoe UI Semibold", 0, 36)); // NOI18N
         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/assets/img/delete.png"))); // NOI18N
-        jLabel1.setText("XOÁ NGUOI DUNG");
+        jLabel1.setText("XÓA NGƯỜI DÙNG");
 
         btnCancel.setBackground(new java.awt.Color(0, 204, 51));
         btnCancel.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N

@@ -128,7 +128,7 @@
                 <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                   <Color blue="ff" green="66" red="0" type="rgb"/>
                 </Property>
-                <Property name="text" type="java.lang.String" value="Dang xuat?"/>
+                <Property name="text" type="java.lang.String" value="&#x110;&#x103;ng xu&#x1ea5;t?"/>
               </Properties>
             </Component>
             <Component class="javax.swing.JLabel" name="lbl3">
@@ -136,7 +136,7 @@
                 <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                   <Color blue="66" green="66" red="66" type="rgb"/>
                 </Property>
-                <Property name="text" type="java.lang.String" value="Ban da dang nhap,"/>
+                <Property name="text" type="java.lang.String" value="B&#x1ea1;n &#x111;&#xe3; &#x111;&#x103;ng nh&#x1ead;p,"/>
               </Properties>
             </Component>
           </SubComponents>
@@ -285,7 +285,7 @@
                 </Container>
                 <Component class="javax.swing.JButton" name="btnCategory">
                   <Properties>
-                    <Property name="text" type="java.lang.String" value="Category"/>
+                    <Property name="text" type="java.lang.String" value="Danh m&#x1ee5;c"/>
                     <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
                       <Border info="null"/>
                     </Property>
@@ -356,7 +356,7 @@
                 </Container>
                 <Component class="javax.swing.JButton" name="btnProduct">
                   <Properties>
-                    <Property name="text" type="java.lang.String" value="Product"/>
+                    <Property name="text" type="java.lang.String" value="S&#x1ea3;n ph&#x1ea9;m"/>
                     <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
                       <Border info="null"/>
                     </Property>
@@ -427,7 +427,7 @@
                 </Container>
                 <Component class="javax.swing.JButton" name="btnBill">
                   <Properties>
-                    <Property name="text" type="java.lang.String" value="Bill"/>
+                    <Property name="text" type="java.lang.String" value="H&#xf3;a &#x111;&#x1a1;n"/>
                     <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
                       <Border info="null"/>
                     </Property>
@@ -498,7 +498,7 @@
                 </Container>
                 <Component class="javax.swing.JButton" name="btnUser">
                   <Properties>
-                    <Property name="text" type="java.lang.String" value="User"/>
+                    <Property name="text" type="java.lang.String" value="Ng&#x1b0;&#x1edd;i d&#xf9;ng"/>
                     <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
                       <Border info="null"/>
                     </Property>

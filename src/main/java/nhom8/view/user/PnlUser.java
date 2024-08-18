@@ -80,7 +80,7 @@ public class PnlUser extends javax.swing.JPanel {
 
         lblAddUser.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         lblAddUser.setIcon(new javax.swing.ImageIcon(getClass().getResource("/assets/img/add.png"))); // NOI18N
-        lblAddUser.setText("them");
+        lblAddUser.setText("Thêm");
         lblAddUser.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         lblAddUser.setPreferredSize(new java.awt.Dimension(68, 60));
         lblAddUser.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
@@ -88,7 +88,7 @@ public class PnlUser extends javax.swing.JPanel {
 
         lblUpdateUser.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         lblUpdateUser.setIcon(new javax.swing.ImageIcon(getClass().getResource("/assets/img/edit.png"))); // NOI18N
-        lblUpdateUser.setText("sua");
+        lblUpdateUser.setText("Sửa");
         lblUpdateUser.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         lblUpdateUser.setPreferredSize(new java.awt.Dimension(68, 60));
         lblUpdateUser.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
@@ -96,7 +96,7 @@ public class PnlUser extends javax.swing.JPanel {
 
         lblDeleteUser.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         lblDeleteUser.setIcon(new javax.swing.ImageIcon(getClass().getResource("/assets/img/delete.png"))); // NOI18N
-        lblDeleteUser.setText("xoa");
+        lblDeleteUser.setText("Xóa");
         lblDeleteUser.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         lblDeleteUser.setPreferredSize(new java.awt.Dimension(68, 60));
         lblDeleteUser.setVerifyInputWhenFocusTarget(false);
@@ -105,14 +105,14 @@ public class PnlUser extends javax.swing.JPanel {
 
         lblSearchUser.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         lblSearchUser.setIcon(new javax.swing.ImageIcon(getClass().getResource("/assets/img/loupe.png"))); // NOI18N
-        lblSearchUser.setText("tim kiem");
+        lblSearchUser.setText("Tìm kiếm");
         lblSearchUser.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         lblSearchUser.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
         jPanel2.add(lblSearchUser);
 
         lblRefreshUser.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         lblRefreshUser.setIcon(new javax.swing.ImageIcon(getClass().getResource("/assets/img/refresh.png"))); // NOI18N
-        lblRefreshUser.setText("lam moi");
+        lblRefreshUser.setText("Làm mới");
         lblRefreshUser.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         lblRefreshUser.setPreferredSize(new java.awt.Dimension(68, 60));
         lblRefreshUser.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);

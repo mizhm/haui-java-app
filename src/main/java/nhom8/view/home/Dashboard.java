@@ -158,10 +158,10 @@ public class Dashboard extends javax.swing.JFrame {
         lblEmail.setText("Nhan vien");
 
         lblLogout.setForeground(new java.awt.Color(0, 102, 255));
-        lblLogout.setText("Dang xuat?");
+        lblLogout.setText("Đăng xuất?");
 
         lbl3.setForeground(new java.awt.Color(102, 102, 102));
-        lbl3.setText("Ban da dang nhap,");
+        lbl3.setText("Bạn đã đăng nhập,");
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -257,7 +257,7 @@ public class Dashboard extends javax.swing.JFrame {
             .addGap(0, 4, Short.MAX_VALUE)
         );
 
-        btnCategory.setText("Category");
+        btnCategory.setText("Danh mục");
         btnCategory.setBorder(null);
         btnCategory.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -304,7 +304,7 @@ public class Dashboard extends javax.swing.JFrame {
             .addGap(0, 4, Short.MAX_VALUE)
         );
 
-        btnProduct.setText("Product");
+        btnProduct.setText("Sản phẩm");
         btnProduct.setBorder(null);
         btnProduct.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -351,7 +351,7 @@ public class Dashboard extends javax.swing.JFrame {
             .addGap(0, 4, Short.MAX_VALUE)
         );
 
-        btnBill.setText("Bill");
+        btnBill.setText("Hóa đơn");
         btnBill.setBorder(null);
         btnBill.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -398,7 +398,7 @@ public class Dashboard extends javax.swing.JFrame {
             .addGap(0, 4, Short.MAX_VALUE)
         );
 
-        btnUser.setText("User");
+        btnUser.setText("Người dùng");
         btnUser.setBorder(null);
         btnUser.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {

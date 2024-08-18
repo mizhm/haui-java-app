@@ -58,7 +58,7 @@ public class ProductController implements ManagerController {
                         BorderFactory.createLineBorder(new Color(240, 71, 71)),
                         BorderFactory.createEmptyBorder(5, 8, 5, 8)));
                 jdAdd.getLblName().setForeground(new Color(240, 71, 71));
-                jdAdd.getLblNameError().setText("Ten khong duoc de trong");
+                jdAdd.getLblNameError().setText("Tên không được để trống");
                 validate = false;
                 jdAdd.getLblNameError().setVisible(true);
             }
@@ -68,7 +68,7 @@ public class ProductController implements ManagerController {
                         BorderFactory.createLineBorder(new Color(240, 71, 71)),
                         BorderFactory.createEmptyBorder(5, 8, 5, 8)));
                 jdAdd.getLblPrice().setForeground(new Color(240, 71, 71));
-                jdAdd.getLblPriceError().setText("Gia khong duoc de trong");
+                jdAdd.getLblPriceError().setText("Giá không được để trống");
                 validate = false;
                 jdAdd.getLblPriceError().setVisible(true);
             } else if (price < 0) {
@@ -76,7 +76,7 @@ public class ProductController implements ManagerController {
                         BorderFactory.createLineBorder(new Color(240, 71, 71)),
                         BorderFactory.createEmptyBorder(5, 8, 5, 8)));
                 jdAdd.getLblPrice().setForeground(new Color(240, 71, 71));
-                jdAdd.getLblPriceError().setText("Gia phai la so lon hon hoac bang 0");
+                jdAdd.getLblPriceError().setText("Giá phải lớn hơn hoặc bằng 0");
                 validate = false;
                 jdAdd.getLblPriceError().setVisible(true);
             }
@@ -86,7 +86,7 @@ public class ProductController implements ManagerController {
                         BorderFactory.createLineBorder(new Color(240, 71, 71)),
                         BorderFactory.createEmptyBorder(5, 8, 5, 8)));
                 jdAdd.getLblName().setForeground(new Color(240, 71, 71));
-                jdAdd.getLblNameError().setText("Ten da duoc su dung");
+                jdAdd.getLblNameError().setText("Tên đã được sử dụng");
                 validate = false;
                 jdAdd.getLblNameError().setVisible(true);
             }
@@ -128,7 +128,7 @@ public class ProductController implements ManagerController {
                         BorderFactory.createLineBorder(new Color(240, 71, 71)),
                         BorderFactory.createEmptyBorder(5, 8, 5, 8)));
                 jdUpdate.getLblName().setForeground(new Color(240, 71, 71));
-                jdUpdate.getLblNameError().setText("Ten khong duoc de trong");
+                jdUpdate.getLblNameError().setText("Tên không được để trống");
                 validate = false;
                 jdUpdate.getLblNameError().setVisible(true);
             }
@@ -138,7 +138,7 @@ public class ProductController implements ManagerController {
                         BorderFactory.createLineBorder(new Color(240, 71, 71)),
                         BorderFactory.createEmptyBorder(5, 8, 5, 8)));
                 jdUpdate.getLblPrice().setForeground(new Color(240, 71, 71));
-                jdUpdate.getLblPriceError().setText("Gia khong duoc de trong");
+                jdUpdate.getLblPriceError().setText("Giá không được để trống");
                 validate = false;
                 jdUpdate.getLblPriceError().setVisible(true);
             } else if (price < 0) {
@@ -146,7 +146,7 @@ public class ProductController implements ManagerController {
                         BorderFactory.createLineBorder(new Color(240, 71, 71)),
                         BorderFactory.createEmptyBorder(5, 8, 5, 8)));
                 jdUpdate.getLblPrice().setForeground(new Color(240, 71, 71));
-                jdUpdate.getLblPriceError().setText("Gia phai la so lon hon hoac bang 0");
+                jdUpdate.getLblPriceError().setText("Giá phải là số lớn hơn hoặc bằng 0");
                 validate = false;
                 jdUpdate.getLblPriceError().setVisible(true);
             }
@@ -156,7 +156,7 @@ public class ProductController implements ManagerController {
                         BorderFactory.createLineBorder(new Color(240, 71, 71)),
                         BorderFactory.createEmptyBorder(5, 8, 5, 8)));
                 jdUpdate.getLblName().setForeground(new Color(240, 71, 71));
-                jdUpdate.getLblNameError().setText("Ten da duoc su dung");
+                jdUpdate.getLblNameError().setText("Tên đã được sử dụng");
                 validate = false;
                 jdUpdate.getLblNameError().setVisible(true);
             }
@@ -236,12 +236,12 @@ public class ProductController implements ManagerController {
                 products = productDAO.getWithCondition(product);
                 panel.getTblProduct().removeAll();
 
-                String[] cols = {"Id", "Ten", "Gia tien", "Trang thai", "Danh muc"};
+                String[] cols = {"Id", "Tên", "Giá tiền", "Trạng thái", "Danh mục"};
                 DefaultTableModel dtm = new DefaultTableModel(cols, 0);
                 if (!Common.isNullOrEmpty(products)) {
                     products.forEach(obj -> {
-                        dtm.addRow(new Object[]{obj.getId(), obj.getName(), obj.getPrice(), obj.getStatus() ? "Hoat dong" :
-                                "Khong hoat dong", obj.getCategoryName()});
+                        dtm.addRow(new Object[]{obj.getId(), obj.getName(), obj.getPrice(), obj.getStatus() ? "Hoạt động" :
+                                "Không hoạt động", obj.getCategoryName()});
                     });
 
                     panel.getTblProduct().getSelectionModel().addListSelectionListener(el -> {
@@ -268,12 +268,12 @@ public class ProductController implements ManagerController {
             products = productDAO.getAll();
             panel.getTblProduct().removeAll();
 
-            String[] cols = {"Id", "Ten", "Gia tien", "Trang thai", "Danh muc"};
+            String[] cols = {"Id", "Tên", "Giá tiền", "Trạng thái", "Danh mục"};
             DefaultTableModel dtm = new DefaultTableModel(cols, 0);
             if (!Common.isNullOrEmpty(products)) {
                 products.forEach(obj -> {
-                    dtm.addRow(new Object[]{obj.getId(), obj.getName(), obj.getPrice(), obj.getStatus() ? "Hoat dong" :
-                            "Khong hoat dong", obj.getCategoryName()});
+                    dtm.addRow(new Object[]{obj.getId(), obj.getName(), obj.getPrice(), obj.getStatus() ? "Hoạt động" :
+                            "Không hoạt động", obj.getCategoryName()});
                 });
 
                 panel.getTblProduct().getSelectionModel().addListSelectionListener(e -> {

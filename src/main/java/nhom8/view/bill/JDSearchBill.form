@@ -114,7 +114,7 @@
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
               <Font name="Segoe UI Semibold" size="12" style="0"/>
             </Property>
-            <Property name="text" type="java.lang.String" value="Ngay tao (dd-MM-yyyy)"/>
+            <Property name="text" type="java.lang.String" value="Ng&#xe0;y t&#x1ea1;o (dd-MM-yyyy)"/>
           </Properties>
         </Component>
         <Component class="javax.swing.JTextField" name="txtCreatedDate">
@@ -145,7 +145,7 @@
             <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
               <Color blue="33" green="0" red="ff" type="rgb"/>
             </Property>
-            <Property name="text" type="java.lang.String" value="Vui long nhap dinh dang dd-MM-yyyy"/>
+            <Property name="text" type="java.lang.String" value="Vui l&#xf2;ng nh&#x1ead;p &#x111;&#xfa;ng &#x111;&#x1ecb;nh d&#x1ea1;ng dd-MM-yyyy"/>
           </Properties>
         </Component>
       </SubComponents>

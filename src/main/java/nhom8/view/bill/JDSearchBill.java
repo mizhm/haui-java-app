@@ -99,7 +99,7 @@ public final class JDSearchBill extends javax.swing.JDialog {
         lblBillId.setText("Mã hoá đơn");
 
         lblCreatedDate.setFont(new java.awt.Font("Segoe UI Semibold", 0, 12)); // NOI18N
-        lblCreatedDate.setText("Ngay tao (dd-MM-yyyy)");
+        lblCreatedDate.setText("Ngày tạo (dd-MM-yyyy)");
 
         btnSearch.setBackground(new java.awt.Color(0, 204, 106));
         btnSearch.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
@@ -114,7 +114,7 @@ public final class JDSearchBill extends javax.swing.JDialog {
         });
 
         lblCreatedDateError.setForeground(new java.awt.Color(255, 0, 51));
-        lblCreatedDateError.setText("Vui long nhap dinh dang dd-MM-yyyy");
+        lblCreatedDateError.setText("Vui lòng nhập đúng định dạng dd-MM-yyyy");
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
