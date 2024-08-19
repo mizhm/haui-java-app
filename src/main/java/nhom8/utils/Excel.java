@@ -27,15 +27,13 @@ public class Excel {
         return baseName.concat(String.format("_%s.xlsx", dateTimeInfo));
     }
 
-    public void export(String table, String file) {
-        String sql = "SELECT * FROM ".concat(table);
-
+    public void export(String sql, String sheetName, String file) {
         try {
             ps = conn.prepareStatement(sql);
             rs = ps.executeQuery();
 
             XSSFWorkbook workbook = new XSSFWorkbook();
-            XSSFSheet sheet = workbook.createSheet(table);
+            XSSFSheet sheet = workbook.createSheet(sheetName);
 
             writeHeaderLine(rs, sheet);
 
@@ -56,9 +54,9 @@ public class Excel {
         Row headerRow = sheet.createRow(0);
 
         // exclude the first column which is the ID field
-        for (int i = 2; i <= numberOfColumns; i++) {
+        for (int i = 1; i <= numberOfColumns; i++) {
             String columnName = metaData.getColumnName(i);
-            Cell headerCell = headerRow.createCell(i - 2);
+            Cell headerCell = headerRow.createCell(i - 1);
             headerCell.setCellValue(columnName);
         }
     }
@@ -73,10 +71,10 @@ public class Excel {
         while (result.next()) {
             Row row = sheet.createRow(rowCount++);
 
-            for (int i = 2; i <= numberOfColumns; i++) {
+            for (int i = 1; i <= numberOfColumns; i++) {
                 Object valueObject = result.getObject(i);
 
-                Cell cell = row.createCell(i - 2);
+                Cell cell = row.createCell(i - 1);
 
                 if (valueObject instanceof Boolean) {
                     cell.setCellValue((Boolean) valueObject);
