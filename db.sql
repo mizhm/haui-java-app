@@ -843,6 +843,12 @@ declare
                       N' group by b.id, b.status, b.created_at, b.updated_at, b.user_id, u.name')
     exec (@sql);
 go
+-- select b.*, sum(bd.price * bd.amount) [total], u.name
+-- from bill b
+--          join [user] u on b.user_id = u.id
+--          left join bill_detail bd on b.id = bd.bill_id
+-- group by b.id, b.status, b.created_at, b.updated_at, b.user_id, u.name
+-- go
 
 exec usp_get_all_bill
 go
@@ -853,11 +859,6 @@ select top 1 *
 from bill
 order by created_at desc
 go
--- select b.*, sum(bd.price * bd.amount) [total]
--- from bill b
---          join bill_detail bd on b.id = bd.bill_id
--- group by b.id, b.status, b.created_at, b.updated_at
--- go
 
 create proc usp_insert_bill_detail(
     @_bill_id int,

@@ -230,7 +230,12 @@ public class BillController implements ManagerController {
                 int chooser = excelFileChooser.showSaveDialog(null);
 
                 if (chooser == JFileChooser.APPROVE_OPTION) {
-                    excel.export(table, excelFileChooser.getSelectedFile().getPath());
+                    String sql = "select b.id N'Mã đơn hàng', IIF(b.status=1, N'Đã thanh toán', N'Chưa thanh toán') N'Trạng thái', b.created_at N'Ngày tạo', b.updated_at N'Ngày sửa đổi', sum(bd.price * bd.amount) N'Tổng tiền', u.name N'Người tạo'" +
+                            " from bill b" +
+                            " join [user] u on b.user_id = u.id" +
+                            " left join bill_detail bd on b.id = bd.bill_id" +
+                            " group by b.id, b.status, b.created_at, b.updated_at, b.user_id, u.name";
+                    excel.export(sql, table, excelFileChooser.getSelectedFile().getPath());
                     JOptionPane.showMessageDialog(view, "Xuất hoá đơn thành công");
                 }
             } catch (Exception e) {
